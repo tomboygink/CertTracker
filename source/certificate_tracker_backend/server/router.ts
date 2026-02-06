@@ -7,6 +7,8 @@ export async function router(body: any) {
     var data: any;
 
     switch (body.cmd) {
+
+        //Пользователи
         case "Auth": {
             var u = new Users(body.args);
             data = await u.Auth();
