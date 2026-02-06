@@ -1,0 +1,1 @@
+{"version":3,"file":"statusCert.js","sourceRoot":"","sources":["../../../../source/certificate_tracker_backend/installer_db/sql/statusCert.ts"],"names":[],"mappings":";;;AAIa,QAAA,gBAAgB,GAAG;IAC5B,GAAG,EAAE,muBASJ;IACD,IAAI,EAAE,IAAI,KAAK,EAAE;CACpB,CAAC;AAEW,QAAA,iBAAiB,GAAG;IAC7B,GAAG,EAAE,qPACsD;IAC3D,IAAI,EAAE,IAAI,KAAK,EAAE;CACpB,CAAC"}

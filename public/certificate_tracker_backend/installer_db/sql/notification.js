@@ -1,0 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.notification_table = void 0;
+exports.notification_table = {
+    sql: "DROP TABLE IF EXISTS notification;\n    CREATE TABLE notification(\n        ID                          BIGSERIAL NOT NULL PRIMARY KEY,\n        TitleNotif                  VARCHAR(250) DEFAULT(''),\n        MsgNotif                    VARCHAR(250) DEFAULT(''),\n        DateCreateNotif             TIMESTAMP DEFAULT(CURRENT_TIMESTAMP)\n    );\n\n    COMMENT ON TABLE notification IS '\u0422\u0430\u0431\u043B\u0438\u0446\u0430 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u0439';\n    COMMENT ON COLUMN notification.ID IS '\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';\n    COMMENT ON COLUMN notification.TitleNotif IS '\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';\n    COMMENT ON COLUMN notification.MsgNotif IS '\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';\n    COMMENT ON COLUMN notification.DateCreateNotif IS '\u0414\u0430\u0442\u0430 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';\n    ",
+    args: new Array()
+};
+//# sourceMappingURL=notification.js.map

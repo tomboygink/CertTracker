@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Сервер для обмена между БД и клиентом / установщик БД",
+  "license": "ISC",
+  "author": "Letovaltseva Marina",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build_installer_db": "npx tsc -w -p installer_db",
+    "build_server": "npx tsc -w -p server"
+  }
+}

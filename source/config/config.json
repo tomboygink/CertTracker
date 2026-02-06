@@ -1,0 +1,30 @@
+{
+    "server_config": {
+        "host": "127.0.0.1",
+        "port": "3000"
+    },
+    "front_config":{},
+    "config_db": {
+        "host": "localhost",
+        "port": 5432,
+        "user": "postgres",
+        "password": "000000",
+        "database": "CertTrackerDB"
+    },
+    "code_time":{
+        "code": "other_token_code",
+        "time": "1h"
+    },
+
+    "crypto_code":"other_crypt_code",
+
+    "config_mail": {
+        "host": "smtp.mail.ru",
+        "port": 465,
+        "secure": true,
+        "auth": {
+            "user": "noreplay@burvodstroy45.ru",
+            "pass": "jeLST1X5djEqVLnlbT4b"
+        }
+    }
+}

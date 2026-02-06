@@ -1,0 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.notificationReads_table = void 0;
+exports.notificationReads_table = {
+    sql: "DROP TABLE IF EXISTS notificationReads;\n    CREATE TABLE notificationReads(\n        ID                          BIGSERIAL NOT NULL PRIMARY KEY,\n        Notification_ID             BIGINT DEFAULT 0,\n        User_ID                     BIGINT DEFAULT 0,\n        DateReadNotif               TIMESTAMP DEFAULT(CURRENT_TIMESTAMP)\n    );\n\n    COMMENT ON TABLE notificationReads IS '\u0422\u0430\u0431\u043B\u0438\u0446\u0430 \u0447\u0442\u0435\u043D\u0438\u044F \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u0439';\n    COMMENT ON COLUMN notificationReads.ID IS '\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0447\u0442\u0435\u043D\u0438\u044F';\n    COMMENT ON COLUMN notificationReads.Notification_ID IS '\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';\n    COMMENT ON COLUMN notificationReads.User_ID IS '\u0418\u0434\u0435\u043D\u0442\u0438\u0444\u0438\u043A\u0430\u0442\u043E\u0440 \u043F\u043E\u043B\u044C\u0449\u043E\u0432\u0430\u0442\u0435\u043B\u044F \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043F\u0440\u043E\u0447\u0438\u0442\u0430\u043B';\n    COMMENT ON COLUMN notificationReads.DateReadNotif IS '\u0414\u0430\u0442\u0430 \u043F\u0440\u043E\u0447\u0442\u0435\u043D\u0438\u044F \u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';\n    ",
+    args: new Array()
+};
+//# sourceMappingURL=notificationReads.js.map

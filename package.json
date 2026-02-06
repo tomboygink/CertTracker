@@ -1,0 +1,31 @@
+{
+  "name": "certificate_tracker",
+  "version": "1.0.0",
+  "description": "ПО по отслеживанию актуальности подтверждающих сертификатов компании",
+  "license": "ISC",
+  "author": "Letovaltseva Marina / Danko Alexander",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build_installer_db": "cd source/certificate_tracker_backend && npm run build_installer_db",
+    "build_server": "cd source/certificate_tracker_backend && npm run build_server",
+    "run_installer": "cd public/certificate_tracker_backend/installer_db && node main.js",
+    "run_server": "cd public/certificate_tracker_backend/server && node server.js"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/nodemailer": "^7.0.9",
+    "@types/pg": "^8.16.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^8.0.0",
+    "pg": "^8.18.0",
+    "pg-protocol": "^1.11.0",
+    "pg-types": "^4.1.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3"
+  }
+}

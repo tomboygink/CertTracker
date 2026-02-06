@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        //компиляция сервера
+        {
+            "type": "npm",
+            "script": "build_server",
+            "problemMatcher": [],
+            "label": "npm: build_server",
+            "detail": "компиляция сервера",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        //запкск сервера 
+        {
+            "type": "npm",
+            "script": "run_server",
+            "problemMatcher": [],
+            "label": "npm: run server",
+            "detail": "Запуск сервера визуалки",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        //компиляция инсталлера
+        {
+            "type": "npm",
+            "script": "build_installer_db",
+            "problemMatcher": [],
+            "label": "npm: build_installer_db",
+            "detail": "компиляция инсталлера",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        //запкск инсталлера
+        {
+            "type": "npm",
+            "script": "run_installer",
+            "problemMatcher": [],
+            "label": "npm: run installer_db",
+            "detail": "Запуск инсталлера",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
