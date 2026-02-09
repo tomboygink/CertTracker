@@ -38,9 +38,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = router;
 var Users_1 = require("../../config/db/Users");
+var UserAccess_1 = require("../../config/db/UserAccess");
+var WorkPosition_1 = require("../../config/db/WorkPosition");
 function router(body) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, _a, u, u, u, u;
+        var data, _a, u, u, u, u, ua, wp, wp, wp;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -51,8 +53,12 @@ function router(body) {
                         case "AddUser": return [3, 3];
                         case "ChangeUser": return [3, 5];
                         case "AllUsers": return [3, 7];
+                        case "AllAccess": return [3, 9];
+                        case "AddWorkPosition": return [3, 11];
+                        case "ChangeWorkPosition": return [3, 13];
+                        case "AllWorkPosition": return [3, 15];
                     }
-                    return [3, 9];
+                    return [3, 17];
                 case 1:
                     u = new Users_1.Users(body.args);
                     return [4, u.Auth()];
@@ -78,11 +84,35 @@ function router(body) {
                     data = _b.sent();
                     return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения пользователей")];
                 case 9:
+                    ua = new UserAccess_1.UserAccess(body.args);
+                    return [4, ua.All()];
+                case 10:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения уровней доступа")];
+                case 11:
+                    wp = new WorkPosition_1.WorkPosition(body.args);
+                    return [4, wp.Add()];
+                case 12:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления должности")];
+                case 13:
+                    wp = new WorkPosition_1.WorkPosition(body.args);
+                    return [4, wp.Update()];
+                case 14:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения должности")];
+                case 15:
+                    wp = new WorkPosition_1.WorkPosition(body.args);
+                    return [4, wp.All()];
+                case 16:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения должностей")];
+                case 17:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
                     }
-                    _b.label = 10;
-                case 10: return [2];
+                    _b.label = 18;
+                case 18: return [2];
             }
         });
     });
