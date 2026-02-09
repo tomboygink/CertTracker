@@ -1,1 +1,1 @@
-{"version":3,"file":"cert.js","sourceRoot":"","sources":["../../../../source/certificate_tracker_backend/installer_db/sql/cert.ts"],"names":[],"mappings":";;;AAMa,QAAA,UAAU,GAAG;IACtB,GAAG,EAAE,giFAuBJ;IACD,IAAI,EAAE,IAAI,KAAK,EAAE;CACpB,CAAC"}
+{"version":3,"file":"cert.js","sourceRoot":"","sources":["../../../../source/certificate_tracker_backend/installer_db/sql/cert.ts"],"names":[],"mappings":";;;AAMa,QAAA,UAAU,GAAG;IACtB,GAAG,EAAE,+hFAuBJ;IACD,IAAI,EAAE,IAAI,KAAK,EAAE;CACpB,CAAC"}
