@@ -40,9 +40,13 @@ exports.router = router;
 var Users_1 = require("../../config/db/Users");
 var UserAccess_1 = require("../../config/db/UserAccess");
 var WorkPosition_1 = require("../../config/db/WorkPosition");
+var Dept_1 = require("../../config/db/Dept");
+var CategoryCert_1 = require("../../config/db/CategoryCert");
+var StatusCert_1 = require("../../config/db/StatusCert");
+var Cert_1 = require("../../config/db/Cert");
 function router(body) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, _a, u, u, u, u, ua, wp, wp, wp;
+        var data, _a, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -57,8 +61,16 @@ function router(body) {
                         case "AddWorkPosition": return [3, 11];
                         case "ChangeWorkPosition": return [3, 13];
                         case "AllWorkPosition": return [3, 15];
+                        case "AddDept": return [3, 17];
+                        case "ChangeDept": return [3, 19];
+                        case "AllDept": return [3, 21];
+                        case "AddCategoryCert": return [3, 23];
+                        case "ChangeCategoryCert": return [3, 25];
+                        case "AllCategoryCert": return [3, 27];
+                        case "AllStatusCert": return [3, 29];
+                        case "AddCert": return [3, 31];
                     }
-                    return [3, 17];
+                    return [3, 33];
                 case 1:
                     u = new Users_1.Users(body.args);
                     return [4, u.Auth()];
@@ -108,11 +120,59 @@ function router(body) {
                     data = _b.sent();
                     return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения должностей")];
                 case 17:
+                    d = new Dept_1.Dept(body.args);
+                    return [4, d.Add()];
+                case 18:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления отдела")];
+                case 19:
+                    d = new Dept_1.Dept(body.args);
+                    return [4, d.Update()];
+                case 20:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения отдела")];
+                case 21:
+                    d = new Dept_1.Dept(body.args);
+                    return [4, d.All()];
+                case 22:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения отделов")];
+                case 23:
+                    cc = new CategoryCert_1.CategoryCert(body.args);
+                    return [4, cc.Add()];
+                case 24:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления категории")];
+                case 25:
+                    cc = new CategoryCert_1.CategoryCert(body.args);
+                    return [4, cc.Update()];
+                case 26:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения категории")];
+                case 27:
+                    cc = new CategoryCert_1.CategoryCert(body.args);
+                    return [4, cc.All()];
+                case 28:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения категорий")];
+                case 29:
+                    sc = new StatusCert_1.StatusCert(body.args);
+                    return [4, sc.All()];
+                case 30:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения статусов сертификата")];
+                case 31:
+                    c = new Cert_1.Cert(body.args);
+                    return [4, c.Add()];
+                case 32:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления сертификата")];
+                case 33:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
                     }
-                    _b.label = 18;
-                case 18: return [2];
+                    _b.label = 34;
+                case 34: return [2];
             }
         });
     });
