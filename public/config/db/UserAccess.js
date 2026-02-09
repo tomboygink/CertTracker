@@ -36,19 +36,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkPosition = void 0;
+exports.UserAccess = void 0;
 var DBase_1 = require("./DBase");
-var WorkPosition = (function () {
-    function WorkPosition(_args) {
+var UserAccess = (function () {
+    function UserAccess(_args) {
         this.db = (0, DBase_1.getDB)();
         this.args = _args;
     }
-    WorkPosition.prototype.Add = function () {
+    UserAccess.prototype.All = function () {
         return __awaiter(this, void 0, void 0, function () {
             var db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("INSERT INTO workposition(workpositionname, dept_id) VALUES ('" + this.args.workpositionname + "', " + this.args.dept_id + ") RETURNING id")];
+                    case 0: return [4, this.db.query("SELECT * FROM useraccesses")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();
@@ -60,41 +60,7 @@ var WorkPosition = (function () {
             });
         });
     };
-    WorkPosition.prototype.Update = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var db_res;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, this.db.query("UPDATE workposition SET workpositionname = '" + this.args.workpositionname + "', dept_id = " + this.args.dept_id + " WHERE id = " + this.args.id + " RETURNING id ")];
-                    case 1: return [4, (_a.sent()).rows];
-                    case 2:
-                        db_res = _a.sent();
-                        if (!db_res || db_res.length === 0) {
-                            return [2, null];
-                        }
-                        return [2, db_res];
-                }
-            });
-        });
-    };
-    WorkPosition.prototype.All = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var db_res;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4, this.db.query("SELECT * FROM workposition")];
-                    case 1: return [4, (_a.sent()).rows];
-                    case 2:
-                        db_res = _a.sent();
-                        if (!db_res || db_res.length === 0) {
-                            return [2, null];
-                        }
-                        return [2, db_res];
-                }
-            });
-        });
-    };
-    return WorkPosition;
+    return UserAccess;
 }());
-exports.WorkPosition = WorkPosition;
-//# sourceMappingURL=WorkPosition.js.map
+exports.UserAccess = UserAccess;
+//# sourceMappingURL=UserAccess.js.map
