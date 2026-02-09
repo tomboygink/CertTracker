@@ -15,7 +15,7 @@ export const cert_table = {
         Category_ID                       BIGINT DEFAULT 0,
         IssueDate                         TIMESTAMP DEFAULT(CURRENT_TIMESTAMP),
         CertValidityPeriod                TIMESTAMP DEFAULT(CURRENT_TIMESTAMP),
-        Docs                              BYTEA DEFAULT NULL
+        Docs                              TEXT DEFAULT ('')
     );
 
     COMMENT ON TABLE cert IS 'Информация о сертификате';

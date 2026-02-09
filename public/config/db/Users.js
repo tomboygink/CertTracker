@@ -66,18 +66,18 @@ var Users = (function () {
                             return [2, null];
                         }
                         token = (0, jwt_1.generateToken)(db_res[0]);
-                        return [2, {
-                                id: db_res[0].id,
-                                lastname: db_res[0].lastname,
-                                firstname: db_res[0].firstname,
-                                avatar: db_res[0].avatar,
-                                access_id: db_res[0].access_id,
-                                email: db_res[0].email,
-                                sendmail: db_res[0].sendmail,
-                                workposition_id: db_res[0].workposition_id,
-                                deleted: db_res[0].deleted,
-                                token: token
-                            }];
+                        return [2, [{
+                                    id: db_res[0].id,
+                                    lastname: db_res[0].lastname,
+                                    firstname: db_res[0].firstname,
+                                    avatar: db_res[0].avatar,
+                                    access_id: db_res[0].access_id,
+                                    email: db_res[0].email,
+                                    sendmail: db_res[0].sendmail,
+                                    workposition_id: db_res[0].workposition_id,
+                                    deleted: db_res[0].deleted,
+                                    token: token
+                                }]];
                     case 3:
                         if (!(this.args.auth === "jwt")) return [3, 8];
                         _a.label = 4;
@@ -92,13 +92,125 @@ var Users = (function () {
                         if (!db_res_1 || db_res_1.length === 0) {
                             return [2, null];
                         }
-                        return [2, {
-                                user: db_res_1[0]
-                            }];
+                        return [2, db_res_1];
                     case 7:
                         e_1 = _a.sent();
                         return [2, null];
                     case 8: return [2];
+                }
+            });
+        });
+    };
+    Users.prototype.Add = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var pass, db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        pass = crypto_1.default.createHmac('sha256', config_json_1.default.crypto_code).update(this.args.password).digest('hex');
+                        return [4, this.db.query("INSERT INTO users (login, password, lastname, firstname, " +
+                                "avatar, access_id, email, sendmail, workposition_id, deleted) " +
+                                "VALUES ('" + this.args.login + "', '" + pass + "', '" + this.args.lastname + "', '" + this.args.firstname + "', " +
+                                "'', " + this.args.access_id + ", '" + this.args.email + "', " +
+                                "" + this.args.sendmail + ", " + this.args.workposition_id + ", " + this.args.deleted + ") RETURNING id")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Users.prototype.Update = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res, pass, db_res, db_res, db_res, old_pass, new_pass, db_res_check, db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.args.change === "data_admin")) return [3, 3];
+                        return [4, this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', firstname = '" + this.args.firstname + "', " +
+                                "access_id = " + this.args.access_id + ", email = '" + this.args.email + "', sendmail = " + this.args.sendmail + ", workposition_id = " + this.args.workposition_id + ", " +
+                                "deleted = " + this.args.deleted + " WHERE id = " + this.args.user_id + " RETURNING id")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                    case 3:
+                        if (!(this.args.change === "pass_admin")) return [3, 6];
+                        pass = crypto_1.default.createHmac('sha256', config_json_1.default.crypto_code).update(this.args.password).digest('hex');
+                        return [4, this.db.query("UPDATE users SET password = '" + pass + "' WHERE id = " + this.args.user_id + " RETURNING id")];
+                    case 4: return [4, (_a.sent()).rows];
+                    case 5:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                    case 6:
+                        if (!(this.args.change === "ava_user")) return [3, 9];
+                        return [4, this.db.query("UPDATE users SET avatar = '" + this.args.avatar + "' WHERE id = " + this.args.id + " RETURNING id")];
+                    case 7: return [4, (_a.sent()).rows];
+                    case 8:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                    case 9:
+                        if (!(this.args.change === "data_user")) return [3, 12];
+                        return [4, this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', firstname = '" + this.args.firstname + "' WHERE id = " + this.args.id + " RETURNING id")];
+                    case 10: return [4, (_a.sent()).rows];
+                    case 11:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                    case 12:
+                        if (!(this.args.change === "pass_user")) return [3, 17];
+                        old_pass = crypto_1.default.createHmac('sha256', config_json_1.default.crypto_code).update(this.args.old_password).digest('hex');
+                        new_pass = crypto_1.default.createHmac('sha256', config_json_1.default.crypto_code).update(this.args.new_password).digest('hex');
+                        return [4, this.db.query("SELECT password FROM users WHERE id = " + this.args.id)];
+                    case 13: return [4, (_a.sent()).rows];
+                    case 14:
+                        db_res_check = _a.sent();
+                        if (!db_res_check || db_res_check.length === 0) {
+                            return [2, null];
+                        }
+                        if (db_res_check[0].password !== old_pass) {
+                            return [2, null];
+                        }
+                        return [4, this.db.query("UPDATE users SET password = '" + new_pass + "' WHERE id = " + this.args.id + " RETURNING id")];
+                    case 15: return [4, (_a.sent()).rows];
+                    case 16:
+                        db_res = _a.sent();
+                        if (!db_res || db_res === null)
+                            return [2, null];
+                        return [2, db_res];
+                    case 17: return [2];
+                }
+            });
+        });
+    };
+    Users.prototype.All = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
                 }
             });
         });

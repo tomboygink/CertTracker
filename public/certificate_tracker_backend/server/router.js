@@ -40,7 +40,7 @@ exports.router = router;
 var Users_1 = require("../../config/db/Users");
 function router(body) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, _a, u;
+        var data, _a, u, u, u, u;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -49,9 +49,10 @@ function router(body) {
                     switch (_a) {
                         case "Auth": return [3, 1];
                         case "AddUser": return [3, 3];
-                        case "ChangeUser": return [3, 4];
+                        case "ChangeUser": return [3, 5];
+                        case "AllUsers": return [3, 7];
                     }
-                    return [3, 5];
+                    return [3, 9];
                 case 1:
                     u = new Users_1.Users(body.args);
                     return [4, u.Auth()];
@@ -59,17 +60,29 @@ function router(body) {
                     data = _b.sent();
                     return [2, buildResponse(body.cmd, data, data ? null : "Ошибка авторизации")];
                 case 3:
-                    { }
-                    _b.label = 4;
+                    u = new Users_1.Users(body.args);
+                    return [4, u.Add()];
                 case 4:
-                    { }
-                    _b.label = 5;
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления пользователя")];
                 case 5:
+                    u = new Users_1.Users(body.args);
+                    return [4, u.Update()];
+                case 6:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка обновления данных пользователя")];
+                case 7:
+                    u = new Users_1.Users(body.args);
+                    return [4, u.All()];
+                case 8:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения пользователей")];
+                case 9:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
                     }
-                    _b.label = 6;
-                case 6: return [2];
+                    _b.label = 10;
+                case 10: return [2];
             }
         });
     });

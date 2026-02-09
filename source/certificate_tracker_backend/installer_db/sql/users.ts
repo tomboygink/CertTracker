@@ -12,7 +12,7 @@ export const users_table = {
         Password                VARCHAR(250) DEFAULT(''),
         LastName                VARCHAR(250) DEFAULT(''),
         FirstName               VARCHAR(250) DEFAULT(''),
-        Avatar                  BYTEA DEFAULT NULL,
+        Avatar                  TEXT DEFAULT(''),
         Access_ID               BIGINT DEFAULT 0,
         Email                   VARCHAR(250) DEFAULT(''),
         SendMail                BOOLEAN DEFAULT (false),
