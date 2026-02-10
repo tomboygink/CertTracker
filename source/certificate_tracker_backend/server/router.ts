@@ -5,6 +5,7 @@ import { Dept } from "../../config/db/Dept"
 import { CategoryCert } from "../../config/db/CategoryCert"
 import { StatusCert } from "../../config/db/StatusCert"
 import { Cert } from "../../config/db/Cert"
+import { Events } from "../../config/db/Events"
 
 
 export async function router(body: any) {
@@ -82,7 +83,7 @@ export async function router(body: any) {
             data = await d.Update();
             return buildResponse(body.cmd, data, data ? null : "Ошибка изменения отдела")
         }
-        //Все отдела
+        //Все отделы
         case "AllDept": {
             var d = new Dept(body.args);
             data = await d.All();
@@ -140,8 +141,18 @@ export async function router(body: any) {
         case "Docs": {
             var c = new Cert(body.args);
             data = await c.Docs();
-            return buildResponse(body.cmd, data, data ? null: "Ошибка получения документа")
+            return buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")
         }
+
+        //------------------------------------------------------------------------------------События
+        //все события
+        case "AllEvents": {
+            var ev = new Events(body.args);
+            data = await ev.All()
+            return buildResponse(body.cmd, data, data ? null : "Ошибка получения событий")
+        }
+
+
 
         default: {
             return buildResponse(body.cmd, data, data ? null : `Команда "${body.cmd}" не распознана`);
