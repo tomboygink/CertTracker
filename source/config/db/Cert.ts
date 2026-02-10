@@ -16,10 +16,34 @@ export class Cert {
 
     //Добавление категории
     async Add() {
-        var db_res = await (await this.db.query("INSERT INTO cert(user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod, docs) "+
-            "VALUES ("+this.args.user_id+", '"+this.args.certname+"', '"+this.args.certnumber+"', 1, "+this.args.category_id+", "+
-            "'"+dateTimeToSQL(new Date(this.args.issuedate))+"', '"+dateTimeToSQL(new Date(this.args.certvalidityperiod))+"', '"+this.args.docs+"') RETURNING id")).rows;
+        var db_res = await (await this.db.query("INSERT INTO cert(user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod, docs) " +
+            "VALUES (" + this.args.user_id + ", '" + this.args.certname + "', '" + this.args.certnumber + "', 1, " + this.args.category_id + ", " +
+            "'" + dateTimeToSQL(new Date(this.args.issuedate)) + "', '" + dateTimeToSQL(new Date(this.args.certvalidityperiod)) + "', '" + this.args.docs + "') RETURNING id")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }
+
+    //Изменение категории 
+    async Update() {
+        var db_res = await (await this.db.query("UPDATE cert SET certname = '" + this.args.certname + "', certnumber = '" + this.args.certnumber + "', " +
+            "statuscert_id = " + this.args.statuscert_id + ", category_id = " + this.args.category_id + ", issuedate = '" + dateTimeToSQL(new Date(this.args.issuedate)) + "', " +
+            "certvalidityperiod = '" + dateTimeToSQL(new Date(this.args.certvalidityperiod)) + "', docs = '"+this.args.docs+"' WHERE id = " + this.args.id + " RETURNING id")).rows;
+        if (!db_res || db_res.length === 0) { return null }
+        return db_res
+    }
+
+    //Запрос на все сертификаты
+    async All() {
+        var db_res = await (await this.db.query("SELECT id, user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod FROM cert")).rows;
+        if (!db_res || db_res.length === 0) { return null }
+        return db_res
+    }
+
+    //Запрос на получение PDF-документа при нажатии на сертификат
+    async Docs() {
+        var db_res = await (await this.db.query("SELECT docs FROM cert WHERE id = " + this.args.id)).rows;
+        if (!db_res || db_res.length === 0) { return null }
+        return db_res
+    }
+
 }

@@ -125,8 +125,23 @@ export async function router(body: any) {
             return buildResponse(body.cmd, data, data ? null : "Ошибка добавления сертификата")
         }
         //Изменение сертфиката
-        //Запрос сертификатов
+        case "ChangeCert": {
+            var c = new Cert(body.args);
+            data = await c.Update();
+            return buildResponse(body.cmd, data, data ? null : "Ошибка изменения сертификата")
+        }
+        //Все сертификаты
+        case "AllCert": {
+            var c = new Cert(body.args);
+            data = await c.All();
+            return buildResponse(body.cmd, data, data ? null : "Ошибка получения сертификатов")
+        }
         //Запрос прикрепленного документа
+        case "Docs": {
+            var c = new Cert(body.args);
+            data = await c.Docs();
+            return buildResponse(body.cmd, data, data ? null: "Ошибка получения документа")
+        }
 
         default: {
             return buildResponse(body.cmd, data, data ? null : `Команда "${body.cmd}" не распознана`);
