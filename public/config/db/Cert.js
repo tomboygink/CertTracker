@@ -63,6 +63,59 @@ var Cert = (function () {
             });
         });
     };
+    Cert.prototype.Update = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("UPDATE cert SET certname = '" + this.args.certname + "', certnumber = '" + this.args.certnumber + "', " +
+                            "statuscert_id = " + this.args.statuscert_id + ", category_id = " + this.args.category_id + ", issuedate = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.issuedate)) + "', " +
+                            "certvalidityperiod = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.certvalidityperiod)) + "', docs = '" + this.args.docs + "' WHERE id = " + this.args.id + " RETURNING id")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Cert.prototype.All = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT id, user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod FROM cert")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Cert.prototype.Docs = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT docs FROM cert WHERE id = " + this.args.id)];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
     return Cert;
 }());
 exports.Cert = Cert;
