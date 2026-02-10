@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cert = void 0;
 var DBase_1 = require("./DBase");
 var DateStr_1 = require("./DateStr");
+var Events_1 = require("./Events");
 var Cert = (function () {
     function Cert(_args) {
         this.db = (0, DBase_1.getDB)();
@@ -46,7 +47,7 @@ var Cert = (function () {
     }
     Cert.prototype.Add = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var db_res;
+            var db_res, ev;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.db.query("INSERT INTO cert(user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod, docs) " +
@@ -58,6 +59,10 @@ var Cert = (function () {
                         if (!db_res || db_res.length === 0) {
                             return [2, null];
                         }
+                        ev = new Events_1.Events(this.args);
+                        return [4, ev.AddCertEvent()];
+                    case 3:
+                        _a.sent();
                         return [2, db_res];
                 }
             });
@@ -65,7 +70,7 @@ var Cert = (function () {
     };
     Cert.prototype.Update = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var db_res;
+            var db_res, ev;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.db.query("UPDATE cert SET certname = '" + this.args.certname + "', certnumber = '" + this.args.certnumber + "', " +
@@ -77,6 +82,10 @@ var Cert = (function () {
                         if (!db_res || db_res.length === 0) {
                             return [2, null];
                         }
+                        ev = new Events_1.Events(this.args);
+                        return [4, ev.UpdateCertEvent()];
+                    case 3:
+                        _a.sent();
                         return [2, db_res];
                 }
             });

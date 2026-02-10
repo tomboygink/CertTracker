@@ -44,9 +44,10 @@ var Dept_1 = require("../../config/db/Dept");
 var CategoryCert_1 = require("../../config/db/CategoryCert");
 var StatusCert_1 = require("../../config/db/StatusCert");
 var Cert_1 = require("../../config/db/Cert");
+var Events_1 = require("../../config/db/Events");
 function router(body) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, _a, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c;
+        var data, _a, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, ev;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -72,8 +73,9 @@ function router(body) {
                         case "ChangeCert": return [3, 33];
                         case "AllCert": return [3, 35];
                         case "Docs": return [3, 37];
+                        case "AllEvents": return [3, 39];
                     }
-                    return [3, 39];
+                    return [3, 41];
                 case 1:
                     u = new Users_1.Users(body.args);
                     return [4, u.Auth()];
@@ -189,11 +191,17 @@ function router(body) {
                     data = _b.sent();
                     return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")];
                 case 39:
+                    ev = new Events_1.Events(body.args);
+                    return [4, ev.All()];
+                case 40:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения событий")];
+                case 41:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
                     }
-                    _b.label = 40;
-                case 40: return [2];
+                    _b.label = 42;
+                case 42: return [2];
             }
         });
     });
