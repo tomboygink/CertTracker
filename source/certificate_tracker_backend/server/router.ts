@@ -7,6 +7,7 @@ import { StatusCert } from "../../config/db/StatusCert"
 import { Cert } from "../../config/db/Cert"
 import { Events } from "../../config/db/Events"
 import { Notification } from "../../config/db/Notification"
+import { NotificationReads } from "../../config/db/NotificationReads"
 
 
 export async function router(body: any) {
@@ -152,7 +153,7 @@ export async function router(body: any) {
         }
 
         //------------------------------------------------------------------------------------События
-        //все события
+        //Все события
         case "AllEvents": {
             var ev = new Events(body.args);
             data = await ev.All()
@@ -160,10 +161,17 @@ export async function router(body: any) {
         }
 
         //------------------------------------------------------------------------------------Уведомления
+        //Получение всех не прочитанных уведомлений
         case "AllNotif": {
             var n = new Notification(body.args);
             data = await n.All();
             return buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")
+        }
+
+        case "NotifRead":{
+            var nr = new NotificationReads(body.args);
+            data = await nr.Add();
+            return buildResponse(body.cmd, data, data? null: "Ошибка прочтения уведомления")
         }
 
 

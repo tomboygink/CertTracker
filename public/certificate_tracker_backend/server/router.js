@@ -46,9 +46,10 @@ var StatusCert_1 = require("../../config/db/StatusCert");
 var Cert_1 = require("../../config/db/Cert");
 var Events_1 = require("../../config/db/Events");
 var Notification_1 = require("../../config/db/Notification");
+var NotificationReads_1 = require("../../config/db/NotificationReads");
 function router(body) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, _a, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, c, ev, n;
+        var data, _a, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, c, ev, n, nr;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -77,8 +78,9 @@ function router(body) {
                         case "Docs": return [3, 39];
                         case "AllEvents": return [3, 41];
                         case "AllNotif": return [3, 43];
+                        case "NotifRead": return [3, 45];
                     }
-                    return [3, 45];
+                    return [3, 47];
                 case 1:
                     u = new Users_1.Users(body.args);
                     return [4, u.Auth()];
@@ -212,11 +214,17 @@ function router(body) {
                     data = _b.sent();
                     return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")];
                 case 45:
+                    nr = new NotificationReads_1.NotificationReads(body.args);
+                    return [4, nr.Add()];
+                case 46:
+                    data = _b.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка прочтения уведомления")];
+                case 47:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
                     }
-                    _b.label = 46;
-                case 46: return [2];
+                    _b.label = 48;
+                case 48: return [2];
             }
         });
     });
