@@ -86,7 +86,7 @@ var Server = (function () {
     };
     Server.prototype.notification = function () {
         var _this = this;
-        node_cron_1.default.schedule('*/10 * * * * *', function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+        node_cron_1.default.schedule('0 0 * * * *', function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, (0, notif_1.notif)()];
                 case 1:

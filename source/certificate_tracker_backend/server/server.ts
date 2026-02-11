@@ -32,11 +32,12 @@ class Server {
     }
 
     check() {
+        //в полночь
         cron.schedule('0 0 * * * *', async () => { await checkcert() });
         // cron.schedule('*/10 * * * * *', async () => { await checkcert() });
     }
     notification() {
-        cron.schedule('*/10 * * * * *', async () => { await notif() });
+        cron.schedule('0 0 * * * *', async () => { await notif() });
     }
 
     //Запуск сервера 

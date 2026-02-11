@@ -20,7 +20,8 @@ export class Notification {
     }
 
     async All() {
-        var db_res = await (await this.db.query("SELECT * FROM notification ")).rows;
+        var db_res = await (await this.db.query("SELECT notification.id, notification.titlenotif, notification.msgnotif, notification.datecreatenotif FROM notification " +
+            "LEFT JOIN notificationreads ON notification.id = notificationreads.notification_id AND notificationreads.user_id = " + this.args.user_id + " WHERE notificationreads.notification_id IS NULL")).rows;
         if (!db_res || db_res.length === 0) return null;
         return db_res;
     }
