@@ -74,7 +74,7 @@ var Cert = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.db.query("UPDATE cert SET certname = '" + this.args.certname + "', certnumber = '" + this.args.certnumber + "', " +
-                            "statuscert_id = " + this.args.statuscert_id + ", category_id = " + this.args.category_id + ", issuedate = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.issuedate)) + "', " +
+                            "category_id = " + this.args.category_id + ", issuedate = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.issuedate)) + "', " +
                             "certvalidityperiod = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.certvalidityperiod)) + "', docs = '" + this.args.docs + "' WHERE id = " + this.args.id + " RETURNING id")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
@@ -84,6 +84,27 @@ var Cert = (function () {
                         }
                         ev = new Events_1.Events(this.args);
                         return [4, ev.UpdateCertEvent()];
+                    case 3:
+                        _a.sent();
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Cert.prototype.ArchiveCert = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res, ev;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("UPDATE cert SET statuscert_id = 4 WHERE id = " + this.args.id + " RETURNING id")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        ev = new Events_1.Events(this.args);
+                        return [4, ev.ArchiveCertEvent()];
                     case 3:
                         _a.sent();
                         return [2, db_res];
@@ -114,6 +135,40 @@ var Cert = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.db.query("SELECT docs FROM cert WHERE id = " + this.args.id)];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Cert.prototype.CheckAll = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT id, statuscert_id, certvalidityperiod, certname FROM cert WHERE statuscert_id != 4")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Cert.prototype.UpdateStatus = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("UPDATE cert SET statuscert_id = " + this.args.statuscert_id + " WHERE id = " + this.args.id + " RETURNING id")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();

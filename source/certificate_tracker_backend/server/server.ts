@@ -4,9 +4,12 @@ import bodyParser from 'body-parser';
 import config from '../../config/config.json'
 
 import cors from "cors"
+import cron from "node-cron"
 
 
-import {router} from './router'
+import { router } from './router'
+import { notif } from './notif'
+import { checkcert } from "./checkcert";
 
 class Server {
     app: express.Express = null;
@@ -28,9 +31,22 @@ class Server {
         })
     }
 
+    check() {
+        cron.schedule('0 0 * * * *', async () => { await checkcert() });
+        // cron.schedule('*/10 * * * * *', async () => { await checkcert() });
+    }
+    notification() {
+        cron.schedule('*/10 * * * * *', async () => { await notif() });
+    }
+
     //Запуск сервера 
     run() {
+        //Обработка API
         this.route();
+        //Фоновый поток на изменение статуса сертификата истекает/просрочен
+        this.check();
+        //фоновый поток на отправку уведомлений и писем статуса сертификата истекает/просрочен
+        this.notification();
         this.server.listen(config.server_config.port, () => { console.log(`Сервер запушен: http://${config.server_config.host}:${config.server_config.port}`) })
     }
 }
