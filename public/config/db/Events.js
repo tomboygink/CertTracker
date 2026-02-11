@@ -70,6 +70,24 @@ var Events = (function () {
             });
         });
     };
+    Events.prototype.ArchiveCertEvent = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT certname FROM cert WHERE id = " + this.args.id)];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        return [4, this.db.query("INSERT INTO events(user_id, msg, datecreatemsg) " +
+                                "VALUES (" + this.args.user_id + ", 'Отправил(а) сертификат " + db_res[0].certname + " в архив', '" + (0, DateStr_1.dateTimeToSQL)(new Date()) + "')")];
+                    case 3:
+                        _a.sent();
+                        return [2];
+                }
+            });
+        });
+    };
     Events.prototype.All = function () {
         return __awaiter(this, void 0, void 0, function () {
             var db_res;

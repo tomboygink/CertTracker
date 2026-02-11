@@ -23,7 +23,12 @@ export class Events {
         await this.db.query("INSERT INTO events(user_id, msg, datecreatemsg) " +
             "VALUES (" + this.args.user_id + ", 'Изменил(а) сертификат " + this.args.certname + "', '" + dateTimeToSQL(new Date()) + "')")
     }
-
+    async ArchiveCertEvent() {
+        var db_res = await (await this.db.query("SELECT certname FROM cert WHERE id = " + this.args.id)).rows
+        
+        await this.db.query("INSERT INTO events(user_id, msg, datecreatemsg) " +
+            "VALUES (" + this.args.user_id + ", 'Отправил(а) сертификат " + db_res[0].certname + " в архив', '" + dateTimeToSQL(new Date()) + "')")
+    }
 
     async All() {
         var db_res = await (await this.db.query("SELECT * FROM events")).rows

@@ -44,7 +44,10 @@ var http_1 = __importDefault(require("http"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var config_json_1 = __importDefault(require("../../config/config.json"));
 var cors_1 = __importDefault(require("cors"));
+var node_cron_1 = __importDefault(require("node-cron"));
 var router_1 = require("./router");
+var notif_1 = require("./notif");
+var checkcert_1 = require("./checkcert");
 var Server = (function () {
     function Server() {
         this.app = null;
@@ -70,8 +73,32 @@ var Server = (function () {
             });
         }); });
     };
+    Server.prototype.check = function () {
+        var _this = this;
+        node_cron_1.default.schedule('0 0 * * * *', function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, (0, checkcert_1.checkcert)()];
+                case 1:
+                    _a.sent();
+                    return [2];
+            }
+        }); }); });
+    };
+    Server.prototype.notification = function () {
+        var _this = this;
+        node_cron_1.default.schedule('*/10 * * * * *', function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, (0, notif_1.notif)()];
+                case 1:
+                    _a.sent();
+                    return [2];
+            }
+        }); }); });
+    };
     Server.prototype.run = function () {
         this.route();
+        this.check();
+        this.notification();
         this.server.listen(config_json_1.default.server_config.port, function () { console.log("\u0421\u0435\u0440\u0432\u0435\u0440 \u0437\u0430\u043F\u0443\u0448\u0435\u043D: http://".concat(config_json_1.default.server_config.host, ":").concat(config_json_1.default.server_config.port)); });
     };
     return Server;

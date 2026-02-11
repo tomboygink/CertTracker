@@ -6,6 +6,7 @@ import { CategoryCert } from "../../config/db/CategoryCert"
 import { StatusCert } from "../../config/db/StatusCert"
 import { Cert } from "../../config/db/Cert"
 import { Events } from "../../config/db/Events"
+import { Notification } from "../../config/db/Notification"
 
 
 export async function router(body: any) {
@@ -131,6 +132,12 @@ export async function router(body: any) {
             data = await c.Update();
             return buildResponse(body.cmd, data, data ? null : "Ошибка изменения сертификата")
         }
+        //Отправка сертификата в архив
+        case "ArchiveCert": {
+            var c = new Cert(body.args);
+            data = await c.ArchiveCert();
+            return buildResponse(body.cmd, data, data ? null : "Ошибка изменения сертификата")
+        }
         //Все сертификаты
         case "AllCert": {
             var c = new Cert(body.args);
@@ -152,6 +159,12 @@ export async function router(body: any) {
             return buildResponse(body.cmd, data, data ? null : "Ошибка получения событий")
         }
 
+        //------------------------------------------------------------------------------------Уведомления
+        case "AllNotif": {
+            var n = new Notification(body.args);
+            data = await n.All();
+            return buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")
+        }
 
 
         default: {
