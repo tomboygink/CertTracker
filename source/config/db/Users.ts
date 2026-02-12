@@ -124,4 +124,12 @@ export class Users {
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }
+
+    //Полчение ящиков которым должно приходить сообщение 
+    async AllEMail(){
+        var db_res = await (await this.db.query("SELECT email FROM users WHERE sendmail = true")).rows; 
+
+        if(!db_res || db_res.length === 0 ) return null;
+        return db_res 
+    }
 }

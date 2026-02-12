@@ -6,6 +6,8 @@ import nodemailer from 'nodemailer'
 import config from '../config.json'
 import { dateTimeToSQL } from "./DateStr";
 
+import { Users } from "./Users"
+
 export class Notification {
     db: DBase;
     args: any;
@@ -29,10 +31,26 @@ export class Notification {
 
 
     async sendMail() {
+
+        var u = new Users("");
+        var data:any = await u.AllEMail();
+
+        //console.log(data)
+        var mail:any = [];
+
+        for (var i: any = 0; i < data.length; i++)
+        {
+            mail.push(data[i].email);
+        }
+
+       // console.log(mail)
+
+
         await this.transporter.sendMail({
             from: config.config_mail.auth.user,
             //Получение email от пользователя
-            to: 'letovaltseva@burvodstroy45.ru',
+            //to: 'letovaltseva@burvodstroy45.ru',
+            to: mail,
             subject: this.args.titlenotif,
             //Отправка ссылки с кодом для подтверждения
             html: this.args.msgnotif
