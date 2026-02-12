@@ -34,10 +34,16 @@ class Server {
     check() {
         //в полночь
         cron.schedule('0 0 * * * *', async () => { await checkcert() });
+
+        //10 сек
         // cron.schedule('*/10 * * * * *', async () => { await checkcert() });
     }
     notification() {
+        //в полночь
         cron.schedule('0 0 * * * *', async () => { await notif() });
+
+        //10 сек
+        //cron.schedule('*/10 * * * * *', async () => { await notif() });
     }
 
     //Запуск сервера 

@@ -215,6 +215,22 @@ var Users = (function () {
             });
         });
     };
+    Users.prototype.AllEMail = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT email FROM users WHERE sendmail = true")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0)
+                            return [2, null];
+                        return [2, db_res];
+                }
+            });
+        });
+    };
     return Users;
 }());
 exports.Users = Users;

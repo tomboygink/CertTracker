@@ -44,6 +44,7 @@ var DBase_1 = require("./DBase");
 var nodemailer_1 = __importDefault(require("nodemailer"));
 var config_json_1 = __importDefault(require("../config.json"));
 var DateStr_1 = require("./DateStr");
+var Users_1 = require("./Users");
 var Notification = (function () {
     function Notification(_args) {
         this.transporter = nodemailer_1.default.createTransport({
@@ -91,15 +92,25 @@ var Notification = (function () {
     };
     Notification.prototype.sendMail = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var u, data, mail, i;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.transporter.sendMail({
-                            from: config_json_1.default.config_mail.auth.user,
-                            to: 'letovaltseva@burvodstroy45.ru',
-                            subject: this.args.titlenotif,
-                            html: this.args.msgnotif
-                        })];
+                    case 0:
+                        u = new Users_1.Users("");
+                        return [4, u.AllEMail()];
                     case 1:
+                        data = _a.sent();
+                        mail = [];
+                        for (i = 0; i < data.length; i++) {
+                            mail.push(data[i].email);
+                        }
+                        return [4, this.transporter.sendMail({
+                                from: config_json_1.default.config_mail.auth.user,
+                                to: mail,
+                                subject: this.args.titlenotif,
+                                html: this.args.msgnotif
+                            })];
+                    case 2:
                         _a.sent();
                         return [2];
                 }
