@@ -64,7 +64,7 @@ class Server {
         this.check();
         //фоновый поток на отправку уведомлений и писем статуса сертификата истекает/просрочен
         this.notification();
-        this.server.listen(config.server_config.port, () => { console.log(`Сервер запушен: http://${config.server_config.host}:${config.server_config.port}`) })
+        this.server.listen(config.server_config.port, () => { console.log(`Сервер запушен: ${config.server_config.protocol}${config.server_config.host}:${config.server_config.port}`) })
     }
 }
 

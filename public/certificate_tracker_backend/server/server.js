@@ -104,7 +104,7 @@ var Server = (function () {
         this.route();
         this.check();
         this.notification();
-        this.server.listen(config_json_1.default.server_config.port, function () { console.log("\u0421\u0435\u0440\u0432\u0435\u0440 \u0437\u0430\u043F\u0443\u0448\u0435\u043D: http://".concat(config_json_1.default.server_config.host, ":").concat(config_json_1.default.server_config.port)); });
+        this.server.listen(config_json_1.default.server_config.port, function () { console.log("\u0421\u0435\u0440\u0432\u0435\u0440 \u0437\u0430\u043F\u0443\u0448\u0435\u043D: ".concat(config_json_1.default.server_config.protocol).concat(config_json_1.default.server_config.host, ":").concat(config_json_1.default.server_config.port)); });
     };
     return Server;
 }());
