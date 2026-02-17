@@ -11,6 +11,8 @@ import { router } from './router'
 import { notif } from './notif'
 import { checkcert } from "./checkcert";
 
+import cookieParser from 'cookie-parser'
+
 class Server {
     app: express.Express = null;
     server: http.Server = null;
@@ -23,11 +25,19 @@ class Server {
 
     //Маршрутизация по ссылкам
     route() {
-        this.app.use(cors());
+
+        //var url = config.front_config.ssl + config.front_config.host + ":" + config.front_config.port
+        this.app.use(cors({
+            origin: config.front_config.domain,
+            credentials: true
+        }));
+
         this.app.use(bodyParser.json()) //Парсер для post запросов 
+
+        this.app.use(cookieParser()) //парсер куков
+
         this.app.post("/api", async (req: express.Request, res: express.Response) => {
-            //console.log("req.body ", req.body);
-            res.send(await router(req.body));
+            res.send(await router(req, res));
         })
     }
 

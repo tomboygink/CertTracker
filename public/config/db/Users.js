@@ -41,7 +41,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 var DBase_1 = require("./DBase");
-var jwt_1 = require("../func/jwt");
 var crypto_1 = __importDefault(require("crypto"));
 var config_json_1 = __importDefault(require("../config.json"));
 var Users = (function () {
@@ -51,11 +50,10 @@ var Users = (function () {
     }
     Users.prototype.Auth = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var pass, db_res, token, decoded, db_res_1, e_1;
+            var pass, db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(this.args.auth === "not_jwt")) return [3, 3];
                         pass = crypto_1.default.createHmac('sha256', config_json_1.default.crypto_code).update(this.args.password).digest('hex');
                         return [4, this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
                                 "WHERE login = '" + this.args.login + "' AND password = '" + pass + "'")];
@@ -65,38 +63,25 @@ var Users = (function () {
                         if (!db_res || db_res.length === 0) {
                             return [2, null];
                         }
-                        token = (0, jwt_1.generateToken)(db_res[0]);
-                        return [2, [{
-                                    id: db_res[0].id,
-                                    lastname: db_res[0].lastname,
-                                    firstname: db_res[0].firstname,
-                                    avatar: db_res[0].avatar,
-                                    access_id: db_res[0].access_id,
-                                    email: db_res[0].email,
-                                    sendmail: db_res[0].sendmail,
-                                    workposition_id: db_res[0].workposition_id,
-                                    deleted: db_res[0].deleted,
-                                    token: token
-                                }]];
-                    case 3:
-                        if (!(this.args.auth === "jwt")) return [3, 8];
-                        _a.label = 4;
-                    case 4:
-                        _a.trys.push([4, 7, , 8]);
-                        decoded = (0, jwt_1.verifyToken)(this.args.token);
-                        return [4, this.db.query("SELECT lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
-                                "WHERE id = " + decoded.id + " AND deleted = false")];
-                    case 5: return [4, (_a.sent()).rows];
-                    case 6:
-                        db_res_1 = _a.sent();
-                        if (!db_res_1 || db_res_1.length === 0) {
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Users.prototype.GetUser = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
+                            "WHERE id = " + this.args + " AND deleted = false")];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
                             return [2, null];
                         }
-                        return [2, db_res_1];
-                    case 7:
-                        e_1 = _a.sent();
-                        return [2, null];
-                    case 8: return [2];
+                        return [2, db_res];
                 }
             });
         });
