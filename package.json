@@ -10,7 +10,9 @@
     "build_installer_db": "cd source/certificate_tracker_backend && npm run build_installer_db",
     "build_server": "cd source/certificate_tracker_backend && npm run build_server",
     "run_installer": "cd public/certificate_tracker_backend/installer_db && node main.js",
-    "run_server": "cd public/certificate_tracker_backend/server && node server.js"
+    "run_server": "cd public/certificate_tracker_backend/server && node server.js",
+    "run_dev": "cd source/certificate_tracker_frontend && npm run dev"
+
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.10",
