@@ -13,7 +13,9 @@ export const middleware = (request: NextRequest) => {
 		return NextResponse.next()
 	}
 
-	const token = request.cookies.get('token')
+
+	const token = request.cookies.get('access_token')
+
 	const isAuth = !!token
 	const isPublicRoute = PUBLIC_ROUTES.includes(pathname)
 

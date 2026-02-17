@@ -6,9 +6,7 @@ import { LoginFormValues } from '../types/loginFormValues.types'
 export const useLoginForm = () => {
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginFormSchema),
-		defaultValues: {
-			auth: 'not_jwt'
-		},
+		defaultValues: {},
 		mode: 'all',
 		reValidateMode: 'onSubmit'
 	})
