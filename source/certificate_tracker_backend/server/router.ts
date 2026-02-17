@@ -9,9 +9,12 @@ import { Events } from "../../config/db/Events"
 import { Notification } from "../../config/db/Notification"
 import { NotificationReads } from "../../config/db/NotificationReads"
 
+import { Response } from "express";
+import { generateToken, verifyToken } from '../../config/func/jwt'
 
-export async function router(body: any) {
+export async function router(req: any, res: Response) {
 
+    const body = req.body;
     console.log(body)
 
     var data: any;
@@ -21,10 +24,50 @@ export async function router(body: any) {
         //------------------------------------------------------------------------------------Пользователи
         //Авторизация
         case "Auth": {
+            //авторизация логин пароль 
             var u = new Users(body.args);
             data = await u.Auth();
-            return buildResponse(body.cmd, data, data ? null : "Ошибка авторизации")
+
+            //проверка на юзера
+            if (!data || data.length === 0) { return buildResponse(body.cmd, null, "Ошибка авторизации") }
+
+            //если проверка прошла то 
+            //генерация кода
+            const token = generateToken(data[0]);
+
+            //установка куков httponly
+            res.cookie("access_token", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "lax",
+                maxAge: 1000 * 60 * 60
+            });
+
+            //ответ данные авторизованного юзера
+            return buildResponse(body.cmd, data, null)
         }
+        //Авторизация
+        //проверка юзера по JWT
+        case "GetUser": {
+            var token = req.cookies?.access_token;
+            if (!token) { return buildResponse(body.cmd, null, "Пользователь не авторизован"); }
+            var decoded: any = verifyToken(token)
+            var u = new Users(decoded.id);
+            data = await u.GetUser();
+            return buildResponse(body.cmd, data, null);
+        }
+        //Выход из аккаунта
+        case "Logout":
+            {
+                res.clearCookie("access_token", {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === "production",
+                    sameSite: "lax"
+                });
+                data = [{ "logout": true }]
+                return buildResponse(body.cmd, data, null);
+            }
+
         //Добавление пользователя только со стороны админа
         case "AddUser": {
             var u = new Users(body.args);
@@ -168,10 +211,10 @@ export async function router(body: any) {
             return buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")
         }
 
-        case "NotifRead":{
+        case "NotifRead": {
             var nr = new NotificationReads(body.args);
             data = await nr.Add();
-            return buildResponse(body.cmd, data, data? null: "Ошибка прочтения уведомления")
+            return buildResponse(body.cmd, data, data ? null : "Ошибка прочтения уведомления")
         }
 
 
