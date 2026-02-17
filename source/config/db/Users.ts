@@ -13,52 +13,34 @@ export class Users {
     }
 
     //Авторизация
+    //логин пароль 
     async Auth() {
-        //логин пароль 
-        if (this.args.auth === "not_jwt") {
 
-            const pass = crypto.createHmac('sha256', config.crypto_code).update(this.args.password).digest('hex');
-            var db_res = await (await this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
-                "WHERE login = '" + this.args.login + "' AND password = '" + pass + "'")).rows;
+        const pass = crypto.createHmac('sha256', config.crypto_code).update(this.args.password).digest('hex');
+        var db_res = await (await this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
+            "WHERE login = '" + this.args.login + "' AND password = '" + pass + "'")).rows;
 
-            if (!db_res || db_res.length === 0) { return null }
-
-            const token = generateToken(db_res[0]);
-
-            return [{
-                id: db_res[0].id,
-                lastname: db_res[0].lastname,
-                firstname: db_res[0].firstname,
-                avatar: db_res[0].avatar,
-                access_id: db_res[0].access_id,
-                email: db_res[0].email,
-                sendmail: db_res[0].sendmail,
-                workposition_id: db_res[0].workposition_id,
-                deleted: db_res[0].deleted,
-                token
-            }];
-        }
-        //токен JWT
-        else if (this.args.auth === "jwt") {
-            try {
-                const decoded: any = verifyToken(this.args.token);
-                const db_res = await (await this.db.query(
-                    "SELECT lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
-                    "WHERE id = " + decoded.id + " AND deleted = false"
-                )).rows;
-
-                if (!db_res || db_res.length === 0) {
-                    return null;
-                }
-
-                return db_res
-
-            } catch (e) {
-                return null;
-            }
-        }
-
+        if (!db_res || db_res.length === 0) { return null }
+        return db_res
     }
+
+    //Авторизация 
+    //JWT
+    async GetUser() {
+        const db_res = await (await this.db.query(
+            "SELECT lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
+            "WHERE id = " + this.args + " AND deleted = false"
+        )).rows;
+
+
+        if (!db_res || db_res.length === 0) {
+            return null;
+        }
+
+        return db_res
+    }
+
+
     //Добалвение юзера только администратор
     async Add() {
         const pass = crypto.createHmac('sha256', config.crypto_code).update(this.args.password).digest('hex');
@@ -126,10 +108,10 @@ export class Users {
     }
 
     //Полчение ящиков которым должно приходить сообщение 
-    async AllEMail(){
-        var db_res = await (await this.db.query("SELECT email FROM users WHERE sendmail = true")).rows; 
+    async AllEMail() {
+        var db_res = await (await this.db.query("SELECT email FROM users WHERE sendmail = true")).rows;
 
-        if(!db_res || db_res.length === 0 ) return null;
-        return db_res 
+        if (!db_res || db_res.length === 0) return null;
+        return db_res
     }
 }

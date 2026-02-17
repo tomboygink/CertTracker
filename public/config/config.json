@@ -3,7 +3,12 @@
         "host": "127.0.0.1",
         "port": "3000"
     },
-    "front_config": {},
+    "front_config": {
+        "ssl": "http://",
+        "host": "127.0.0.1",
+        "port": "3001",
+        "domain": "http://127.0.0.1:3001"
+    },
     "config_db": {
         "host": "localhost",
         "port": 5432,

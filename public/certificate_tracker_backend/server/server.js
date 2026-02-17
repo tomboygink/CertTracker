@@ -48,6 +48,7 @@ var node_cron_1 = __importDefault(require("node-cron"));
 var router_1 = require("./router");
 var notif_1 = require("./notif");
 var checkcert_1 = require("./checkcert");
+var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var Server = (function () {
     function Server() {
         this.app = null;
@@ -57,15 +58,19 @@ var Server = (function () {
     }
     Server.prototype.route = function () {
         var _this = this;
-        this.app.use((0, cors_1.default)());
+        this.app.use((0, cors_1.default)({
+            origin: config_json_1.default.front_config.domain,
+            credentials: true
+        }));
         this.app.use(body_parser_1.default.json());
+        this.app.use((0, cookie_parser_1.default)());
         this.app.post("/api", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _b = (_a = res).send;
-                        return [4, (0, router_1.router)(req.body)];
+                        return [4, (0, router_1.router)(req, res)];
                     case 1:
                         _b.apply(_a, [_c.sent()]);
                         return [2];
