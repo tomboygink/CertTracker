@@ -48,6 +48,20 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+
+        //Запуск клиента
+          {
+            "type": "npm",
+            "script": "run_dev",
+            "problemMatcher": [],
+            "label": "npm: run run_dev",
+            "detail": "Запуск клиента",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
+
     ]
 }
