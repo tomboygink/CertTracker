@@ -5,7 +5,7 @@ export enum ECommand {
 	//  Логин по токену
 	getUser = 'GetUser',
 
-	//  Логин по токену
+	//  Удаление куков по токену
 	logout = 'Logout',
 
 	// Добавление юзера
