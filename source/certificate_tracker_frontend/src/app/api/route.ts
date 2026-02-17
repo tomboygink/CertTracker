@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 		const cookiesStore = cookies()
 
 		const response = await fetch(
-			`http://${config?.server_config.host}:${config?.server_config.port}/api`,
+			`${config.server_config.protocol}${config?.server_config.host}:${config?.server_config.port}/api`,
 			{
 				method: 'POST',
 				headers: {
