@@ -3,7 +3,10 @@ export enum ECommand {
 	auth = 'Auth',
 
 	//  Логин по токену
-	authToken = 'Auth',
+	getUser = 'GetUser',
+
+	//  Логин по токену
+	logout = 'Logout',
 
 	// Добавление юзера
 	addUser = 'AddUser',
