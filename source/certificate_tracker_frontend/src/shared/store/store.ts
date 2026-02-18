@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { baseApi } from '../api'
+import { userReducer } from '@/src/entities'
 
 export const store = configureStore({
 	reducer: {
-		fake: () => null,
+		user: userReducer,
 		[baseApi.reducerPath]: baseApi.reducer
 	},
 	middleware: getDefaultMiddleware =>
@@ -13,4 +14,3 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-

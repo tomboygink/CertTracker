@@ -1,2 +1,2 @@
 export { store } from './store'
-export { Providers } from './ui/Providers'
+export { useAppDispatch, useAppSelector } from './hooks/storeHooks'

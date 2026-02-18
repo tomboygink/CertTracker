@@ -1,5 +1,7 @@
-import Image from 'next/image'
-
 export default function Home() {
-	return <h1>Дашборд</h1>
+	return (
+		<div className="pt-[65px]">
+			<h1>Дашборд</h1>
+		</div>
+	)
 }

@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { inter_font } from '../shared'
-import { Providers } from '../shared/store'
+import { Header } from '../widgets'
+import { Providers } from './providers/Providers'
 
 export const metadata: Metadata = {
 	title: 'CertTracker',
@@ -17,7 +18,9 @@ export default function RootLayout({
 	return (
 		<Providers>
 			<html lang="ru">
-				<body className={`${inter_font.variable} antialiased`}>{children}</body>
+				<body className={`flex ${inter_font.variable} antialiased`}>
+					{children}
+				</body>
 			</html>
 		</Providers>
 	)
