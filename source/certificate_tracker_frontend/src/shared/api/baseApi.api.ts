@@ -6,7 +6,7 @@ const tagTypes = ['login', 'register', 'users'] as const
 export const baseApi = createApi({
 	reducerPath: 'mainApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: `http://${config?.server_config.host}:${config?.server_config.port}`,
+		baseUrl: `${config?.front_config.ssl}${config?.server_config.host}:${config?.server_config.port}`,
 		credentials: 'include'
 	}),
 	endpoints: () => ({}),
