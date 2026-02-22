@@ -73,7 +73,7 @@ var Users = (function () {
             var db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("SELECT lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
+                    case 0: return [4, this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
                             "WHERE id = " + this.args + " AND deleted = false")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:

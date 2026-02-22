@@ -28,7 +28,7 @@ export class Users {
     //JWT
     async GetUser() {
         const db_res = await (await this.db.query(
-            "SELECT lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
+            "SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
             "WHERE id = " + this.args + " AND deleted = false"
         )).rows;
 
