@@ -11,7 +11,7 @@ export const Header = () => {
 						<img src="./logo.svg" alt="CertTracker Logo" />
 					</div>
 					<p className="font-bold text-[18px] text-[#202020] leading-lg">
-						CertTracker
+						CertificateTracker
 					</p>
 				</div>
 				<div className="p-[16px] w-full h-auto">

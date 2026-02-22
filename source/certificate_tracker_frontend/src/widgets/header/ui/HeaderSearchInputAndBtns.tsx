@@ -1,5 +1,6 @@
 'use client'
 
+import { AddCertBtn } from '@/src/features'
 import { useState } from 'react'
 
 export const HeaderSearchInputAndBtns = () => {
@@ -32,9 +33,10 @@ export const HeaderSearchInputAndBtns = () => {
 						</div>
 					)}
 				</button>
-				<button className="px-[16px] py-[8px] bg-[var(--bg-color)] rounded-[6px] font-medium text-[14px] text-white cursor-pointer">
+				{/* <button className="px-[16px] py-[8px] bg-[var(--bg-color)] rounded-[6px] font-medium text-[14px] text-white cursor-pointer">
 					+ Добавить
-				</button>
+				</button> */}
+				<AddCertBtn />
 			</div>
 		</div>
 	)

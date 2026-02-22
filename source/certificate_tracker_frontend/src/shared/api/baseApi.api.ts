@@ -1,7 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import config from '../../../../config/config.json'
 
-const tagTypes = ['login', 'register', 'user', 'logout'] as const
+const tagTypes = [
+	'login',
+	'register',
+	'user',
+	'logout',
+	'categoryCert',
+	'workPos',
+	'certificate'
+] as const
 
 export const baseApi = createApi({
 	reducerPath: 'mainApi',

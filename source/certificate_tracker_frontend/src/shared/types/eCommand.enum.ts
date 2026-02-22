@@ -36,7 +36,7 @@ export enum ECommand {
 	changeWorkPos = 'ChangeWorkPosition',
 
 	// Получение всех должностей
-	allWordPos = 'AllWordPosition',
+	allWorkPos = 'AllWorkPosition',
 
 	// Добавление отдела
 	addDept = 'AddDept',

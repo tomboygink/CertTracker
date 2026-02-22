@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { inter_font } from '../shared'
-import { Header } from '../widgets'
-import { Providers } from './providers/Providers'
+import { ModalRoot } from '../widgets'
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
 	title: 'CertTracker',
@@ -16,12 +15,13 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<Providers>
-			<html lang="ru">
-				<body className={`flex ${inter_font.variable} antialiased`}>
+		<html lang="ru">
+			<body className={`flex ${inter_font.variable} antialiased`}>
+				<Providers>
 					{children}
-				</body>
-			</html>
-		</Providers>
+					<ModalRoot />
+				</Providers>
+			</body>
+		</html>
 	)
 }

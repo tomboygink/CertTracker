@@ -1,7 +1,11 @@
+import { TitleAndDescrPages } from '@/src/shared'
+import moment from 'moment'
+import { HomeContent } from './HomeContent'
+
 export default function Home() {
 	return (
-		<div className="pt-[65px]">
-			<h1>Дашборд</h1>
-		</div>
+		<>
+			<HomeContent />
+		</>
 	)
 }
