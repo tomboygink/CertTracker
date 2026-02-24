@@ -23,8 +23,6 @@ export const AddCertModal = () => {
 		categoryCert?.data[0]
 	)
 
-	const user = useAppSelector(state => state.user.user)
-
 	// if (!isLoadingCategoryCert) return null
 
 	useEffect(() => {
@@ -34,11 +32,6 @@ export const AddCertModal = () => {
 	useEffect(() => {
 		console.log(watch())
 	}, [watch()])
-
-	useEffect(() => {
-		console.log(user)
-		console.log(user?.id)
-	}, [user])
 
 	return (
 		<form
@@ -68,6 +61,8 @@ export const AddCertModal = () => {
 					Категория сертификата
 				</span>
 				<select
+					value={selectCategoryCert}
+					onChange={e => setSelectCategoryCert(e.target.value)}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
 					name="certCategory"
 				>
@@ -80,7 +75,7 @@ export const AddCertModal = () => {
 			</label>
 			<FormInput type="date" label="Дата выпуска" />
 			<FormInput type="date" label="Период действия" />
-			<FormInput type="file" label="Документ" />
+			<FormInput type="file" accept=".pdf" label="Документ" />
 			<FormBtn type="submit" text="Добавить" disabled={isLoadingAddCert} />
 		</form>
 	)
