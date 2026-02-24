@@ -1,0 +1,9 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.000000" height="24.000000" fill="none">
+	<rect id="svg" width="24.000000" height="24.000000" x="0.000000" y="0.000000" />
+	<circle id="6222" cx="12" cy="12" r="10" stroke="rgb(231,0,11)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.000000" />
+	<path id="6223" d="M15 9L9 15" stroke="rgb(231,0,11)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.000000" />
+	<path id="6224" d="M9 9L15 15" stroke="rgb(231,0,11)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.000000" />
+	<rect id="circle.[object SVGAnimatedString]" width="20.000000" height="20.000000" x="2.000000" y="2.000000" />
+	<rect id="path.[object SVGAnimatedString]" width="6.000000" height="6.000000" x="9.000000" y="9.000000" />
+	<rect id="path.[object SVGAnimatedString]" width="6.000000" height="6.000000" x="9.000000" y="9.000000" />
+</svg>

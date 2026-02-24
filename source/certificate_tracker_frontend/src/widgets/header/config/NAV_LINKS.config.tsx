@@ -1,3 +1,4 @@
+import { PAGES } from '@/src/shared'
 import { NavLink } from '../types/navLink.types'
 import { AnaliticsIcon } from '../ui/icons/AnaliticsIcon'
 import { DashboardIcon } from '../ui/icons/DashboardIcon'
@@ -7,22 +8,22 @@ import { SettingsIcon } from '../ui/icons/SettingsIcon'
 export const NAV_LINKS: NavLink[] = [
 	{
 		text: 'Дашборд',
-		link: '/',
+		link: PAGES.HOME,
 		icon: DashboardIcon
 	},
 	{
 		text: 'Реестр документов',
-		link: '/documents',
+		link: PAGES.DOCUMENTS,
 		icon: DocumentsIcon
 	},
 	{
 		text: 'Отчеты',
-		link: '/analitics',
+		link: PAGES.ANALITICS,
 		icon: AnaliticsIcon
 	},
 	{
 		text: 'Настройки',
-		link: '/settings',
+		link: PAGES.SETTINGS,
 		icon: SettingsIcon
 	}
 ]
