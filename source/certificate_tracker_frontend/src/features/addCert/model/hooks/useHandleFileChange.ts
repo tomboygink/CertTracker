@@ -5,9 +5,9 @@ import { useFormContext } from "react-hook-form"
 
 export const useHandleFileChange = () => {
     const [base64, setBase64] = useState<string | null>(null)
-    const form = useFormContext()
+    const form = useFormContext<any>()
 
-    const handleChangeFile = (e: any) => {
+    const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0]
 
 		if (file) {

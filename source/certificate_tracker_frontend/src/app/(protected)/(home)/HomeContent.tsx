@@ -1,9 +1,15 @@
 import { TitleAndDescrPages } from '@/src/shared'
 import { HomeCertStatsList } from '@/src/widgets'
 import moment from 'moment'
+import { RequireAttensionCert } from './RequireAttensionCert'
+import { getAllCert, getAllStatusCert } from '@/src/entities'
 
-export const HomeContent = () => {
+export async function HomeContent() {
 	moment.locale('ru')
+
+	const certData = await getAllCert()
+	const statusData = await getAllStatusCert()
+
 	return (
 		<>
 			<div className="flex items-center justify-between w-full mb-[32px]">
@@ -19,6 +25,17 @@ export const HomeContent = () => {
 			</div>
 			<div className="w-full">
 				<HomeCertStatsList />
+			</div>
+			<div className="flex gap-[24px]">
+				<RequireAttensionCert
+					certificates={certData?.data}
+					status={statusData?.data}
+				/>
+				<div className="p-[24px] w-full max-w-1/3 rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
+					<h2 className="text-[20px] text-[#202020] font-semibold leading-[28px]">
+						По категориям
+					</h2>
+				</div>
 			</div>
 		</>
 	)

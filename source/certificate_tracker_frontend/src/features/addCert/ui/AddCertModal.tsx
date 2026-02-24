@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { CategoryCert } from '@/src/entities'
 import { useHandleFileChange } from '../model/hooks/useHandleFileChange'
 
-export const AddCertModal = () => {
+export default function AddCertModal() {
 	const {
 		form: {
 			register,

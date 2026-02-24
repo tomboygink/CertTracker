@@ -1,2 +1,2 @@
 export { AddCertBtn } from './ui/AddCertBtn'
-export { AddCertModal } from './ui/AddCertModal'
+export { AddCertModalLazy } from './ui/AddCertModalLazy'
