@@ -32,7 +32,7 @@ class Server {
             credentials: true
         }));
 
-        this.app.use(bodyParser.json()) //Парсер для post запросов 
+        this.app.use(bodyParser.json({limit: '500mb'})) //Парсер для post запросов 
 
         this.app.use(cookieParser()) //парсер куков
 

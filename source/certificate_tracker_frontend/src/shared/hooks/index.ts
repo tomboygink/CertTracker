@@ -1,0 +1,1 @@
+export { useGetSuccessMessage } from './useGetSuccessMessage'

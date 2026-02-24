@@ -1,9 +1,10 @@
 'use client'
 
-import { FormBtn, FormInput, useAppSelector } from '@/src/shared'
+import { FormBtn, FormInput, useGetSuccessMessage } from '@/src/shared'
 import { useAddCert } from '../model/hooks/useAddCert'
 import { useEffect, useState } from 'react'
 import { CategoryCert } from '@/src/entities'
+import { useHandleFileChange } from '../model/hooks/useHandleFileChange'
 
 export const AddCertModal = () => {
 	const {
@@ -11,7 +12,7 @@ export const AddCertModal = () => {
 			register,
 			handleSubmit,
 			formState: { errors },
-			watch
+			setValue
 		},
 		handleSubmitAddCert,
 		isLoadingAddCert,
@@ -19,19 +20,19 @@ export const AddCertModal = () => {
 		isSuccessAddCertMutation,
 		categoryCert
 	} = useAddCert()
-	const [selectCategoryCert, setSelectCategoryCert] = useState(
-		categoryCert?.data[0]
+	const [_, setSelectCategoryCert] = useState(categoryCert?.data?.[0])
+	const { base64, handleChangeFile } = useHandleFileChange()
+
+	const successMessage = useGetSuccessMessage(
+		isSuccessAddCertMutation,
+		'Сертификат успешно добавлен'
 	)
 
-	// if (!isLoadingCategoryCert) return null
-
 	useEffect(() => {
-		console.log(selectCategoryCert)
-	}, [selectCategoryCert])
+		setValue('docs', String(base64))
+	}, [base64])
 
-	useEffect(() => {
-		console.log(watch())
-	}, [watch()])
+	if (isLoadingCategoryCert) return null
 
 	return (
 		<form
@@ -50,19 +51,18 @@ export const AddCertModal = () => {
 				type="text"
 				placeholder="Номер сертификата"
 				label="Номер сертификата"
+				{...register('certnumber')}
+				errorMessage={errors.certnumber?.message}
 			/>
-			{/* <FormInput
-				type="text"
-				placeholder="Категория сертификата"
-				label="Категория сертификата"
-			/> */}
 			<label className="flex flex-col gap-1">
 				<span className="text-[16px] text-[#7f7f7f]">
 					Категория сертификата
 				</span>
 				<select
-					value={selectCategoryCert}
-					onChange={e => setSelectCategoryCert(e.target.value)}
+					{...register('category_id', {
+						onChange: e => setSelectCategoryCert(e.target.value),
+						valueAsNumber: true
+					})}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
 					name="certCategory"
 				>
@@ -72,10 +72,37 @@ export const AddCertModal = () => {
 						</option>
 					))}
 				</select>
+				{errors?.category_id?.message && (
+					<span className="text-[14px] font-light text-red-400">
+						{errors?.category_id?.message}
+					</span>
+				)}
 			</label>
-			<FormInput type="date" label="Дата выпуска" />
-			<FormInput type="date" label="Период действия" />
-			<FormInput type="file" accept=".pdf" label="Документ" />
+			<FormInput
+				type="date"
+				label="Дата выпуска"
+				{...register('issuedate')}
+				errorMessage={errors?.issuedate?.message}
+			/>
+			<FormInput
+				type="date"
+				label="Период действия"
+				{...register('certvalidityperiod')}
+				errorMessage={errors?.certvalidityperiod?.message}
+			/>
+			<FormInput
+				type="file"
+				accept=".pdf"
+				label="Документ"
+				onChange={e => handleChangeFile(e)}
+				errorMessage={errors?.docs?.message}
+			/>
+			<input type="hidden" {...register('docs')} />
+			{successMessage && (
+				<span className="text-[14px] font-light text-green-400">
+					{successMessage}
+				</span>
+			)}
 			<FormBtn type="submit" text="Добавить" disabled={isLoadingAddCert} />
 		</form>
 	)

@@ -14,6 +14,7 @@ export const useAddCert = () => {
 	const [addCert, result] = useAddCertMutation()
 
 	const handleSubmitAddCert = (data: AddCertFormValues) => {
+		console.log('Form data:', data)
 		addCert(data)
 	}
 
