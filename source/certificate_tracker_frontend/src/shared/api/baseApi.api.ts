@@ -8,7 +8,8 @@ const tagTypes = [
 	'logout',
 	'categoryCert',
 	'workPos',
-	'certificate'
+	'certificate',
+	'status'
 ] as const
 
 export const baseApi = createApi({

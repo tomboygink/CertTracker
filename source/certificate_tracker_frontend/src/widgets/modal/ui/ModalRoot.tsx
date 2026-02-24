@@ -1,6 +1,6 @@
 'use client'
 
-import { AddCertModal } from '@/src/features'
+import { AddCertModalLazy } from '@/src/features'
 import { useAppDispatch, useAppSelector } from '@/src/shared'
 import { closeModal } from '../model'
 
@@ -12,7 +12,7 @@ export const ModalRoot = () => {
 
 	switch (type) {
 		case 'addCert':
-			content = <AddCertModal />
+			content = <AddCertModalLazy />
 			break
 
 		default:

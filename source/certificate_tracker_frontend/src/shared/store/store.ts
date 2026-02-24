@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { baseApi } from '../api'
-import { categoryCertReducer, userReducer } from '@/src/entities'
+import { categoryCertReducer, statusCertReducer, userReducer } from '@/src/entities'
 import { modalReducer } from '@/src/widgets'
 
 export const store = configureStore({
@@ -9,6 +9,7 @@ export const store = configureStore({
 		user: userReducer,
 		modal: modalReducer,
 		categoryCert: categoryCertReducer,
+		statusCert: statusCertReducer,
 		[baseApi.reducerPath]: baseApi.reducer
 	},
 	middleware: getDefaultMiddleware =>

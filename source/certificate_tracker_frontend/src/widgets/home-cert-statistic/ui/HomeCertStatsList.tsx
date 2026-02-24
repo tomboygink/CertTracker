@@ -3,7 +3,7 @@ import { HomeCertStatsItem } from './HomeCertStatsItem'
 
 export const HomeCertStatsList = () => {
 	return (
-		<ul className="grid grid-cols-4 gap-[24px]">
+		<ul className="grid grid-cols-4 gap-[24px] mb-[32px]">
 			{HOME_SERT_STATISTIC.map(item => (
 				<li
 					key={item.key}

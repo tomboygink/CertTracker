@@ -62,7 +62,7 @@ var Server = (function () {
             origin: config_json_1.default.front_config.domain,
             credentials: true
         }));
-        this.app.use(body_parser_1.default.json());
+        this.app.use(body_parser_1.default.json({ limit: '500mb' }));
         this.app.use((0, cookie_parser_1.default)());
         this.app.post("/api", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             var _a, _b;
