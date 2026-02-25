@@ -11,3 +11,4 @@ export {
 	useAllCategoryCertQuery,
 	useChangeCategoryCertMutation
 } from './api/categoryCertApi.api'
+export { getAllCategoryCert } from './api/getAllCategoryCert'

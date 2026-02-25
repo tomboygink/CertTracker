@@ -2,13 +2,19 @@ import { TitleAndDescrPages } from '@/src/shared'
 import { HomeCertStatsList } from '@/src/widgets'
 import moment from 'moment'
 import { RequireAttensionCert } from './RequireAttensionCert'
-import { getAllCert, getAllStatusCert } from '@/src/entities'
+import {
+	getAllCategoryCert,
+	getAllCert,
+	getAllStatusCert
+} from '@/src/entities'
+import { StatisticForCategories } from './StatisticForCategories'
 
 export async function HomeContent() {
 	moment.locale('ru')
 
 	const certData = await getAllCert()
 	const statusData = await getAllStatusCert()
+	const categoryCertData = await getAllCategoryCert()
 
 	return (
 		<>
@@ -31,11 +37,10 @@ export async function HomeContent() {
 					certificates={certData?.data}
 					status={statusData?.data}
 				/>
-				<div className="p-[24px] w-full max-w-1/3 rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
-					<h2 className="text-[20px] text-[#202020] font-semibold leading-[28px]">
-						По категориям
-					</h2>
-				</div>
+				<StatisticForCategories
+					categories={categoryCertData?.data}
+					certificates={certData?.data}
+				/>
 			</div>
 		</>
 	)

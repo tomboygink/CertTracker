@@ -4,7 +4,6 @@ import { FC } from 'react'
 
 interface RequireAttensionCertItemProps {
 	certificate: Cert
-	// statuses
 }
 
 export const RequireAttensionCertItem: FC<RequireAttensionCertItemProps> = ({
