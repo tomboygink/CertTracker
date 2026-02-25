@@ -3,7 +3,7 @@
 import { Cert, Status, useAllCertQuery } from '@/src/entities'
 import { PAGES } from '@/src/shared'
 import Link from 'next/link'
-import { FC, useEffect, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { RequireAttensionCertItem } from './RequireAttensionCertItem'
 
 interface RequireAttensionCertProps {
@@ -20,7 +20,6 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 		{
 			refetchOnMountOrArgChange: true,
 			refetchOnReconnect: true,
-			skip: !!certificates,
 			selectFromResult: result => ({
 				...result,
 				data: certificates || result.data
@@ -70,7 +69,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 						</tr>
 					</thead>
 					<tbody>
-						{allCertificates?.map((item: Cert) => (
+						{almostExpiredAndExpired?.map((item: Cert) => (
 							<tr
 								key={item.id}
 								className="h-[71px] py-[16px] border-b-1 border-gray-200"
