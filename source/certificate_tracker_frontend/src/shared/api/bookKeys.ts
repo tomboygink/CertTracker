@@ -6,5 +6,6 @@ export const bookKeys = {
 	categoryCert: () => [{ type: 'categoryCert' }] as const,
 	workPos: () => [{ type: 'workPos' }] as const,
 	certificate: () => [{ type: 'certificate' }] as const,
-	status: () => [{ type: 'status' }] as const
+	status: () => [{ type: 'status' }] as const,
+	docs: () => [{ type: 'docs' }] as const
 }

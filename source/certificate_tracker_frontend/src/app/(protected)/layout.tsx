@@ -22,7 +22,7 @@ export default async function PrivatePagesLayout({
 
 	return (
 		<UserHydration user={user}>
-			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px]">
+			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
 				{children}
 			</div>
 		</UserHydration>
