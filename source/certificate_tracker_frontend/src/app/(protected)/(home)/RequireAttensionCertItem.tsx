@@ -34,15 +34,15 @@ export const RequireAttensionCertItem: FC<RequireAttensionCertItemProps> = ({
 			<td>
 				<div className="">
 					{certificate.statuscert_id === '2' ? (
-						<span className="text-[12px] text-[#A65F00] font-medium bg-[#FEF9C2] py-[3px] px-[12px] rounded-[12px] border-1 border-[#A65F00]">
+						<span className="text-[12px] text-[#A65F00] font-medium bg-[#FEF9C2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#A65F00] bg-[url(/warning.svg)] bg-no-repeat bg-[11px]">
 							Истекает
 						</span>
 					) : certificate.statuscert_id === '3' ? (
-						<span className="text-[12px] text-[#C10007] font-medium bg-[#FFE2E2] py-[3px] px-[12px] rounded-[12px] border-1 border-[#FFC9C9]">
+						<span className="text-[12px] text-[#C10007] font-medium bg-[#FFE2E2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#FFC9C9] bg-[url(/red-close.svg)] bg-no-repeat bg-[11px]">
 							Просрочен
 						</span>
 					) : (
-						<span className="text-[12px] text-green-600 font-medium bg-green-100 py-[3px] px-[12px] rounded-[12px] border-1 border-green-400">
+						<span className="text-[12px] text-green-600 font-medium bg-green-100 py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-green-400 bg-[url(/active.svg)] bg-no-repeat bg-[11px]">
 							Активен
 						</span>
 					)}

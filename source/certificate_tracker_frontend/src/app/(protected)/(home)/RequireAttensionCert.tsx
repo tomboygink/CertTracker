@@ -38,7 +38,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 	}, [allCertificates, status])
 
 	return (
-		<div className="w-full max-w-2/3 rounded-[12px] py-[26px] px-[24px] border-1 border-[#E0DFDF] shadow-md">
+		<div className="w-full max-w-2/3 rounded-[12px] py-[26px] px-[24px] border-1 border-[#E0DFDF] shadow-md h-110">
 			<div className="flex items-center justify-between w-full mb-[26px]">
 				<h2 className="text-[20px] text-[#202020] font-semibold leading-[28px]">
 					Требуют внимания
@@ -50,35 +50,38 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 					Все сертификаты →
 				</Link>
 			</div>
-			<div>
-				<table className="w-full rounded-[6px] table-auto">
-					<thead className="px-[16px] py-[12px] bg-[#d9d9d9] h-10">
-						<tr>
-							<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-4/10 pl-10">
-								Название
-							</td>
-							<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
-								Создан
-							</td>
-							<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
-								Истекает
-							</td>
-							<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
-								Статус
-							</td>
-						</tr>
-					</thead>
-					<tbody>
-						{almostExpiredAndExpired?.map((item: Cert) => (
-							<tr
-								key={item.id}
-								className="h-[71px] py-[16px] border-b-1 border-gray-200"
-							>
-								<RequireAttensionCertItem certificate={item} />
+			<div className="overflow-hidden">
+				{/* Контейнер с прокруткой */}
+				<div className="overflow-y-scroll max-h-[300px]">
+					<table className="w-full rounded-[6px] table-auto">
+						<thead className="sticky top-0 px-[16px] py-[12px] bg-[#d9d9d9] h-10">
+							<tr>
+								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-4/10 pl-10">
+									Название
+								</td>
+								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
+									Создан
+								</td>
+								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
+									Истекает
+								</td>
+								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
+									Статус
+								</td>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{almostExpiredAndExpired?.map((item: Cert) => (
+								<tr
+									key={item.id}
+									className="h-[71px] py-[16px] border-b-1 border-gray-200"
+								>
+									<RequireAttensionCertItem certificate={item} />
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	)

@@ -1,3 +1,6 @@
 export * from './login_user'
 export * from './logout'
-export * from './addCert'
+export * from './add_cert'
+export * from './export_docs'
+export * from './search_certificate'
+export * from './filter_by_status'

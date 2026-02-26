@@ -1,3 +1,5 @@
+import { DocumentsContent } from './DocumentsContent'
+
 export default function DocumentsPage() {
-	return <h1>Реестр документов</h1>
+	return <DocumentsContent />
 }

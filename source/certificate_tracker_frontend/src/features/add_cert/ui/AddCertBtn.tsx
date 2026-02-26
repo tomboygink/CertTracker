@@ -2,8 +2,13 @@
 
 import { useAppDispatch } from '@/src/shared'
 import { openModal } from '@/src/widgets'
+import { FC } from 'react'
 
-export const AddCertBtn = () => {
+interface AddCertBtnProps {
+	text: string
+}
+
+export const AddCertBtn: FC<AddCertBtnProps> = ({ text }) => {
 	const dispatch = useAppDispatch()
 
 	return (
@@ -13,7 +18,7 @@ export const AddCertBtn = () => {
 			}
 			className="px-[16px] py-[8px] bg-[var(--bg-color)] rounded-[6px] font-medium text-[14px] text-white cursor-pointer"
 		>
-			+ Добавить
+			{text}
 		</button>
 	)
 }

@@ -17,6 +17,10 @@ export const certificateApi = baseApi.injectEndpoints({
 		allCert: build.query({
 			query: args => apiPreparedBody(ECommand.allCert, args),
 			providesTags: bookKeys.certificate
+		}),
+		certDocs: build.query({
+			query: args => apiPreparedBody(ECommand.docs, args),
+			providesTags: bookKeys.docs
 		})
 	})
 })
@@ -25,5 +29,7 @@ export const {
 	useAddCertMutation,
 	useAllCertQuery,
 	useArchiveCertMutation,
-	useChangeCertMutation
+	useChangeCertMutation,
+	useCertDocsQuery,
+	useLazyCertDocsQuery
 } = certificateApi
