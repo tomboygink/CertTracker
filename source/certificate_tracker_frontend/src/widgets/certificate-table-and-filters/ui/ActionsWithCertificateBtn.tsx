@@ -1,6 +1,8 @@
 'use client'
 
-import { Cert } from '@/src/entities'
+import { Cert, setSelectCert } from '@/src/entities'
+import { ArchiveBtn, ChangeCertBtn } from '@/src/features'
+import { useAppDispatch } from '@/src/shared'
 import { FC, useState } from 'react'
 
 interface ActionsWithCertificateBtnProps {
@@ -11,12 +13,18 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 	cert
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
+	const dispatch = useAppDispatch()
+
+	const handleClose = () => {
+		setIsOpen(false)
+	}
 
 	return (
 		<div className="relative">
 			<button
 				onClick={() => {
-					console.log(cert)
+					if (!cert) return
+					dispatch(setSelectCert(cert))
 					setIsOpen(prev => (prev = !prev))
 				}}
 				className="flex items-center justify-center w-8 h-8 border-1 border-[#e0dfdf] rounded-[6px] cursor-pointer"
@@ -35,10 +43,8 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 					>
 						Просмотр документа
 					</a>
-					<button className="text-left text-[14px] text-purple-600">
-						Внести изменения
-					</button>
-					<button className="text-[14px] text-red-600">Архивировать</button>
+					<ChangeCertBtn />
+					<ArchiveBtn cert={cert} handleClose={handleClose} />
 				</div>
 			)}
 		</div>
