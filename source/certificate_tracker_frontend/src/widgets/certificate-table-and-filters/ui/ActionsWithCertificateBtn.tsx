@@ -1,7 +1,14 @@
 'use client'
 
-import { Cert } from '@/src/entities'
-import { FC, useState } from 'react'
+import {
+	Cert,
+	setSelectCert,
+	useCertDocsQuery,
+	useLazyCertDocsQuery
+} from '@/src/entities'
+import { ArchiveBtn, ChangeCertBtn, WatchDocBtn } from '@/src/features'
+import { useAppDispatch, useAppSelector } from '@/src/shared'
+import { FC, useEffect, useState } from 'react'
 
 interface ActionsWithCertificateBtnProps {
 	cert: Cert | null
@@ -11,12 +18,18 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 	cert
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
+	const dispatch = useAppDispatch()
+
+	const handleClose = () => {
+		setIsOpen(false)
+	}
 
 	return (
 		<div className="relative">
 			<button
 				onClick={() => {
-					console.log(cert)
+					if (!cert) return
+					dispatch(setSelectCert(cert))
 					setIsOpen(prev => (prev = !prev))
 				}}
 				className="flex items-center justify-center w-8 h-8 border-1 border-[#e0dfdf] rounded-[6px] cursor-pointer"
@@ -27,18 +40,9 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 			</button>
 			{isOpen && (
 				<div className="absolute top-10 right-10 flex flex-col items-start gap-[8px] p-4 bg-white border-1 border-[#e0dfdf] rounded-[6px]">
-					<a
-						className="block text-[14px]"
-						href=""
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Просмотр документа
-					</a>
-					<button className="text-left text-[14px] text-purple-600">
-						Внести изменения
-					</button>
-					<button className="text-[14px] text-red-600">Архивировать</button>
+					<WatchDocBtn handleClose={handleClose} cert={cert} />
+					<ChangeCertBtn handleClose={handleClose} />
+					<ArchiveBtn cert={cert} handleClose={handleClose} />
 				</div>
 			)}
 		</div>
