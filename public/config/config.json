@@ -21,6 +21,9 @@
         "code": "other_token_code",
         "time": "1h"
     },
+    "notif_time": {
+        "schedule": "*/5 * * * *"
+    },
     "crypto_code": "other_crypt_code",
     "config_mail": {
         "host": "smtp.mail.ru",
