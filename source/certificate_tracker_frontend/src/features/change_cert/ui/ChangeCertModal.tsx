@@ -1,13 +1,24 @@
 'use client'
 
-import { CategoryCert, useAllCategoryCertQuery } from '@/src/entities'
-import { FormBtn, FormInput, useGetSuccessMessage } from '@/src/shared'
+import {
+	CategoryCert,
+	useAllCategoryCertQuery,
+	useCertDocsQuery
+} from '@/src/entities'
+import {
+	FormBtn,
+	FormInput,
+	useAppSelector,
+	useGetSuccessMessage
+} from '@/src/shared'
 import { useChangeCert } from '../model/hooks/useChangeCert'
 import { useEffect } from 'react'
 import { useHandleFileChange } from '../../add_cert/model/hooks/useHandleFileChange'
 
 export default function ChangeCertModal() {
+	const selectCert = useAppSelector(state => state.selectCert.selectCert)
 	const { data: categoryCert } = useAllCategoryCertQuery({})
+	const { data: certDocs } = useCertDocsQuery({ id: selectCert?.id })
 
 	const {
 		form: {
@@ -31,10 +42,6 @@ export default function ChangeCertModal() {
 	useEffect(() => {
 		setValue('docs', String(base64))
 	}, [base64])
-
-	useEffect(() => {
-		console.log(errors)
-	}, [errors])
 
 	return (
 		<form
@@ -96,7 +103,9 @@ export default function ChangeCertModal() {
 				type="file"
 				accept=".pdf"
 				label="Документ"
-				onChange={e => handleChangeFile(e)}
+				onChange={e => {
+					handleChangeFile(e)
+				}}
 			/>
 			<input type="hidden" {...register('docs')} />
 			{successMessage && (

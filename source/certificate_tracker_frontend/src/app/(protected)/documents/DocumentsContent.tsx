@@ -11,7 +11,7 @@ export const DocumentsContent = async () => {
 			<div className="flex items-center justify-between w-full mb-[24px]">
 				<TitleAndDescrPages
 					title="Реестр документов"
-					descr="Управление и поиск по базе всех сертификатов компании"
+					descr="Управление и поиск по базе всех сертификатов компании."
 				/>
 				<AddCertBtn text={'+ Новый документ'} />
 			</div>

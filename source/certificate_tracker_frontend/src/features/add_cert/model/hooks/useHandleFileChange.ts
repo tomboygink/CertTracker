@@ -1,13 +1,13 @@
 'use client'
 
-import { useState } from "react"
-import { useFormContext } from "react-hook-form"
+import { useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 
 export const useHandleFileChange = () => {
-    const [base64, setBase64] = useState<string | null>(null)
-    const form = useFormContext<any>()
+	const [base64, setBase64] = useState<string | null>(null)
+	const form = useFormContext<any>()
 
-    const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0]
 
 		if (file) {
@@ -28,9 +28,8 @@ export const useHandleFileChange = () => {
 		}
 	}
 
-    return {
-        base64, 
-        handleChangeFile
-    }
-
+	return {
+		base64,
+		handleChangeFile
+	}
 }
