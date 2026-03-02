@@ -1,14 +1,15 @@
-import { TitleAndDescrPages } from '@/src/shared'
+import { DateWidget, TitleAndDescrPages } from '@/src/shared'
 import { GraphicContainer, UpdateHistoryContainer } from '@/src/widgets'
 
 export const AnaliticsContent = () => {
 	return (
 		<>
-			<div className="mb-[32px]">
+			<div className="flex items-center justify-between w-full mb-[32px]">
 				<TitleAndDescrPages
 					title="Аналитика и отчеты"
 					descr="Визуализация данных по типам, срокам и категориям."
 				/>
+				<DateWidget />
 			</div>
 			<div className="grid grid-cols-2 gap-[24px] w-full mb-[32px]">
 				<GraphicContainer
@@ -19,7 +20,7 @@ export const AnaliticsContent = () => {
 				</GraphicContainer>
 				<GraphicContainer
 					title="Распределение по категориям"
-					descr="Активные лиценщии и сертификаты по отделам компании"
+					descr="Активные лицензии и сертификаты по отделам компании"
 				>
 					<div></div>
 				</GraphicContainer>

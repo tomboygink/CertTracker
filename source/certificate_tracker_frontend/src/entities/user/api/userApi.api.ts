@@ -17,6 +17,10 @@ export const userApi = baseApi.injectEndpoints({
 		logoutUser: build.mutation({
 			query: args => apiPreparedBody(ECommand.logout, args),
 			invalidatesTags: bookKeys.logout
+		}),
+		allUsers: build.query({
+			query: args => apiPreparedBody(ECommand.allUsers, args),
+			providesTags: bookKeys.user
 		})
 	})
 })
@@ -26,5 +30,6 @@ export const {
 	useLazyLoginUserWithTokenQuery,
 	useLoginUserWithTokenQuery,
 	useRegisterUserMutation,
-	useLogoutUserMutation
+	useLogoutUserMutation,
+	useAllUsersQuery
 } = userApi

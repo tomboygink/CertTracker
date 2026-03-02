@@ -52,7 +52,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 			</div>
 			<div className="overflow-hidden">
 				{/* Контейнер с прокруткой */}
-				<div className="overflow-y-scroll max-h-[300px]">
+				<div className="overflow-y-scroll max-h-[300px] no-scrollbar">
 					<table className="w-full rounded-[6px] table-auto">
 						<thead className="sticky top-0 px-[16px] py-[12px] bg-[#d9d9d9] h-10">
 							<tr>

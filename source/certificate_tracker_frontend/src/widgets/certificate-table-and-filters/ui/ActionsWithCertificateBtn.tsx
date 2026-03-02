@@ -7,8 +7,8 @@ import {
 	useLazyCertDocsQuery
 } from '@/src/entities'
 import { ArchiveBtn, ChangeCertBtn, WatchDocBtn } from '@/src/features'
-import { useAppDispatch, useAppSelector } from '@/src/shared'
-import { FC, useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
+import { FC, useEffect, useRef, useState } from 'react'
 
 interface ActionsWithCertificateBtnProps {
 	cert: Cert | null
@@ -20,12 +20,15 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 	const [isOpen, setIsOpen] = useState(false)
 	const dispatch = useAppDispatch()
 
+	const divRef = useRef<HTMLDivElement | null>(null)
+	useClickOutside(divRef, () => setIsOpen(false))
+
 	const handleClose = () => {
 		setIsOpen(false)
 	}
 
 	return (
-		<div className="relative">
+		<div ref={divRef} className="relative">
 			<button
 				onClick={() => {
 					if (!cert) return

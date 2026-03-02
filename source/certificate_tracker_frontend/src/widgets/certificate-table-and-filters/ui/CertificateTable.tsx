@@ -47,7 +47,7 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 			</div>
 			<div className="flex-1 overflow-hidden">
 				{/* Контейнер с прокруткой */}
-				<div className="overflow-y-auto h-full">
+				<div className="overflow-y-auto h-full no-scrollbar">
 					<table
 						style={{ verticalAlign: 'top' }}
 						className="w-full rounded-[6px] table-auto rounded-[12px]"

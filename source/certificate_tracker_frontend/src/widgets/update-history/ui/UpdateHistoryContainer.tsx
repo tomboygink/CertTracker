@@ -1,7 +1,23 @@
+'use client'
+
+import { useEffect, useMemo } from 'react'
+import { useGetAllData } from '../hooks/useGetAllData'
+import { Event, User } from '@/src/entities'
+import { UpdateHistoryList } from './UpdateHistoryList'
+import { useCreateFullData } from '../hooks/useCreateFullData'
+
 export const UpdateHistoryContainer = () => {
+	const { allEvents, allUsers, isLoading, isSuccess } = useGetAllData()
+
+	const fullEventsInfo = useCreateFullData(allEvents?.data, allUsers?.data)
+
+	useEffect(() => {
+		console.log(allEvents?.data)
+	}, [allEvents])
+
 	return (
-		<div className="w-full h-[calc(100vh-(92px+486px+113px))] p-[24px] bg-red-200 border-1 border-[#E0DFDF] rounded-[12px]">
-			<div className="flex flex-col gap-[8px] w-full mb-[24px]">
+		<div className="w-full h-[calc(100vh-(92px+486px+113px))] px-[24px] py-[24px] bg-white border-1 border-[#E0DFDF] rounded-[12px]">
+			<div className="flex flex-col gap-[8px] w-full mb-[8px]">
 				<h2 className="text-[16px] text-[#202020] font-semibold leading-[16px]">
 					История обновлений
 				</h2>
@@ -9,6 +25,7 @@ export const UpdateHistoryContainer = () => {
 					Последние действия с документами в системе
 				</p>
 			</div>
+			<UpdateHistoryList allInfo={fullEventsInfo} />
 		</div>
 	)
 }
