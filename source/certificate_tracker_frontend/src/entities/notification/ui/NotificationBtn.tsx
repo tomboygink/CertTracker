@@ -18,7 +18,8 @@ export const NotificationBtn = () => {
 		{
 			refetchOnFocus: true,
 			refetchOnReconnect: true,
-			refetchOnMountOrArgChange: true
+			refetchOnMountOrArgChange: true,
+			pollingInterval: 1000 * 60 * 60
 		}
 	)
 
@@ -44,7 +45,7 @@ export const NotificationBtn = () => {
 				)}
 			</button>
 			{open && (
-				<div className="absolute z-[10] top-[45] right-0 w-[350px] h-[150px] p-2 bg-white border-1 border-[#e0dfdf] rounded-[8px] shadow-md overflow-y-auto no-scrollbar">
+				<div className="absolute z-[10] top-[45] right-0 w-[350px] h-[250px] p-2 bg-white border-1 border-[#e0dfdf] rounded-[8px] shadow-md overflow-y-auto no-scrollbar">
 					{allNotif?.data?.length < 0 || allNotif?.data === null ? (
 						<p className="flex items-center justify-center w-full h-full text-[18px]">
 							Нет уведомлений
