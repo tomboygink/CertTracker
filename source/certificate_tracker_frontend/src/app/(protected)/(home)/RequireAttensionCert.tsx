@@ -15,7 +15,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 	certificates,
 	status
 }) => {
-	const { data: allCertificates } = useAllCertQuery(
+	const { data: allCertificates = certificates } = useAllCertQuery(
 		{},
 		{
 			refetchOnMountOrArgChange: true,

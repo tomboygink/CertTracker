@@ -1,4 +1,4 @@
-export type ModalType = 'addCert' | null
+export type ModalType = 'addCert' | 'changeCert' | null
 
 export type Modal = {
 	payload?: any

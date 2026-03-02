@@ -6,12 +6,12 @@ export const generationCertificatesWithCategory = (
 ) => {
 	const resultMap = new Map<string, { cert?: Cert; category: CategoryCert }>()
 
-	allCertificates.forEach(item => {
-		const filteredCategory = allCategoryCert.filter(
-			category => item.category_id === category.id
+	allCertificates?.forEach(item => {
+		const filteredCategory = allCategoryCert?.filter(
+			category => item?.category_id === category?.id
 		)
 
-		resultMap.set(item.id, { cert: item, category: filteredCategory[0] })
+		resultMap.set(item.id, { cert: item, category: filteredCategory?.[0] })
 	})
 
 	return Array.from(resultMap, ([key, value]) => ({ key, ...value }))
