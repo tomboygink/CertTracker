@@ -117,7 +117,7 @@ var Cert = (function () {
             var db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("SELECT id, user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod FROM cert")];
+                    case 0: return [4, this.db.query("SELECT id, user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod FROM cert ORDER BY id desc")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();
