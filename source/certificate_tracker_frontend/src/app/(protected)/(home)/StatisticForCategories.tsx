@@ -1,22 +1,35 @@
 'use client'
 
-import { CategoryCert, Cert } from '@/src/entities'
+import { useAllCategoryCertQuery, useAllCertQuery } from '@/src/entities'
 import { FC, useMemo } from 'react'
 import { StatisticForCategoriesItem } from './StatisticForCategoriesItem'
 import { calculateCategoryStatistics } from './services/calculateCategoryStatistics'
 
-interface StatisticForCategoriesProps {
-	categories: CategoryCert[]
-	certificates: Cert[]
-}
+interface StatisticForCategoriesProps {}
 
-export const StatisticForCategories: FC<StatisticForCategoriesProps> = ({
-	categories,
-	certificates
-}) => {
+export const StatisticForCategories: FC<StatisticForCategoriesProps> = ({}) => {
+	const { data: allCatogoryes } = useAllCategoryCertQuery(
+		{},
+		{
+			refetchOnFocus: true,
+			refetchOnReconnect: true,
+			refetchOnMountOrArgChange: true,
+			pollingInterval: 1000 * 60 * 60
+		}
+	)
+	const { data: allCert } = useAllCertQuery(
+		{},
+		{
+			refetchOnFocus: true,
+			refetchOnReconnect: true,
+			refetchOnMountOrArgChange: true,
+			pollingInterval: 1000 * 60 * 60
+		}
+	)
+
 	const statisticConfig = useMemo(() => {
-		return calculateCategoryStatistics(certificates, categories)
-	}, [certificates, categories])
+		return calculateCategoryStatistics(allCert?.data, allCatogoryes?.data)
+	}, [allCert?.data, allCatogoryes?.data])
 
 	return (
 		<div className="p-[24px] w-full max-w-1/3 rounded-[12px] border-1 border-[#E0DFDF] shadow-md">

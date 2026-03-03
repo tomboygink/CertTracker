@@ -7,7 +7,7 @@ interface DashboardIconProps {
 export const DashboardIcon: FC<DashboardIconProps> = ({ isActive }) => {
 	return (
 		<svg
-			className={`w-[18px] h-[18px] ${isActive ? 'stroke-[#ffffff]' : 'stroke-[#7f7f7f]'}`}
+			className={`w-[18px] h-[18px] ${isActive ? 'stroke-[#ffffff]' : 'stroke-[#7f7f7f]'} group-hover:stroke-[#fff] transition-all duration-300`}
 			// stroke="#7f7f7f"
 			fill="none"
 			viewBox="0 0 18 18"

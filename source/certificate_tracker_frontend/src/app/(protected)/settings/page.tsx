@@ -1,3 +1,5 @@
+import { SettingsContent } from './SettingsContent'
+
 export default function SettingsPage() {
-	return <h1>Настройки</h1>
+	return <SettingsContent />
 }

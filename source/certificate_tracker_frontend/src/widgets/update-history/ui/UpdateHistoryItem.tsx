@@ -14,6 +14,8 @@ export const UpdateHistoryItem: FC<UpdateHistoryItemProps> = ({
 }) => {
 	moment.locale('ru')
 
+	if (!user || !event) return null
+
 	return (
 		<div className="flex items-center w-full py-[16px] border-b-1 border-[#e0dfdf]">
 			<div className="flex items-center gap-[16px]">

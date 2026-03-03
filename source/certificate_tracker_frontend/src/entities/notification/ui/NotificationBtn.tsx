@@ -27,7 +27,7 @@ export const NotificationBtn = () => {
 		<div className="relative" ref={menuRef}>
 			<button
 				onClick={() => setOpen(prev => (prev = !prev))}
-				className="relative flex items-center justify-center w-[36px] h-[36px] border-1 border-[#e0dfdf] rounded-[6px] cursor-pointer"
+				className="relative flex items-center justify-center w-[36px] h-[36px] border-1 border-[#e0dfdf] rounded-[6px] cursor-pointer hover:shadow-md hover:border-[var(--bg-color)] transition-all duration-300"
 			>
 				<svg className="w-[16px] h-[16px]" fill="none" viewBox="0 0 24 24">
 					<path
@@ -40,7 +40,10 @@ export const NotificationBtn = () => {
 				</svg>
 				{allNotif?.data && allNotif?.data?.length > 0 && (
 					<div className="absolute top-[-3px] right-[-3px] flex items-center justify-center w-[12px] h-[12px] rounded-[50%] bg-white border-1 border-red-300">
-						<div className="w-[6px] h-[6px] rounded-[50%] bg-red-300"></div>
+						<div className="relative flex items-center justify-center">
+							<div className="w-[6px] h-[6px] rounded-[50%] bg-red-300"></div>
+							<div className="absolute w-[10px] h-[10px] rounded-[50%] bg-red-300 animate-ping"></div>
+						</div>
 					</div>
 				)}
 			</button>

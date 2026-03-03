@@ -16,7 +16,7 @@ export const AddCertBtn: FC<AddCertBtnProps> = ({ text }) => {
 			onClick={() =>
 				dispatch(openModal({ type: 'addCert', payload: undefined }))
 			}
-			className="px-[16px] py-[8px] bg-[var(--bg-color)] rounded-[6px] font-medium text-[14px] text-white cursor-pointer"
+			className="px-[16px] py-[8px] bg-[var(--bg-color)] rounded-[6px] font-medium text-[14px] text-white cursor-pointer hover:bg-[var(--bg-color-hover)] transition-all duration-300"
 		>
 			{text}
 		</button>

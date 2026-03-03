@@ -7,7 +7,7 @@ interface AnaliticsIconProps {
 export const AnaliticsIcon: FC<AnaliticsIconProps> = ({ isActive }) => {
 	return (
 		<svg
-			className={`w-[18px] h-[18px] ${isActive ? 'stroke-white fill-white' : 'stroke-[#7f7f7f] fill-[#7f7f7f]'}`}
+			className={`w-[18px] h-[18px] ${isActive ? 'stroke-white fill-white' : 'stroke-[#7f7f7f] fill-[#7f7f7f]'} group-hover:stroke-[#fff] group-hover:fill-[#fff] transition-all duration-300`}
 			fill="none"
 			viewBox="0 0 18 18"
 		>
