@@ -93,7 +93,7 @@ var Events = (function () {
             var db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("SELECT * FROM events")];
+                    case 0: return [4, this.db.query("SELECT * FROM events ORDER BY datecreatemsg DESC")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();

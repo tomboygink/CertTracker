@@ -54,7 +54,7 @@ export class Cert {
 
     //Запрос на все сертификаты
     async All() {
-        var db_res = await (await this.db.query("SELECT id, user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod FROM cert ORDER BY id desc")).rows;
+        var db_res = await (await this.db.query("SELECT id, user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod FROM cert ORDER BY id DESC")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }

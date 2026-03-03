@@ -22,7 +22,7 @@
         "time": "1h"
     },
     "notif_time": {
-        "schedule": "*/5 * * * *"
+        "schedule": "*/1 * * * *"
     },
     "crypto_code": "other_crypt_code",
     "config_mail": {

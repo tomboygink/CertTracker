@@ -31,7 +31,7 @@ export class Events {
     }
 
     async All() {
-        var db_res = await (await this.db.query("SELECT * FROM events")).rows
+        var db_res = await (await this.db.query("SELECT * FROM events ORDER BY datecreatemsg DESC")).rows
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }
