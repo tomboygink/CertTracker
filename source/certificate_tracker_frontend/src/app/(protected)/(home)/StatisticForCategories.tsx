@@ -28,6 +28,7 @@ export const StatisticForCategories: FC<StatisticForCategoriesProps> = ({}) => {
 	)
 
 	const statisticConfig = useMemo(() => {
+		if(!allCert?.data || !allCatogoryes?.data) return null
 		return calculateCategoryStatistics(allCert?.data, allCatogoryes?.data)
 	}, [allCert?.data, allCatogoryes?.data])
 
@@ -37,7 +38,7 @@ export const StatisticForCategories: FC<StatisticForCategoriesProps> = ({}) => {
 				По категориям
 			</h2>
 			<ul className="flex flex-col gap-[16px]">
-				{statisticConfig.map(item => (
+				{statisticConfig && statisticConfig.map(item => (
 					<li key={item.key}>
 						<StatisticForCategoriesItem
 							categoryName={item.categoryName ?? ''}
