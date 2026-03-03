@@ -79,7 +79,8 @@ var Notification = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.db.query("SELECT notification.id, notification.titlenotif, notification.msgnotif, notification.datecreatenotif FROM notification " +
-                            "LEFT JOIN notificationreads ON notification.id = notificationreads.notification_id AND notificationreads.user_id = " + this.args.user_id + " WHERE notificationreads.notification_id IS NULL")];
+                            "LEFT JOIN notificationreads ON notification.id = notificationreads.notification_id AND notificationreads.user_id = " + this.args.user_id + " WHERE notificationreads.notification_id IS NULL " +
+                            "ORDER BY datecreatenotif DESC")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();
@@ -100,6 +101,8 @@ var Notification = (function () {
                         return [4, u.AllEMail()];
                     case 1:
                         data = _a.sent();
+                        if (data === null)
+                            return [2];
                         mail = [];
                         for (i = 0; i < data.length; i++) {
                             mail.push(data[i].email);

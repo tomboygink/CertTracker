@@ -23,7 +23,8 @@ export class Notification {
 
     async All() {
         var db_res = await (await this.db.query("SELECT notification.id, notification.titlenotif, notification.msgnotif, notification.datecreatenotif FROM notification " +
-            "LEFT JOIN notificationreads ON notification.id = notificationreads.notification_id AND notificationreads.user_id = " + this.args.user_id + " WHERE notificationreads.notification_id IS NULL")).rows;
+            "LEFT JOIN notificationreads ON notification.id = notificationreads.notification_id AND notificationreads.user_id = " + this.args.user_id + " WHERE notificationreads.notification_id IS NULL "+
+            "ORDER BY datecreatenotif DESC")).rows;
         if (!db_res || db_res.length === 0) return null;
         return db_res;
     }
@@ -33,17 +34,18 @@ export class Notification {
     async sendMail() {
 
         var u = new Users("");
-        var data:any = await u.AllEMail();
+        var data: any = await u.AllEMail();
+
+        if (data === null) return;
 
         //console.log(data)
-        var mail:any = [];
+        var mail: any = [];
 
-        for (var i: any = 0; i < data.length; i++)
-        {
+        for (var i: any = 0; i < data.length; i++) {
             mail.push(data[i].email);
         }
 
-       // console.log(mail)
+        // console.log(mail)
 
 
         await this.transporter.sendMail({

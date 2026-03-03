@@ -12,19 +12,46 @@ export const calculateCategoryStatistics = (
 		{ percent?: string; categoryName?: string; bgColor?: string }
 	>()
 
-	categories?.forEach(item => {
-		const filteredCertificates = certificates?.filter(
+
+	const temp = categories.map(item => {
+		const count = certificates.filter(
 			cert => cert.category_id === item.id
-		)
-		const currentPercent = Math.round(
-			(filteredCertificates?.length / total) * 100
-		)
-		result.set(String(item.id), {
-			percent: String(currentPercent),
-			categoryName: item.categoryname,
-			bgColor: colors.color[Number(item.id) - 1]
+		).length
+
+		const raw = total ? (count / total) * 100 : 0
+
+		return {
+			item,
+			percent: raw,
+			floored: Math.floor(raw),
+			fraction: raw % 1
+		}
+	})
+
+	let sum = temp.reduce((acc, el) => acc + el.floored, 0)
+	let remainder = 100 - sum
+
+	const sortedByFraction = [...temp].sort(
+		(a, b) => b.fraction - a.fraction
+	)
+
+	sortedByFraction.forEach(el => {
+		if (remainder > 0) {
+			el.floored++
+			remainder--
+		}
+	})
+
+	temp.forEach(el => {
+		result.set(String(el.item.id), {
+			percent: String(el.floored),
+			categoryName: el.item.categoryname,
+			bgColor: colors.color[Number(el.item.id) - 1]
 		})
 	})
+
+
+
 
 	return Array.from(result, ([key, value]) => ({ key, ...value }))
 }
