@@ -12,14 +12,14 @@ export const NavLinksItem: FC<NavLinksItemProps> = ({ link, isActive }) => {
 
 	return (
 		<Link
-			className={`block flex items-center gap-[12px] w-full py-[12px] px-[16px] rounded-[8px] ${isActive ? 'bg-[#8848f9]' : ''} ${isActive ? 'shadow-[0_3px_3px_rgba(0,0,0,0.1)]' : ''}`}
+			className={`block flex items-center gap-[12px] w-full py-[12px] px-[16px] rounded-[8px] ${isActive ? 'bg-[#8848f9]' : ''} ${isActive ? 'shadow-[0_3px_3px_rgba(0,0,0,0.1)]' : ''} group hover:bg-[#8848f9] transition-all duration-300`}
 			href={link.link}
 		>
 			<div>
 				<Icon isActive={isActive} />
 			</div>
 			<span
-				className={`font-medium text-[14px] ${isActive ? 'text-white' : 'text-[#7f7f7f]'}`}
+				className={`font-medium text-[14px] ${isActive ? 'text-white' : 'text-[#7f7f7f]'} group-hover:text-white transition-all duration-300`}
 			>
 				{link.text}
 			</span>

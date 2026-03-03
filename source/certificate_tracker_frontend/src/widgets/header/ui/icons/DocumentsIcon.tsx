@@ -8,7 +8,7 @@ export const DocumentsIcon: FC<DocumentsIconProps> = ({ isActive }) => {
 	return (
 		<svg
 			fill="none"
-			className={`w-[18px] h-[18px] ${isActive ? 'fill-white' : 'fill-[#7f7f7f]'}`}
+			className={`w-[18px] h-[18px] ${isActive ? 'fill-white' : 'fill-[#7f7f7f]'} group-hover:fill-[#fff] transition-all duration-300`}
 		>
 			<path
 				// fill="color(display-p3 .498 .498 .498)"

@@ -60,10 +60,10 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 									Название
 								</td>
 								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
-									Создан
+									Начало действия
 								</td>
 								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
-									Истекает
+									Окончание действия
 								</td>
 								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
 									Статус

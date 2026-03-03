@@ -21,7 +21,7 @@ export const NotificationItem: FC<NotificationItemProps> = ({
 				</p>
 			</div>
 			<div className="flex items-center justify-between w-full gap-[12px]">
-				<p className="text-[12px]">{notification.msgnotif}</p>
+				<p className="text-[12px] font-medium">{notification.msgnotif}</p>
 				<ReadNotifBtn notification={notification} />
 			</div>
 		</div>

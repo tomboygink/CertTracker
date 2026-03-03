@@ -65,29 +65,29 @@ export default function AddCertModal() {
 				{...register('certnumber')}
 				errorMessage={errors.certnumber?.message}
 			/>
-			{/* <label className="flex flex-col gap-1">
+			<label className="flex flex-col gap-1">
 				<span className="text-[16px] text-[#7f7f7f]">
 					Категория сертификата
-				</span> */}
-			<select
-				{...register('category_id', {
-					valueAsNumber: true
-				})}
-				className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
-				// name="certCategory"
-			>
-				{categoryCert?.data?.map((item: CategoryCert) => (
-					<option key={item.id} value={item.id}>
-						{item.categoryname}
-					</option>
-				))}
-			</select>
-			{/* {errors?.category_id?.message && (
+				</span>
+				<select
+					{...register('category_id', {
+						valueAsNumber: true
+					})}
+					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
+					// name="certCategory"
+				>
+					{categoryCert?.data?.map((item: CategoryCert) => (
+						<option key={item.id} value={item.id}>
+							{item.categoryname}
+						</option>
+					))}
+				</select>
+				{errors?.category_id?.message && (
 					<span className="text-[14px] font-light text-red-400">
 						{errors?.category_id?.message}
 					</span>
 				)}
-			</label> */}
+			</label>
 			<FormInput
 				type="date"
 				label="Дата выпуска"

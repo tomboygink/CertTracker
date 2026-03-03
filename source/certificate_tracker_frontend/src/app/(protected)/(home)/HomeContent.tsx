@@ -30,10 +30,7 @@ export async function HomeContent() {
 					certificates={certData?.data}
 					status={statusData?.data}
 				/>
-				<StatisticForCategories
-					categories={categoryCertData?.data}
-					certificates={certData?.data}
-				/>
+				<StatisticForCategories />
 			</div>
 		</>
 	)

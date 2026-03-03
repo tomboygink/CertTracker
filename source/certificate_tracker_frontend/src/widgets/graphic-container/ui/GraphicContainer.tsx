@@ -12,7 +12,7 @@ export const GraphicContainer: FC<GraphicContainerProps> = ({
 	children
 }) => {
 	return (
-		<div className="flex flex-col gap-[48px] w-full h-[486px] p-[24px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
+		<div className="flex flex-col gap-[16px] w-full h-[486px] p-[24px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 			<div className="flex flex-col gap-[8px] w-full">
 				<h2 className="text-[16px] text-[#202020] font-semibold leading-[16px]">
 					{title}
