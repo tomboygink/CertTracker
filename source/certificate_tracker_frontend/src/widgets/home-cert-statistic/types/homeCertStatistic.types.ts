@@ -1,5 +1,5 @@
 export type HomeCertStatistic = {
-	key: string
+	key: 'total' | 'active' | 'expiring' | 'expired'
 	bgColor: string
 	title: string
 	icon: string

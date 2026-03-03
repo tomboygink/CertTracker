@@ -1,10 +1,17 @@
 'use client'
 
-import { FormBtn, FormInput, useGetSuccessMessage } from '@/src/shared'
+import {
+	FormBtn,
+	FormInput,
+	useAppDispatch,
+	useClickOutside,
+	useGetSuccessMessage
+} from '@/src/shared'
 import { useAddCert } from '../model/hooks/useAddCert'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { CategoryCert } from '@/src/entities'
 import { useHandleFileChange } from '../model/hooks/useHandleFileChange'
+import { closeModal } from '@/src/widgets'
 
 export default function AddCertModal() {
 	const {
@@ -21,6 +28,9 @@ export default function AddCertModal() {
 		isSuccessAddCertMutation,
 		categoryCert
 	} = useAddCert()
+	const dispatch = useAppDispatch()
+	const formRef = useRef<HTMLFormElement | null>(null)
+	useClickOutside(formRef, () => dispatch(closeModal()))
 	const { base64, handleChangeFile } = useHandleFileChange()
 
 	const successMessage = useGetSuccessMessage(
@@ -36,6 +46,7 @@ export default function AddCertModal() {
 
 	return (
 		<form
+			ref={formRef}
 			onSubmit={handleSubmit(handleSubmitAddCert)}
 			className="flex flex-col gap-2"
 		>

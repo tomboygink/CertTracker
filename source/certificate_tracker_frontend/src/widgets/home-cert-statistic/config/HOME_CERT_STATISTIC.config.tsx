@@ -7,7 +7,7 @@ export const HOME_SERT_STATISTIC: HomeCertStatistic[] = [
 		title: 'Всего сертификатов',
 		descr: 'Общее количество в реестре',
 		icon: '/shield.svg',
-		value: '1,248'
+		value: ''
 	},
 	{
 		key: 'active',
@@ -15,7 +15,7 @@ export const HOME_SERT_STATISTIC: HomeCertStatistic[] = [
 		title: 'Активные',
 		descr: 'Действительны более 30 дней',
 		icon: '/calendar_stats.svg',
-		value: '1,180'
+		value: ''
 	},
 	{
 		key: 'expiring',
@@ -23,7 +23,7 @@ export const HOME_SERT_STATISTIC: HomeCertStatistic[] = [
 		title: 'Истекают скоро',
 		descr: 'Заканчиваются в течение 30 дней',
 		icon: '/errror.svg',
-		value: '42'
+		value: ''
 	},
 	{
 		key: 'expired',
@@ -31,6 +31,6 @@ export const HOME_SERT_STATISTIC: HomeCertStatistic[] = [
 		title: 'Просроченные',
 		descr: 'Требуют немедленного внимания',
 		icon: '/close.svg',
-		value: '26'
+		value: ''
 	}
 ]

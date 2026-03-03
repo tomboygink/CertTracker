@@ -1,7 +1,7 @@
 'use client'
 
 import { CategoryCert, Cert } from '@/src/entities'
-import { FC, useEffect, useMemo } from 'react'
+import { FC, useMemo } from 'react'
 import { StatisticForCategoriesItem } from './StatisticForCategoriesItem'
 import { calculateCategoryStatistics } from './services/calculateCategoryStatistics'
 

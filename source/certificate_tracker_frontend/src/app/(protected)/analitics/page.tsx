@@ -1,3 +1,5 @@
+import { AnaliticsContent } from './AnaliticsContent'
+
 export default function AnaliticsPage() {
-	return <h1>Отчеты</h1>
+	return <AnaliticsContent />
 }

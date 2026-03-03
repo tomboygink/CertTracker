@@ -8,5 +8,6 @@ export const bookKeys = {
 	certificate: () => [{ type: 'certificate' }] as const,
 	status: () => [{ type: 'status' }] as const,
 	docs: () => [{ type: 'docs' }] as const,
-	notification: () => [{ type: 'notification' }] as const
+	notification: () => [{ type: 'notification' }] as const,
+	events: () => [{ type: 'events' }] as const
 }

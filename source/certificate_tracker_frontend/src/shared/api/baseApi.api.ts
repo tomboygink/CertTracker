@@ -11,7 +11,8 @@ const tagTypes = [
 	'certificate',
 	'status',
 	'docs',
-	'notification'
+	'notification',
+	'events'
 ] as const
 
 export const baseApi = createApi({
