@@ -35,6 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = router;
 var Users_1 = require("../../config/db/Users");
@@ -47,10 +50,12 @@ var Cert_1 = require("../../config/db/Cert");
 var Events_1 = require("../../config/db/Events");
 var Notification_1 = require("../../config/db/Notification");
 var NotificationReads_1 = require("../../config/db/NotificationReads");
+var config_json_1 = __importDefault(require("../../config/config.json"));
 var jwt_1 = require("../../config/func/jwt");
+var ms_1 = __importDefault(require("ms"));
 function router(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var body, data, _a, u, token_1, token, decoded, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, c, ev, n, nr;
+        var body, data, _a, u, token_1, jwtExpires, cookieMaxAge, token, decoded, u, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, c, ev, n, nr;
         var _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
@@ -95,11 +100,13 @@ function router(req, res) {
                         return [2, buildResponse(body.cmd, null, "Ошибка авторизации")];
                     }
                     token_1 = (0, jwt_1.generateToken)(data[0]);
+                    jwtExpires = config_json_1.default.code_time.time;
+                    cookieMaxAge = (0, ms_1.default)(jwtExpires);
                     res.cookie("access_token", token_1, {
                         httpOnly: true,
                         secure: process.env.NODE_ENV === "production",
                         sameSite: "lax",
-                        maxAge: 1000 * 60 * 60
+                        maxAge: cookieMaxAge
                     });
                     return [2, buildResponse(body.cmd, data, null)];
                 case 3:

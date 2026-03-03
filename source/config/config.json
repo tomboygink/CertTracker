@@ -19,7 +19,7 @@
     },
     "code_time": {
         "code": "other_token_code",
-        "time": "1h"
+        "time": "7d"
     },
     "notif_time":{
         "schedule":"*/5 * * * *"

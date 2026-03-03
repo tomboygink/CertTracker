@@ -26,9 +26,9 @@ export class CategoryCert {
         return db_res
     }
 
-    //Полчение всех отделов
+    //Полчение всех категорий
     async All() {
-        var db_res = await (await this.db.query("SELECT * FROM categorycert")).rows;
+        var db_res = await (await this.db.query("SELECT * FROM categorycert ORDER BY categoryname ASC")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }

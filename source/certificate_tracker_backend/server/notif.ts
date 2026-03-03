@@ -30,10 +30,7 @@ export async function notif() {
         await n.Add();
 
         //отправка на почту
-
         await n.sendMail();
-
-
     }
 
 }

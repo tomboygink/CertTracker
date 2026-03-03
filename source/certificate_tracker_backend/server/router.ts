@@ -9,8 +9,12 @@ import { Events } from "../../config/db/Events"
 import { Notification } from "../../config/db/Notification"
 import { NotificationReads } from "../../config/db/NotificationReads"
 
+import config from '../../config/config.json'
+
 import { Response } from "express";
 import { generateToken, verifyToken } from '../../config/func/jwt'
+
+import ms, { StringValue } from "ms"
 
 export async function router(req: any, res: Response) {
 
@@ -35,12 +39,15 @@ export async function router(req: any, res: Response) {
             //генерация кода
             const token = generateToken(data[0]);
 
+            const jwtExpires  = config.code_time.time as StringValue;
+            const cookieMaxAge = ms(jwtExpires)
+
             //установка куков httponly
             res.cookie("access_token", token, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
                 sameSite: "lax",
-                maxAge: 1000 * 60 * 60
+                maxAge: cookieMaxAge
             });
 
             //ответ данные авторизованного юзера
