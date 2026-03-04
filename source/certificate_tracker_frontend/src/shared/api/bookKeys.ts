@@ -9,5 +9,6 @@ export const bookKeys = {
 	status: () => [{ type: 'status' }] as const,
 	docs: () => [{ type: 'docs' }] as const,
 	notification: () => [{ type: 'notification' }] as const,
-	events: () => [{ type: 'events' }] as const
+	events: () => [{ type: 'events' }] as const,
+	dept: () => [{ type: 'dept' }] as const
 }

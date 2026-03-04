@@ -19,7 +19,7 @@ export const WatchDocBtn: FC<WatchDocLinkProps> = ({ handleClose, cert }) => {
 			onClick={e => {
 				handleGetDocsAndRedirect({ getDocs, cert, handleClose })
 			}}
-			className="block text-left text-[14px]"
+			className="block text-left text-[14px] cursor-pointer"
 		>
 			Просмотр документа
 		</button>
