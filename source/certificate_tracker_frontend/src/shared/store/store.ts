@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import { baseApi } from '../api'
 import {
+	accessReducer,
 	categoryCertReducer,
 	deptReducer,
 	selectCertReducer,
@@ -17,6 +18,7 @@ export const store = configureStore({
 		categoryCert: categoryCertReducer,
 		statusCert: statusCertReducer,
 		selectCert: selectCertReducer,
+		access: accessReducer,
 		dept: deptReducer,
 		[baseApi.reducerPath]: baseApi.reducer
 	},

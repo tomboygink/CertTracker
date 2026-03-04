@@ -1,3 +1,5 @@
+'use client'
+
 import { Dept, User, WorkPosition } from '@/src/entities'
 import { useMemo } from 'react'
 
@@ -15,13 +17,17 @@ export const useCreateFullInfo = (
 		if (!usersData || !workPosData || !deptData) return []
 
 		usersData?.forEach((item: User) => {
-			const filteredWorkPosition: WorkPosition = workPosData.find(
+			const filteredWorkPosition: WorkPosition | undefined = workPosData.find(
 				(workPos: WorkPosition) => workPos.id === item.workposition_id
 			)
 
-			const filteredDeptUser: Dept = deptData?.find(
+			if (!filteredWorkPosition) return
+
+			const filteredDeptUser: Dept | undefined = deptData?.find(
 				(dept: Dept) => dept.id === filteredWorkPosition.dept_id
 			)
+
+			if (!filteredDeptUser) return
 
 			result.set(item.id, {
 				user: item,
@@ -32,4 +38,5 @@ export const useCreateFullInfo = (
 
 		return Array.from(result, ([key, value]) => ({ key, ...value }))
 	}, [deptData, workPosData, usersData])
+	return fullUsersInfo
 }
