@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { baseApi } from '../api'
 import {
 	categoryCertReducer,
+	deptReducer,
 	selectCertReducer,
 	statusCertReducer,
 	userReducer
@@ -16,6 +17,7 @@ export const store = configureStore({
 		categoryCert: categoryCertReducer,
 		statusCert: statusCertReducer,
 		selectCert: selectCertReducer,
+		dept: deptReducer,
 		[baseApi.reducerPath]: baseApi.reducer
 	},
 	middleware: getDefaultMiddleware =>

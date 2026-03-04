@@ -11,10 +11,6 @@ export const UpdateHistoryContainer = () => {
 
 	const fullEventsInfo = useCreateFullData(allEvents?.data, allUsers?.data)
 
-	useEffect(() => {
-		console.log(allEvents?.data)
-	}, [allEvents])
-
 	return (
 		<div className="w-full h-[calc(100vh-(92px+486px+73px))] px-[24px] py-[12px] bg-white border-1 border-[#E0DFDF] rounded-[12px]">
 			<div className="flex flex-col gap-[8px] w-full mb-[8px]">

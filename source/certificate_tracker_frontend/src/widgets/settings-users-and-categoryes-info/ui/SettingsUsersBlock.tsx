@@ -1,18 +1,54 @@
 'use client'
 
-import { useAllUsersQuery, User } from '@/src/entities'
+import {
+	Dept,
+	useAllDeptQuery,
+	useAllUsersQuery,
+	useAllWorkPositionQuery,
+	User,
+	WorkPosition
+} from '@/src/entities'
 import { FormBtn } from '@/src/shared'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { SettingsUserItem } from './SettingsUserItem'
+import { useGetAllSettingsData } from '../hooks/useGetAllSettingsData'
 
 export const SettingsUsersBlock = () => {
-	const { data: allUsers } = useAllUsersQuery({})
+	const { isLoading, usersData, deptData, workPosData } =
+		useGetAllSettingsData()
+
+	const fullUsersInfo = useMemo(() => {
+		const result = new Map<
+			string,
+			{ user: User; workPos: WorkPosition; dept: Dept }
+		>()
+
+		if (!usersData || !workPosData || !deptData) return []
+
+		usersData?.forEach((item: User) => {
+			const filteredWorkPosition: WorkPosition = workPosData?.find(
+				(workPos: WorkPosition) => workPos.id === item.workposition_id
+			)
+
+			const filteredDeptUser: Dept = deptData?.find(
+				(dept: Dept) => dept.id === filteredWorkPosition.dept_id
+			)
+
+			result.set(item.id, {
+				user: item,
+				workPos: filteredWorkPosition,
+				dept: filteredDeptUser
+			})
+		})
+
+		return Array.from(result, ([key, value]) => ({ key, ...value }))
+	}, [deptData, workPosData, usersData])
 
 	useEffect(() => {
-		console.log(allUsers?.data)
-	}, [allUsers?.data])
+		console.log(fullUsersInfo)
+	}, [fullUsersInfo])
 
-	if (!allUsers?.data) return null
+	if (!usersData || isLoading) return null
 
 	return (
 		<>
@@ -21,13 +57,20 @@ export const SettingsUsersBlock = () => {
 					Информация о пользователях
 				</h2>
 				<div className="w-1/2 p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
-					{allUsers.data && (
+					{fullUsersInfo && (
 						<ul>
-							{allUsers.data.map((item: User) => (
-								<li key={item.id}>
-									<SettingsUserItem user={item} />
-								</li>
-							))}
+							{fullUsersInfo.map(
+								(item: {
+									key: string
+									user: User
+									dept: Dept
+									workPos: WorkPosition
+								}) => (
+									<li key={item.key}>
+										<SettingsUserItem allUsersInfo={item} />
+									</li>
+								)
+							)}
 						</ul>
 					)}
 				</div>
