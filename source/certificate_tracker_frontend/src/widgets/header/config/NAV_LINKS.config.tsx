@@ -7,7 +7,7 @@ import { SettingsIcon } from '../ui/icons/SettingsIcon'
 
 export const NAV_LINKS: NavLink[] = [
 	{
-		text: 'Дашборд',
+		text: 'Статистика',
 		link: PAGES.HOME,
 		icon: DashboardIcon
 	},

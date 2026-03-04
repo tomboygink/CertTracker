@@ -64,10 +64,10 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 									Категория
 								</td>
 								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Создан
+									Начало действия
 								</td>
 								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Истекает
+									Окончание действия
 								</td>
 								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
 									Статус

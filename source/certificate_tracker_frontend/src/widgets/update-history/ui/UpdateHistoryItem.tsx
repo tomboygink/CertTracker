@@ -30,7 +30,8 @@ export const UpdateHistoryItem: FC<UpdateHistoryItemProps> = ({
 						{user?.firstname.charAt(0).toUpperCase() +
 							user?.firstname.slice(1).toLowerCase() +
 							' ' +
-							user?.lastname.charAt(0).toUpperCase()}
+							user?.lastname.charAt(0).toUpperCase() +
+							'.'}
 						<span className="text-[14px] text-[#202020] font-medium leading-[20px]">
 							{' '}
 							- {event?.msg}

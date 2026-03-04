@@ -19,7 +19,10 @@ export const useFilteredCertFromSearchAndTabs = (
 
 		if (searchValue && searchValue.length > 0) {
 			setStatus(null)
-			return certWithCategory.filter(
+			const filterNoArchive = certWithCategory.filter(
+				item => item.cert?.statuscert_id !== '4'
+			)
+			return filterNoArchive.filter(
 				item =>
 					item.cert?.certname
 						.toLowerCase()
