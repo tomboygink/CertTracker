@@ -1,5 +1,6 @@
 'use client'
 
+import { Access, WorkPosition } from '@/src/entities'
 import {
 	FormBtn,
 	FormInput,
@@ -7,55 +8,58 @@ import {
 	useClickOutside,
 	useGetSuccessMessage
 } from '@/src/shared'
-import { useChangeInfoUser } from '../hooks/useChangeInfoUser'
-import {
-	Access,
-	useAllAccessQuery,
-	useAllWorkPositionQuery,
-	User,
-	WorkPosition
-} from '@/src/entities'
+import { useAddUser } from '../hooks/useAddUser'
 import { useRef } from 'react'
 import { closeModal } from '@/src/widgets'
 
-interface ChangeUserInfoModalProps {
-	user: User
-}
-
-export default function ChangeUserInfoModal({
-	user
-}: ChangeUserInfoModalProps) {
-	if (!user) return null
-
-	const { data: allAccess } = useAllAccessQuery({})
-	const { data: allWorkPos } = useAllWorkPositionQuery({})
+export default function AddUserModal() {
 	const {
+		allAccessData,
+		allWorkPosData,
 		form: {
 			register,
 			handleSubmit,
 			formState: { errors }
 		},
-		handleChangeUserInfo,
 		isLoading,
-		isSuccess
-	} = useChangeInfoUser(user)
+		isLoadingMutation,
+		isSuccessMutation,
+		handleAddUserSubmit
+	} = useAddUser()
+
 	const successMessage = useGetSuccessMessage(
-		isSuccess,
-		'Данные успешно изменены'
+		isSuccessMutation,
+		'Пользователь успешно добавлен'
 	)
 	const dispatch = useAppDispatch()
 	const modalRef = useRef<HTMLFormElement | null>(null)
 	useClickOutside(modalRef, () => dispatch(closeModal()))
 
+	if (isLoading) return null
+
 	return (
 		<form
-			ref={modalRef}
-			onSubmit={handleSubmit(handleChangeUserInfo)}
+			// ref={modalRef}
+			onSubmit={handleSubmit(handleAddUserSubmit)}
 			className="flex flex-col gap-2"
 		>
 			<h2 className="text-[20px] font-medium mb-4">
 				Изменить информация о пользователе
 			</h2>
+			<FormInput
+				type="text"
+				placeholder="Логин"
+				label="Логин"
+				{...register('login')}
+				errorMessage={errors.login?.message}
+			/>
+			<FormInput
+				type="text"
+				placeholder="Пароль"
+				label="Пароль"
+				{...register('password')}
+				errorMessage={errors.password?.message}
+			/>
 			<FormInput
 				type="text"
 				placeholder="Фамилия"
@@ -78,7 +82,7 @@ export default function ChangeUserInfoModal({
 					})}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
 				>
-					{allAccess?.data?.map((item: Access) => (
+					{allAccessData?.map((item: Access) => (
 						<option key={item.id} value={item.id}>
 							{item.accessname}
 						</option>
@@ -98,7 +102,7 @@ export default function ChangeUserInfoModal({
 				errorMessage={errors?.email?.message}
 			/>
 			<label className="flex items-center gap-[12px]">
-				<input className="w-6 h-6" type="checkbox" {...register('sendmail')} />
+				<input className="w-6 h-6" type="checkbox" />
 				<span>Включить уведомления?</span>
 				{errors?.sendmail?.message && (
 					<span className="text-[14px] font-light text-red-400">
@@ -113,7 +117,7 @@ export default function ChangeUserInfoModal({
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
 					name="certCategory"
 				>
-					{allWorkPos?.data?.map((item: WorkPosition) => (
+					{allWorkPosData?.map((item: WorkPosition) => (
 						<option key={item.id} value={item.id}>
 							{item.workpositionname}
 						</option>
@@ -130,7 +134,11 @@ export default function ChangeUserInfoModal({
 					{successMessage}
 				</span>
 			)}
-			<FormBtn type="submit" text="Применить изменения" disabled={isLoading} />
+			<FormBtn
+				type="submit"
+				text="Добавить пользователя"
+				disabled={isLoadingMutation}
+			/>
 		</form>
 	)
 }
