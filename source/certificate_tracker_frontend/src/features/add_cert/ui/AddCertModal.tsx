@@ -28,9 +28,6 @@ export default function AddCertModal() {
 		isSuccessAddCertMutation,
 		categoryCert
 	} = useAddCert()
-	const dispatch = useAppDispatch()
-	const formRef = useRef<HTMLFormElement | null>(null)
-	useClickOutside(formRef, () => dispatch(closeModal()))
 	const { base64, handleChangeFile } = useHandleFileChange()
 
 	const successMessage = useGetSuccessMessage(
@@ -46,7 +43,6 @@ export default function AddCertModal() {
 
 	return (
 		<form
-			ref={formRef}
 			onSubmit={handleSubmit(handleSubmitAddCert)}
 			className="flex flex-col gap-2"
 		>

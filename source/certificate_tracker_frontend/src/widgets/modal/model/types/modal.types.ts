@@ -3,6 +3,8 @@ export type ModalType =
 	| 'changeCert'
 	| 'changeUserInfoAdmin'
 	| 'addUser'
+	| 'changeUserInfoForUser'
+	| 'changeUserPassAdmin'
 	| null
 
 export type Modal = {

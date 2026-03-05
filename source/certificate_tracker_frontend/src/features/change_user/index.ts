@@ -1,2 +1,3 @@
-export { ChangeUserBtn } from './ui/ChangeUserBtn'
-export { ChangeUserInfoModalLazy } from './ui/ChangeUserInfoModalLazy'
+export * from './change_user_info_from_admin'
+export * from './change_user_info_for_a_user'
+export * from './change_user_pass_for_admin'

@@ -1,11 +1,12 @@
 'use client'
 
-import { FormBtn, useAppSelector } from '@/src/shared'
+import { FormBtn, useAppDispatch, useAppSelector } from '@/src/shared'
 import { DetailedInformation } from './DetailedInformation'
+import { openModal } from '../../modal'
 
 export const SettingsAllBlock = () => {
 	const user = useAppSelector(state => state.user.user)
-
+	const dispatch = useAppDispatch()
 	if (!user) return null
 
 	return (
@@ -18,7 +19,13 @@ export const SettingsAllBlock = () => {
 				<DetailedInformation label="Фамилия" value={user.lastname} />
 				<DetailedInformation label="E-mail" value={user.email} />
 			</div>
-			<FormBtn text="Редактировать" />
+			<FormBtn
+				onClick={() =>
+					dispatch(openModal({ type: 'changeUserInfoForUser', payload: user }))
+				}
+				type="button"
+				text="Редактировать"
+			/>
 		</div>
 	)
 }
