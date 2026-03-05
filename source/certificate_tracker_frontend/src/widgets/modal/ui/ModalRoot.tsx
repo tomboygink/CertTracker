@@ -1,6 +1,11 @@
 'use client'
 
-import { AddCertModalLazy, ChangeCertModalLazy } from '@/src/features'
+import {
+	AddCertModalLazy,
+	AddUserModalLazy,
+	ChangeCertModalLazy,
+	ChangeUserInfoModalLazy
+} from '@/src/features'
 import { useAppDispatch, useAppSelector } from '@/src/shared'
 import { closeModal } from '../model'
 
@@ -17,6 +22,14 @@ export const ModalRoot = () => {
 
 		case 'changeCert':
 			content = <ChangeCertModalLazy />
+			break
+
+		case 'changeUserInfoAdmin':
+			content = <ChangeUserInfoModalLazy user={payload} />
+			break
+
+		case 'addUser':
+			content = <AddUserModalLazy />
 			break
 
 		default:

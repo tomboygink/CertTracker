@@ -44,10 +44,6 @@ export const HomeCertStatsList = () => {
 		}))
 	}, [allCert?.data])
 
-	useEffect(() => {
-		console.log(fullHomeCertStatistic)
-	}, [fullHomeCertStatistic])
-
 	return (
 		<ul className="grid grid-cols-4 gap-[24px] mb-[32px]">
 			{fullHomeCertStatistic.map(item => (

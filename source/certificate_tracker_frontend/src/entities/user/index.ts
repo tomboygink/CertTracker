@@ -6,7 +6,8 @@ export {
 	useLoginUserWithTokenQuery,
 	useRegisterUserMutation,
 	useLogoutUserMutation,
-	useAllUsersQuery
+	useAllUsersQuery,
+	useChangeUserMutation
 } from './api/userApi.api'
 export { default as userReducer } from './reducer/userReducer'
 export { setUser, clearUser } from './reducer/userReducer'

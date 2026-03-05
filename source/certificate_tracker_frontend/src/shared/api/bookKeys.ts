@@ -10,5 +10,6 @@ export const bookKeys = {
 	docs: () => [{ type: 'docs' }] as const,
 	notification: () => [{ type: 'notification' }] as const,
 	events: () => [{ type: 'events' }] as const,
-	dept: () => [{ type: 'dept' }] as const
+	dept: () => [{ type: 'dept' }] as const,
+	access: () => [{ type: 'access' }] as const
 }
