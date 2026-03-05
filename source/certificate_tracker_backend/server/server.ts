@@ -42,7 +42,7 @@ class Server {
     }
 
     check() {
-        cron.schedule(config.notif_time.schedule, async () => { await checkcert() });
+        cron.schedule(config.check_time.schedule, async () => { await checkcert() });
     }
     notification() {
         cron.schedule(config.notif_time.schedule, async () => { await notif() });
