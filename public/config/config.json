@@ -21,6 +21,9 @@
         "code": "other_token_code",
         "time": "7d"
     },
+    "check_time": {
+        "schedule": "0 * * * *"
+    },
     "notif_time": {
         "schedule": "0 12 * * *"
     },
