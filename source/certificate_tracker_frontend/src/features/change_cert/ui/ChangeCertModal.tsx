@@ -35,10 +35,6 @@ export default function ChangeCertModal() {
 		isSuccess
 	} = useChangeCert()
 
-	const dispatch = useAppDispatch()
-	const formRef = useRef<HTMLFormElement | null>(null)
-	useClickOutside(formRef, () => dispatch(closeModal()))
-
 	const { base64, handleChangeFile } = useHandleFileChange()
 
 	const successMessage = useGetSuccessMessage(
@@ -52,7 +48,6 @@ export default function ChangeCertModal() {
 
 	return (
 		<form
-			ref={formRef}
 			onSubmit={handleSubmit(handleChangeCertSubmit)}
 			className="flex flex-col gap-2"
 		>

@@ -4,14 +4,20 @@ import {
 	AddCertModalLazy,
 	AddUserModalLazy,
 	ChangeCertModalLazy,
-	ChangeUserInfoModalLazy
+	ChangeUserInfoModalFromAdminLazy,
+	ChangeUserInfoUserLazy,
+	ChangeUserPassForAdminModalLazy
 } from '@/src/features'
-import { useAppDispatch, useAppSelector } from '@/src/shared'
+import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
 import { closeModal } from '../model'
+import { useRef } from 'react'
 
 export const ModalRoot = () => {
 	const dispatch = useAppDispatch()
 	const { type, payload } = useAppSelector(state => state.modal)
+
+	const divRef = useRef<HTMLDivElement | null>(null)
+	useClickOutside(divRef, () => dispatch(closeModal()))
 
 	let content = null
 
@@ -25,13 +31,20 @@ export const ModalRoot = () => {
 			break
 
 		case 'changeUserInfoAdmin':
-			content = <ChangeUserInfoModalLazy user={payload} />
+			content = <ChangeUserInfoModalFromAdminLazy user={payload} />
+			break
+
+		case 'changeUserInfoForUser':
+			content = <ChangeUserInfoUserLazy />
 			break
 
 		case 'addUser':
 			content = <AddUserModalLazy />
 			break
 
+		case 'changeUserPassAdmin':
+			content = <ChangeUserPassForAdminModalLazy user={payload} />
+			break
 		default:
 			content = null
 			break
@@ -41,7 +54,10 @@ export const ModalRoot = () => {
 
 	return (
 		<div className="absolute inset-0 z-[9999] w-full h-[100vh] flex items-center justify-center bg-black/50">
-			<div className="relative min-w-140 px-10 py-20 rounded-2xl bg-white">
+			<div
+				ref={divRef}
+				className="relative min-w-140 px-10 py-20 rounded-2xl bg-white"
+			>
 				<button
 					onClick={() => dispatch(closeModal())}
 					className="absolute right-4 top-4 flex items-center justify-center w-10 h-10 rounded-[50%] cursor-pointer bg-[var(--bg-color)] hover:bg-[var(--bg-color-hover)] transition-all duration-300"

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
-export const ChangeUserInfoModalLazy = dynamic(
-	() => import('./ChangeUserInfoModal'),
+export const ChangeUserInfoUserLazy = dynamic(
+	() => import('./ChangeUserInfoUser'),
 	{
 		loading: () => <div>...Загрузка</div>
 	}

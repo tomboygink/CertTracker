@@ -22,7 +22,7 @@ interface ChangeUserInfoModalProps {
 	user: User
 }
 
-export default function ChangeUserInfoModal({
+export default function ChangeUserInfoFromAdminModal({
 	user
 }: ChangeUserInfoModalProps) {
 	if (!user) return null
@@ -43,13 +43,8 @@ export default function ChangeUserInfoModal({
 		isSuccess,
 		'Данные успешно изменены'
 	)
-	const dispatch = useAppDispatch()
-	const modalRef = useRef<HTMLFormElement | null>(null)
-	useClickOutside(modalRef, () => dispatch(closeModal()))
-
 	return (
 		<form
-			ref={modalRef}
 			onSubmit={handleSubmit(handleChangeUserInfo)}
 			className="flex flex-col gap-2"
 		>
@@ -103,6 +98,15 @@ export default function ChangeUserInfoModal({
 				{errors?.sendmail?.message && (
 					<span className="text-[14px] font-light text-red-400">
 						{errors?.sendmail?.message}
+					</span>
+				)}
+			</label>
+			<label className="flex items-center gap-[12px]">
+				<input className="w-6 h-6" type="checkbox" {...register('deleted')} />
+				<span>Заблокировать пользователя</span>
+				{errors?.sendmail?.message && (
+					<span className="text-[14px] font-light text-red-400">
+						{errors?.deleted?.message}
 					</span>
 				)}
 			</label>

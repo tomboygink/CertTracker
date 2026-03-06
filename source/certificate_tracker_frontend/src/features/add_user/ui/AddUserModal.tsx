@@ -31,15 +31,10 @@ export default function AddUserModal() {
 		isSuccessMutation,
 		'Пользователь успешно добавлен'
 	)
-	const dispatch = useAppDispatch()
-	const modalRef = useRef<HTMLFormElement | null>(null)
-	useClickOutside(modalRef, () => dispatch(closeModal()))
-
 	if (isLoading) return null
 
 	return (
 		<form
-			// ref={modalRef}
 			onSubmit={handleSubmit(handleAddUserSubmit)}
 			className="flex flex-col gap-2"
 		>
