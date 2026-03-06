@@ -102,14 +102,14 @@ export class Users {
     }
     //Полчение всех юзеров
     async All() {
-        var db_res = await (await this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users")).rows;
+        var db_res = await (await this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users ORDER BY firstname ASC")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }
 
     //Полчение ящиков которым должно приходить сообщение 
     async AllEMail() {
-        var db_res = await (await this.db.query("SELECT email FROM users WHERE sendmail = true")).rows;
+        var db_res = await (await this.db.query("SELECT email FROM users WHERE sendmail = true AND deleted = false")).rows;
 
         if (!db_res || db_res.length === 0) return null;
         return db_res
