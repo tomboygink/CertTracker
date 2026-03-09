@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SettingsTabsList } from './SettingsTabsList'
 import { SettingsAllBlock } from './SettingsAllBlock'
 import { SettingsUsersBlock } from './SettingsUsersBlock'

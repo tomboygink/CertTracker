@@ -1,17 +1,12 @@
 import { DateWidget, TitleAndDescrPages } from '@/src/shared'
 import { HomeCertStatsList } from '@/src/widgets'
 import { RequireAttensionCert } from './RequireAttensionCert'
-import {
-	getAllCategoryCert,
-	getAllCert,
-	getAllStatusCert
-} from '@/src/entities'
+import { getAllCert, getAllStatusCert } from '@/src/entities'
 import { StatisticForCategories } from './StatisticForCategories'
 
 export async function HomeContent() {
 	const certData = await getAllCert()
 	const statusData = await getAllStatusCert()
-	const categoryCertData = await getAllCategoryCert()
 
 	return (
 		<>
@@ -22,16 +17,22 @@ export async function HomeContent() {
 				/>
 				<DateWidget />
 			</div>
-			<div className="w-full">
-				<HomeCertStatsList />
-			</div>
-			<div className="flex gap-[24px]">
-				<RequireAttensionCert
-					certificates={certData?.data}
-					status={statusData?.data}
-				/>
-				<StatisticForCategories />
-			</div>
+			{!certData?.data || certData?.data?.length < 1 ? (
+				<h2 className="text-[20px] font-medium">Нет сертификатов</h2>
+			) : (
+				<>
+					<div className="w-full">
+						<HomeCertStatsList />
+					</div>
+					<div className="flex gap-[24px]">
+						<RequireAttensionCert
+							certificates={certData?.data}
+							status={statusData?.data}
+						/>
+						<StatisticForCategories />
+					</div>
+				</>
+			)}
 		</>
 	)
 }

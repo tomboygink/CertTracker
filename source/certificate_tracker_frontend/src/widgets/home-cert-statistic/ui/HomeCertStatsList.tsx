@@ -9,14 +9,18 @@ import { HomeCertStatistic } from '../types/homeCertStatistic.types'
 export const HomeCertStatsList = () => {
 	const { data: allCert } = useAllCertQuery({})
 
-	const fullHomeCertStatistic = useMemo(() => {
+	const fullHomeCertStatistic: HomeCertStatistic[] = useMemo(() => {
+		const totalNotArchive = allCert?.data?.filter(
+			(item: Cert) => item?.statuscert_id !== '4'
+		)
+
 		const totalCounter: {
 			total: number
 			active: number
 			expiring: number
 			expired: number
 		} = {
-			total: Number(allCert?.data?.length),
+			total: Number(totalNotArchive?.length),
 			active: 0,
 			expiring: 0,
 			expired: 0

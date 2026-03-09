@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { UserHydration } from '../providers'
+import { User } from '@/src/entities'
 
 export default async function PrivatePagesLayout({
 	children
@@ -14,7 +15,7 @@ export default async function PrivatePagesLayout({
 		redirect('/login')
 	}
 
-	const user = await getUserByToken(token)
+	const user: User = await getUserByToken(token)
 
 	if (!user) {
 		redirect('/login')

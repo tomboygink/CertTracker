@@ -1,12 +1,23 @@
 'use client'
 
-import { FormBtn, useAppDispatch, useAppSelector } from '@/src/shared'
+import {
+	FormBtn,
+	useAppDispatch,
+	useAppSelector,
+	useClickOutside
+} from '@/src/shared'
 import { DetailedInformation } from './DetailedInformation'
 import { openModal } from '../../modal'
+import { useRef, useState } from 'react'
 
 export const SettingsAllBlock = () => {
+	const [open, setOpen] = useState<boolean>(false)
 	const user = useAppSelector(state => state.user.user)
 	const dispatch = useAppDispatch()
+
+	const divRef = useRef<HTMLDivElement | null>(null)
+	useClickOutside(divRef, () => setOpen(false))
+
 	if (!user) return null
 
 	return (
@@ -19,13 +30,33 @@ export const SettingsAllBlock = () => {
 				<DetailedInformation label="Фамилия" value={user.lastname} />
 				<DetailedInformation label="E-mail" value={user.email} />
 			</div>
-			<FormBtn
-				onClick={() =>
-					dispatch(openModal({ type: 'changeUserInfoForUser', payload: user }))
-				}
-				type="button"
-				text="Редактировать"
-			/>
+			<div ref={divRef} className="relative">
+				<FormBtn
+					onClick={() => setOpen(prev => (prev = !prev))}
+					type="button"
+					text="Редактировать"
+				/>
+				{open && (
+					<div className="absolute top-[50px] left-0 flex flex-col gap-[8px] p-3 bg-white rounded-md border-1 border-[#E0DFDF] shadow-md">
+						<FormBtn
+							onClick={() => {
+								setOpen(false)
+								dispatch(
+									openModal({ type: 'changeUserInfoForUser', payload: user })
+								)
+							}}
+							text="Редактировать информацию"
+						/>
+						<FormBtn
+							onClick={() => {
+								setOpen(false)
+								dispatch(openModal({ type: 'changeUserPassUser', payload: {} }))
+							}}
+							text="Редактировать пароль"
+						/>
+					</div>
+				)}
+			</div>
 		</div>
 	)
 }

@@ -6,8 +6,8 @@ import { Providers } from './providers'
 // import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 
 export const metadata: Metadata = {
-	title: 'CertTracker',
-	description: 'CertTracker by SBI'
+	title: 'Трекер сертификатов',
+	description: 'Трекер сертификатов'
 }
 
 export default function RootLayout({

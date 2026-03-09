@@ -2,7 +2,7 @@
 
 import { CategoryCert, Cert } from '@/src/entities'
 import { FilterTabBtnList, SearchInput } from '@/src/features'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { CertificateTableRow } from './CertificateTableRow'
 import { useGetAllCertAndCategoryesData } from '../hooks/useGetAllCertAndCategoryesData'
 import { useFilteredCertFromSearchAndTabs } from '../hooks/useFilteredCertFromSearchAndTabs'
@@ -43,7 +43,11 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 					onChange={e => setSearchValue(e.target.value)}
 					placeholder="Поиск по названию или номеру..."
 				/>
-				<FilterTabBtnList status={activeTab} setStatus={handleClickFilterBtn} />
+				<FilterTabBtnList
+					setSearchValue={setSearchValue}
+					status={activeTab}
+					setStatus={handleClickFilterBtn}
+				/>
 			</div>
 			<div className="flex-1 overflow-hidden">
 				{/* Контейнер с прокруткой */}

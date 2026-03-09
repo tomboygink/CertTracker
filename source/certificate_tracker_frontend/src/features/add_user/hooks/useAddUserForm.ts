@@ -11,7 +11,7 @@ export const useAddUserForm = () => {
 		defaultValues: {
 			access_id: 3,
 			deleted: false,
-			sendmail: true
+			sendmail: false
 		},
 		mode: 'all',
 		reValidateMode: 'onSubmit'
