@@ -5,6 +5,7 @@ export type ModalType =
 	| 'addUser'
 	| 'changeUserInfoForUser'
 	| 'changeUserPassAdmin'
+	| 'changeUserPassUser'
 	| null
 
 export type Modal = {

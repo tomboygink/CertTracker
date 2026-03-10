@@ -4,7 +4,6 @@ import { User } from '@/src/entities'
 import { FormBtn, useAppDispatch, useClickOutside } from '@/src/shared'
 import { openModal } from '@/src/widgets'
 import { FC, useRef, useState } from 'react'
-import { fa } from 'zod/v4/locales'
 
 interface ChangeUserBtnProps {
 	user: User

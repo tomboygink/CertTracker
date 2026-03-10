@@ -6,7 +6,8 @@ import {
 	ChangeCertModalLazy,
 	ChangeUserInfoModalFromAdminLazy,
 	ChangeUserInfoUserLazy,
-	ChangeUserPassForAdminModalLazy
+	ChangeUserPassForAdminModalLazy,
+	ChangeUserPassForAUserLazy
 } from '@/src/features'
 import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
 import { closeModal } from '../model'
@@ -45,6 +46,11 @@ export const ModalRoot = () => {
 		case 'changeUserPassAdmin':
 			content = <ChangeUserPassForAdminModalLazy user={payload} />
 			break
+
+		case 'changeUserPassUser':
+			content = <ChangeUserPassForAUserLazy />
+			break
+
 		default:
 			content = null
 			break

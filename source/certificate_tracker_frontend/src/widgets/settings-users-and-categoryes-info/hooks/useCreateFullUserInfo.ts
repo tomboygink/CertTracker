@@ -6,7 +6,8 @@ import { useMemo } from 'react'
 export const useCreateFullInfo = (
 	usersData: User[],
 	deptData: Dept[],
-	workPosData: WorkPosition[]
+	workPosData: WorkPosition[],
+	user: User
 ) => {
 	const fullUsersInfo = useMemo(() => {
 		const result = new Map<
@@ -14,9 +15,13 @@ export const useCreateFullInfo = (
 			{ user: User; workPos: WorkPosition; dept: Dept }
 		>()
 
-		if (!usersData || !workPosData || !deptData) return []
+		if (!usersData || !workPosData || !deptData || !user) return []
 
-		usersData?.forEach((item: User) => {
+		const filteredUsersExceptCurrent = usersData?.filter(
+			item => item.id !== user.id
+		)
+
+		filteredUsersExceptCurrent?.forEach((item: User) => {
 			const filteredWorkPosition: WorkPosition | undefined = workPosData.find(
 				(workPos: WorkPosition) => workPos.id === item.workposition_id
 			)

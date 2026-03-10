@@ -1,16 +1,28 @@
-import { useAppSelector } from '@/src/shared'
 import { useChangeUserForUserForm } from './useChangeUserForUserForm'
-import { useChangeUserMutation, User } from '@/src/entities'
+import {
+	partiallyUpdateUser,
+	setUser,
+	useChangeUserMutation,
+	User
+} from '@/src/entities'
 import { ChangeUserInfoUserFormValues } from '../types/changeUserInfoUserFormValues.types'
+import { useAppDispatch } from '@/src/shared'
 
 export const useChangeUserForUser = (user: User) => {
+	const dispatch = useAppDispatch()
 	const form = useChangeUserForUserForm(user)
 	const [mutate, result] = useChangeUserMutation()
 
 	const handleChangeUserInfoForUserSubmit = (
 		data: ChangeUserInfoUserFormValues
 	) => {
-		mutate(data).then(response => console.log(response))
+		mutate(data)
+		dispatch(
+			partiallyUpdateUser({
+				firstname: data.firstname,
+				lastname: data.lastname
+			})
+		)
 	}
 
 	return {

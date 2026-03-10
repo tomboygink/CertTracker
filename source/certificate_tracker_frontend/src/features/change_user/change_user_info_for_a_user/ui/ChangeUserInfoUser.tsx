@@ -1,6 +1,5 @@
 'use client'
 
-import { User } from '@/src/entities'
 import {
 	FormBtn,
 	FormInput,

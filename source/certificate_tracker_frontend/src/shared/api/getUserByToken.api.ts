@@ -19,7 +19,7 @@ export const getUserByToken = async (token: string) => {
 
 	const data = await response.json()
 
-	if (data.err) return null
+	if (data?.err) return null
 
-	return data.data[0]
+	return data?.data?.[0]
 }

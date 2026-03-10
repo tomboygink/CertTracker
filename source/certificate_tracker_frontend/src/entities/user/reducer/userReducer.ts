@@ -23,9 +23,16 @@ export const userReducer = createSlice({
 		},
 		clearUser(state) {
 			state.user = null
+		},
+		partiallyUpdateUser(state, action: PayloadAction<Partial<User>>) {
+			if (!state.user) {
+				return
+			}
+
+			state.user = { ...state.user, ...action.payload }
 		}
 	}
 })
 
-export const { setUser, clearUser } = userReducer.actions
+export const { setUser, clearUser, partiallyUpdateUser } = userReducer.actions
 export default userReducer.reducer

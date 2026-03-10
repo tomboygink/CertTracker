@@ -10,5 +10,5 @@ export {
 	useChangeUserMutation
 } from './api/userApi.api'
 export { default as userReducer } from './reducer/userReducer'
-export { setUser, clearUser } from './reducer/userReducer'
+export { setUser, clearUser, partiallyUpdateUser } from './reducer/userReducer'
 export { UserProfile } from './ui/UserProfile'

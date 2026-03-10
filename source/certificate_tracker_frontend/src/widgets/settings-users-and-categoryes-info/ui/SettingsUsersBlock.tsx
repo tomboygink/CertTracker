@@ -5,12 +5,21 @@ import { SettingsUserItem } from './SettingsUserItem'
 import { useGetAllSettingsData } from '../hooks/useGetAllSettingsData'
 import { useCreateFullInfo } from '../hooks/useCreateFullUserInfo'
 import { AddUserBtn } from '@/src/features'
+import { useAppSelector } from '@/src/shared'
 
 export const SettingsUsersBlock = () => {
 	const { isLoading, usersData, deptData, workPosData } =
 		useGetAllSettingsData()
+	const user = useAppSelector(state => state.user.user)
 
-	const fullUsersInfo = useCreateFullInfo(usersData, deptData, workPosData)
+	if (!user) return null
+
+	const fullUsersInfo = useCreateFullInfo(
+		usersData,
+		deptData,
+		workPosData,
+		user
+	)
 
 	if (!usersData || isLoading) return null
 

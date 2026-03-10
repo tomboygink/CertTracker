@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import config from '../../../../config/config.json'
+import {
+	BaseQueryFn,
+	FetchArgs,
+	FetchBaseQueryError
+} from '@reduxjs/toolkit/query'
+import { User } from '@/src/entities'
 
 const tagTypes = [
 	'login',
