@@ -149,7 +149,8 @@ var Users = (function () {
                         return [2, db_res];
                     case 9:
                         if (!(this.args.change === "data_user")) return [3, 12];
-                        return [4, this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', firstname = '" + this.args.firstname + "' WHERE id = " + this.args.id + " RETURNING id")];
+                        return [4, this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', " +
+                                "firstname = '" + this.args.firstname + "', sendmail = " + this.args.sendmail + " WHERE id = " + this.args.id + " RETURNING id")];
                     case 10: return [4, (_a.sent()).rows];
                     case 11:
                         db_res = _a.sent();

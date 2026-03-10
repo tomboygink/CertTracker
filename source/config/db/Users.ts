@@ -81,7 +81,8 @@ export class Users {
             return db_res;
         }
         else if (this.args.change === "data_user") {
-            var db_res = await (await this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', firstname = '" + this.args.firstname + "' WHERE id = " + this.args.id + " RETURNING id")).rows;
+            var db_res = await (await this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', "+
+                "firstname = '" + this.args.firstname + "', sendmail = "+this.args.sendmail+" WHERE id = " + this.args.id + " RETURNING id")).rows;
             if (!db_res || db_res.length === 0) { return null }
             return db_res;
         }
