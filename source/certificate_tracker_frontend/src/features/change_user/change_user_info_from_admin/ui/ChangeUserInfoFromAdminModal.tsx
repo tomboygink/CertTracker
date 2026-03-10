@@ -41,7 +41,15 @@ export default function ChangeUserInfoFromAdminModal({
 			className="flex flex-col gap-2"
 		>
 			<h2 className="text-[20px] font-medium mb-4">
-				Изменить информация о пользователе
+				Изменить информация о пользователе{' '}
+				{user
+					? user?.firstname.at(0)?.toUpperCase() +
+						user?.firstname.slice(1).toLowerCase()
+					: null}{' '}
+				{user
+					? user?.lastname.at(0)?.toUpperCase() +
+						user?.lastname.slice(1).toLowerCase()
+					: null}
 			</h2>
 			<FormInput
 				type="text"
