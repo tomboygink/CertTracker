@@ -13,7 +13,7 @@ export const DocumentsContent = async () => {
 					title="Реестр документов"
 					descr="Управление и поиск по базе всех сертификатов компании."
 				/>
-				<AddCertBtn text={'+ Новый документ'} />
+				<AddCertBtn text={'+ Добавить'} />
 			</div>
 			<CertificateTable
 				certificates={certData?.data}

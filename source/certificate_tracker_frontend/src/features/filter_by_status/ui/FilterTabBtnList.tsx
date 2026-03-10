@@ -8,11 +8,13 @@ import { OtherFilterBtn } from './OtherFilterBtn'
 interface FilterTabBtnListProps {
 	status: string | null
 	setStatus: (status: string | null) => void
+	setSearchValue: (str: string) => void
 }
 
 export const FilterTabBtnList: FC<FilterTabBtnListProps> = ({
 	status,
-	setStatus
+	setStatus,
+	setSearchValue
 }) => {
 	return (
 		<div className="flex items-center gap-[8px]">
@@ -20,7 +22,14 @@ export const FilterTabBtnList: FC<FilterTabBtnListProps> = ({
 				{FILTER_TABS_CONFIG.map(item => (
 					<li key={item.status}>
 						<FilterTabBtn
-							onClick={() => setStatus(item.status)}
+							onClick={() => {
+								if (item.status !== null) {
+									setSearchValue('')
+									setStatus(item.status)
+								} else {
+									setStatus(item.status)
+								}
+							}}
 							text={item.text}
 							isActive={status === item.status}
 						/>

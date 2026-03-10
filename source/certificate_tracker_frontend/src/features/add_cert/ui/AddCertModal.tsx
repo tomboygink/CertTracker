@@ -1,26 +1,20 @@
 'use client'
 
-import {
-	FormBtn,
-	FormInput,
-	useAppDispatch,
-	useClickOutside,
-	useGetSuccessMessage
-} from '@/src/shared'
+import { FormBtn, FormInput, useGetSuccessMessage } from '@/src/shared'
 import { useAddCert } from '../model/hooks/useAddCert'
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { CategoryCert } from '@/src/entities'
 import { useHandleFileChange } from '../model/hooks/useHandleFileChange'
-import { closeModal } from '@/src/widgets'
 
 export default function AddCertModal() {
+	const [dateStart, setDateStart] = useState<Date | null>(null)
+
 	const {
 		form: {
 			register,
 			handleSubmit,
 			formState: { errors },
-			setValue,
-			watch
+			setValue
 		},
 		handleSubmitAddCert,
 		isLoadingAddCert,
@@ -87,7 +81,9 @@ export default function AddCertModal() {
 			<FormInput
 				type="date"
 				label="Дата выпуска"
-				{...register('issuedate')}
+				{...register('issuedate', {
+					onChange: e => setDateStart(e.target.value)
+				})}
 				errorMessage={errors?.issuedate?.message}
 			/>
 			<FormInput
@@ -95,6 +91,8 @@ export default function AddCertModal() {
 				label="Период действия"
 				{...register('certvalidityperiod')}
 				errorMessage={errors?.certvalidityperiod?.message}
+				disabled={!dateStart}
+				min={dateStart ? String(dateStart) : undefined}
 			/>
 			<FormInput
 				type="file"

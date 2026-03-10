@@ -97,7 +97,7 @@ export default function AddUserModal() {
 				errorMessage={errors?.email?.message}
 			/>
 			<label className="flex items-center gap-[12px]">
-				<input className="w-6 h-6" type="checkbox" />
+				<input className="w-6 h-6" type="checkbox" {...register('sendmail')} />
 				<span>Включить уведомления?</span>
 				{errors?.sendmail?.message && (
 					<span className="text-[14px] font-light text-red-400">
@@ -110,7 +110,6 @@ export default function AddUserModal() {
 				<select
 					{...register('workposition_id')}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
-					name="certCategory"
 				>
 					{allWorkPosData?.map((item: WorkPosition) => (
 						<option key={item.id} value={item.id}>
