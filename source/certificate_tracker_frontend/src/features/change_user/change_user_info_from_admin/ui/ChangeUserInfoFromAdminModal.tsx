@@ -1,12 +1,6 @@
 'use client'
 
-import {
-	FormBtn,
-	FormInput,
-	useAppDispatch,
-	useClickOutside,
-	useGetSuccessMessage
-} from '@/src/shared'
+import { FormBtn, FormInput, useGetSuccessMessage } from '@/src/shared'
 import { useChangeInfoUser } from '../hooks/useChangeInfoUser'
 import {
 	Access,
@@ -15,8 +9,6 @@ import {
 	User,
 	WorkPosition
 } from '@/src/entities'
-import { useRef } from 'react'
-import { closeModal } from '@/src/widgets'
 
 interface ChangeUserInfoModalProps {
 	user: User
@@ -104,7 +96,7 @@ export default function ChangeUserInfoFromAdminModal({
 			<label className="flex items-center gap-[12px]">
 				<input className="w-6 h-6" type="checkbox" {...register('deleted')} />
 				<span>Заблокировать пользователя</span>
-				{errors?.sendmail?.message && (
+				{errors?.deleted?.message && (
 					<span className="text-[14px] font-light text-red-400">
 						{errors?.deleted?.message}
 					</span>
@@ -115,7 +107,6 @@ export default function ChangeUserInfoFromAdminModal({
 				<select
 					{...register('workposition_id')}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
-					name="certCategory"
 				>
 					{allWorkPos?.data?.map((item: WorkPosition) => (
 						<option key={item.id} value={item.id}>

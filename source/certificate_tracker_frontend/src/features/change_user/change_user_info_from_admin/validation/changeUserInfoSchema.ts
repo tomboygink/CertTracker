@@ -8,7 +8,7 @@ export const changeUserInfoSchema = z.object({
 	email: z
 		.email('Некорректный электронный адрес')
 		.min(1, 'Поле не может быть пустым'),
-	sendmail: z.coerce.boolean(),
+	sendmail: z.boolean(),
 	workposition_id: z.coerce.string().min(1, 'Поле не может быть пустым'),
 	deleted: z.boolean(),
 	user_id: z.coerce.number()
