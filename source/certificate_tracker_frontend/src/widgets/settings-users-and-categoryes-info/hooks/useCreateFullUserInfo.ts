@@ -7,7 +7,7 @@ export const useCreateFullInfo = (
 	usersData: User[],
 	deptData: Dept[],
 	workPosData: WorkPosition[],
-	user: User
+	user: User | null
 ) => {
 	const fullUsersInfo = useMemo(() => {
 		const result = new Map<
