@@ -11,7 +11,8 @@ export const useChangeUserForUserForm = (user: User) => {
 			id: Number(user.id),
 			change: 'data_user',
 			lastname: user.lastname ?? '',
-			firstname: user.firstname ?? ''
+			firstname: user.firstname ?? '',
+			sendmail: user.sendmail ?? false
 		},
 		mode: 'all',
 		reValidateMode: 'onSubmit'

@@ -47,6 +47,7 @@ export const LoginForm = () => {
 							}
 						}}
 						text={type === 'password' ? 'Показать' : 'Скрыть'}
+						type="button"
 					/>
 				</div>
 				{loginErrorMessage && (

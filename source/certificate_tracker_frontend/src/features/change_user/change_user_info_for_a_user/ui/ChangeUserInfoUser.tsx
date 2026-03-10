@@ -49,6 +49,15 @@ export default function ChangeUserInfoUser() {
 				{...register('firstname')}
 				errorMessage={errors.firstname?.message}
 			/>
+			<label className="flex items-center gap-[12px]">
+				<input className="w-6 h-6" type="checkbox" {...register('sendmail')} />
+				<span>Включить уведомления?</span>
+				{errors?.sendmail?.message && (
+					<span className="text-[14px] font-light text-red-400">
+						{errors?.sendmail?.message}
+					</span>
+				)}
+			</label>
 			{successMessage && (
 				<span className="text-[14px] font-light text-green-400">
 					{successMessage}

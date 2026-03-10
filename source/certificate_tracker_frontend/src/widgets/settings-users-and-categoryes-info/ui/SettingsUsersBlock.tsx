@@ -12,8 +12,6 @@ export const SettingsUsersBlock = () => {
 		useGetAllSettingsData()
 	const user = useAppSelector(state => state.user.user)
 
-	if (!user) return null
-
 	const fullUsersInfo = useCreateFullInfo(
 		usersData,
 		deptData,
