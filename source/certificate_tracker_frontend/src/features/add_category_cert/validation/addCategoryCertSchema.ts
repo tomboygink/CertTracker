@@ -1,0 +1,5 @@
+import z from 'zod'
+
+export const addCategoryCertSchema = z.object({
+	categoryname: z.string().min(1, 'Поле не может быть пустым')
+})

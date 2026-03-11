@@ -3,8 +3,8 @@ import { SETTINGS_TABS_CONFIG } from '../config/SETTINGS_TABS_CONFIG.config'
 import { SettingsTabsItem } from './SettingsTabsItem'
 
 interface SettingsTabsListProps {
-	setValue: (str: 'all' | 'users' | 'categories') => void
-	value: 'all' | 'users' | 'categories'
+	setValue: (str: 'all' | 'users' | 'categories' | 'dept') => void
+	value: 'all' | 'users' | 'categories' | 'dept'
 }
 
 export const SettingsTabsList: FC<SettingsTabsListProps> = ({

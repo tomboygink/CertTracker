@@ -27,7 +27,7 @@ export const ChangeUserBtn: FC<ChangeUserBtnProps> = ({ user }) => {
 				</svg>
 			</button>
 			{open && (
-				<div className="absolute top-10 z-[5] flex flex-col gap-[12px] p-[12px] min-w-[300px] bg-white border-1 border-[#E0DFDF] rounded-md shadow-md">
+				<div className="absolute top-10 right-0 z-[5] flex flex-col gap-[12px] p-[12px] min-w-[300px] bg-white border-1 border-[#E0DFDF] rounded-md shadow-md">
 					<FormBtn
 						onClick={() => {
 							setOpen(false)

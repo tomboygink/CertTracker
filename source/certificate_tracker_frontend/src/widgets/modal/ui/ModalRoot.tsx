@@ -1,13 +1,16 @@
 'use client'
 
 import {
+	AddCategoryCertModalLazy,
 	AddCertModalLazy,
 	AddUserModalLazy,
+	ChangeCategoryCertModalLazy,
 	ChangeCertModalLazy,
 	ChangeUserInfoModalFromAdminLazy,
 	ChangeUserInfoUserLazy,
 	ChangeUserPassForAdminModalLazy,
-	ChangeUserPassForAUserLazy
+	ChangeUserPassForAUserLazy,
+	SettingUserAvatarModalLazy
 } from '@/src/features'
 import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
 import { closeModal } from '../model'
@@ -49,6 +52,18 @@ export const ModalRoot = () => {
 
 		case 'changeUserPassUser':
 			content = <ChangeUserPassForAUserLazy />
+			break
+
+		case 'settingUserAvatar':
+			content = <SettingUserAvatarModalLazy />
+			break
+
+		case 'addCategory':
+			content = <AddCategoryCertModalLazy />
+			break
+
+		case 'changeCategory':
+			content = <ChangeCategoryCertModalLazy category={payload} />
 			break
 
 		default:

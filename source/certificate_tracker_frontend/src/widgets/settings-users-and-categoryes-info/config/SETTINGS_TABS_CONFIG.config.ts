@@ -15,5 +15,10 @@ export const SETTINGS_TABS_CONFIG: SettingsConfig[] = [
 		id: '3',
 		value: 'categories',
 		text: 'Категории'
+	},
+	{
+		id: '4',
+		value: 'dept',
+		text: 'Отдел'
 	}
 ]

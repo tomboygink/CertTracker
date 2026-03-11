@@ -1,7 +1,7 @@
 import { getUserByToken } from '@/src/shared'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import React from 'react'
+import React, { use } from 'react'
 import { UserHydration } from '../providers'
 import { User } from '@/src/entities'
 
@@ -17,7 +17,7 @@ export default async function PrivatePagesLayout({
 
 	const user: User = await getUserByToken(token)
 
-	if (!user) {
+	if (!user || user.deleted) {
 		redirect('/login')
 	}
 
