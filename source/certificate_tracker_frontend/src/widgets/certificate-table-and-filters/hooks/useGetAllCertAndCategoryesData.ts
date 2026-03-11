@@ -7,10 +7,7 @@ import {
 	useAllCertQuery
 } from '@/src/entities'
 
-export const useGetAllCertAndCategoryesData = (
-	certificates: Cert[],
-	categoryCert: CategoryCert[]
-) => {
+export const useGetAllCertAndCategoryesData = () => {
 	const { data: allCertificates } = useAllCertQuery(
 		{},
 		{

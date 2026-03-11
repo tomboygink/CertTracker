@@ -1,3 +1,5 @@
+'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { changeUserPassForAUserSchema } from '../validation/changeUserPassForAUserSchema'
@@ -12,4 +14,5 @@ export const useChangePassUserForAUserForm = (user: User) => {
 			id: Number(user.id)
 		}
 	})
+	return form
 }

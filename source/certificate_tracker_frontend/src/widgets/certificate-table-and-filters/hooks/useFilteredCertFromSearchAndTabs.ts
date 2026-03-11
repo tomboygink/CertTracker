@@ -9,7 +9,8 @@ export const useFilteredCertFromSearchAndTabs = (
 	allCategoryCert: CategoryCert[],
 	searchValue: string,
 	status: string | null,
-	setStatus: (status: string | null) => void
+	setStatus: (status: string | null) => void,
+	selectCategoryes: string[]
 ) => {
 	const filteredCertWithCategory = useMemo(() => {
 		const certWithCategory = generationCertificatesWithCategory(
@@ -33,6 +34,20 @@ export const useFilteredCertFromSearchAndTabs = (
 			)
 		}
 
+		if (selectCategoryes.length > 0) {
+			setStatus(null)
+
+			const filteredWithoutArchive = certWithCategory.filter(
+				item => item.cert?.statuscert_id !== '4'
+			)
+
+			const filteredWithCat = filteredWithoutArchive.filter(item =>
+				selectCategoryes.includes(item.cert?.category_id as string)
+			)
+
+			return filteredWithCat
+		}
+
 		if (status === null) {
 			return certWithCategory.filter(item => item.cert?.statuscert_id !== '4')
 		} else if (status === '1') {
@@ -44,6 +59,6 @@ export const useFilteredCertFromSearchAndTabs = (
 		} else if (status === '4') {
 			return certWithCategory.filter(item => item.cert?.statuscert_id === '4')
 		}
-	}, [allCertificates, allCategoryCert, status, searchValue])
+	}, [allCertificates, allCategoryCert, status, searchValue, selectCategoryes])
 	return filteredCertWithCategory
 }

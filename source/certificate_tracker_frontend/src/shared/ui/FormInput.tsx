@@ -1,6 +1,7 @@
 'use client'
 
-import { FC, InputHTMLAttributes } from 'react'
+import { FC, InputHTMLAttributes, useEffect, useState } from 'react'
+import { EyesBtn } from './EyesBtn'
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errorMessage?: string
@@ -8,15 +9,39 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const FormInput: FC<FormInputProps> = props => {
-	const { errorMessage, label, ...other } = props
+	const [show, setShow] = useState<boolean>(false)
+	const { errorMessage, label, type, ...other } = props
+
+	const inputType = type === 'password' ? (show ? 'text' : 'password') : type
 
 	return (
 		<label className="flex flex-col gap-1 flex-1">
 			{label && <span className="text-[16px] text-[#7f7f7f]">{label}</span>}
-			<input
-				className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
-				{...other}
-			/>
+			{type === 'password' ? (
+				<div className="relative">
+					<input
+						key={inputType}
+						type={inputType}
+						className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
+						{...other}
+					/>
+					<EyesBtn
+						setState={() => {
+							if (inputType === 'password') {
+								setShow(true)
+							} else {
+								setShow(false)
+							}
+						}}
+					/>
+				</div>
+			) : (
+				<input
+					type={type}
+					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
+					{...other}
+				/>
+			)}
 			<span className="text-[14px] font-light text-red-400">
 				{errorMessage}
 			</span>

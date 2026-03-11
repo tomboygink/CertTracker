@@ -18,17 +18,16 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 }) => {
 	const [activeTab, setActiveTab] = useState<string | null>(null)
 	const [searchValue, setSearchValue] = useState<string>('')
-	const { allCategoryCert, allCertificates } = useGetAllCertAndCategoryesData(
-		certificates,
-		categoryCert
-	)
+	const [selectCategoryes, setSelectCategoryes] = useState<string[]>([])
+	const { allCategoryCert, allCertificates } = useGetAllCertAndCategoryesData()
 
 	const filteredCertificates = useFilteredCertFromSearchAndTabs(
 		allCertificates?.data,
 		allCategoryCert?.data,
 		searchValue,
 		activeTab,
-		setActiveTab
+		setActiveTab,
+		selectCategoryes
 	)
 
 	const handleClickFilterBtn = (status: string | null) => {
@@ -44,6 +43,9 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 					placeholder="Поиск по названию или номеру..."
 				/>
 				<FilterTabBtnList
+					selectCategoryes={selectCategoryes}
+					setSelectCategoryes={setSelectCategoryes}
+					allCategoryCert={allCategoryCert?.data}
 					setSearchValue={setSearchValue}
 					status={activeTab}
 					setStatus={handleClickFilterBtn}

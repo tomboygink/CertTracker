@@ -4,15 +4,13 @@ import { Access, WorkPosition } from '@/src/entities'
 import {
 	FormBtn,
 	FormInput,
-	useAppDispatch,
-	useClickOutside,
+	useAppSelector,
 	useGetSuccessMessage
 } from '@/src/shared'
 import { useAddUser } from '../hooks/useAddUser'
-import { useRef } from 'react'
-import { closeModal } from '@/src/widgets'
 
 export default function AddUserModal() {
+	const user = useAppSelector(state => state.user.user)
 	const {
 		allAccessData,
 		allWorkPosData,
@@ -39,7 +37,15 @@ export default function AddUserModal() {
 			className="flex flex-col gap-2"
 		>
 			<h2 className="text-[20px] font-medium mb-4">
-				Изменить информация о пользователе
+				Изменить информация о пользователе{' '}
+				{user
+					? user?.firstname.at(0)?.toUpperCase() +
+						user?.firstname.slice(1).toLowerCase()
+					: null}{' '}
+				{user
+					? user?.lastname.at(0)?.toUpperCase() +
+						user?.lastname.slice(1).toLowerCase()
+					: null}
 			</h2>
 			<FormInput
 				type="text"
@@ -49,7 +55,7 @@ export default function AddUserModal() {
 				errorMessage={errors.login?.message}
 			/>
 			<FormInput
-				type="text"
+				type="password"
 				placeholder="Пароль"
 				label="Пароль"
 				{...register('password')}

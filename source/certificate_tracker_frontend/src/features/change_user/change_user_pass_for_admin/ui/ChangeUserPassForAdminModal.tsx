@@ -34,7 +34,17 @@ export default function ChangeUserPassForAdminModal({
 			onSubmit={handleSubmit(handleChangeUserPassForAdminSubmit)}
 			className="flex flex-col gap-2"
 		>
-			<h2 className="text-[20px] font-medium mb-4">Изменить пароль</h2>
+			<h2 className="text-[20px] font-medium mb-4">
+				Изменить пароль{' '}
+				{user
+					? user?.firstname.at(0)?.toUpperCase() +
+						user?.firstname.slice(1).toLowerCase()
+					: null}{' '}
+				{user
+					? user?.lastname.at(0)?.toUpperCase() +
+						user?.lastname.slice(1).toLowerCase()
+					: null}
+			</h2>
 			<FormInput
 				type="password"
 				placeholder="Пароль"

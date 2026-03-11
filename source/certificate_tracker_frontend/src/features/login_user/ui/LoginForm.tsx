@@ -5,8 +5,6 @@ import { useControlAllLoginForm } from '../model/hooks/useControlAllLoginForm'
 import { useState } from 'react'
 
 export const LoginForm = () => {
-	const [type, setType] = useState<'text' | 'password'>('password')
-
 	const {
 		isLoading,
 		form: {
@@ -31,25 +29,12 @@ export const LoginForm = () => {
 					{...register('login')}
 					errorMessage={errors.login?.message}
 				/>
-				<div className="w-full flex items-start justify-between gap-[8px]">
-					<FormInput
-						type={type}
-						placeholder="Введите пароль"
-						{...register('password')}
-						errorMessage={errors.password?.message}
-					/>
-					<FormBtn
-						onClick={() => {
-							if (type === 'password') {
-								setType('text')
-							} else {
-								setType('password')
-							}
-						}}
-						text={type === 'password' ? 'Показать' : 'Скрыть'}
-						type="button"
-					/>
-				</div>
+				<FormInput
+					type={'password'}
+					placeholder="Введите пароль"
+					{...register('password')}
+					errorMessage={errors.password?.message}
+				/>
 				{loginErrorMessage && (
 					<span className="text-[14px] font-light text-red-400">
 						{loginErrorMessage}

@@ -64,7 +64,6 @@ export default function AddCertModal() {
 						valueAsNumber: true
 					})}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
-					// name="certCategory"
 				>
 					{categoryCert?.data?.map((item: CategoryCert) => (
 						<option key={item.id} value={item.id}>

@@ -10,7 +10,7 @@ export const useChangeUserPassForAdmin = (user: User) => {
 	const handleChangeUserPassForAdminSubmit = (
 		data: ChangeUserPassForAdminFormValues
 	) => {
-		mutate(data).then(response => console.log(response))
+		mutate(data)
 	}
 
 	return {
