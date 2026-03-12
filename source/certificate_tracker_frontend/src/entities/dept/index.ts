@@ -6,3 +6,5 @@ export {
 } from './api/deptApi.api'
 export { setDept, clearDept } from './reducer/deptReducer'
 export { default as deptReducer } from './reducer/deptReducer'
+export { AddDeptBtn } from './ui/AddDeptBtn'
+export { ChangeDeptBtn } from './ui/ChangeDeptBtn'

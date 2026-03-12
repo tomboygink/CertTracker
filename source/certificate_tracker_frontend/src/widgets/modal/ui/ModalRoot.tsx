@@ -3,9 +3,11 @@
 import {
 	AddCategoryCertModalLazy,
 	AddCertModalLazy,
+	AddDeptModalLazy,
 	AddUserModalLazy,
 	ChangeCategoryCertModalLazy,
 	ChangeCertModalLazy,
+	ChangeDeptModalLazy,
 	ChangeUserInfoModalFromAdminLazy,
 	ChangeUserInfoUserLazy,
 	ChangeUserPassForAdminModalLazy,
@@ -64,6 +66,14 @@ export const ModalRoot = () => {
 
 		case 'changeCategory':
 			content = <ChangeCategoryCertModalLazy category={payload} />
+			break
+
+		case 'addDept':
+			content = <AddDeptModalLazy />
+			break
+
+		case 'changeDept':
+			content = <ChangeDeptModalLazy dept={payload} />
 			break
 
 		default:

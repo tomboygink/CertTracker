@@ -9,6 +9,8 @@ export type ModalType =
 	| 'settingUserAvatar'
 	| 'addCategory'
 	| 'changeCategory'
+	| 'addDept'
+	| 'changeDept'
 	| null
 
 export type Modal = {

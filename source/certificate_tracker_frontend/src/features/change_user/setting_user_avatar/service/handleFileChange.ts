@@ -18,6 +18,15 @@ export const handleFileChange = (
 			}
 		}
 		reader.readAsDataURL(file)
+
+		// 	const maxSizeInMB = 2
+		// const maxSizeInBytes = maxSizeInMB * 1024 * 1024
+
+		// if (file.size > maxSizeInBytes) {
+		//   alert(`Файл слишком большой. Максимум ${maxSizeInMB}MB.`)
+		//   e.target.value = '' // сбросить выбранный файл
+		//   return
+		// }
 	} else {
 		console.log('Error: No file selected')
 	}
