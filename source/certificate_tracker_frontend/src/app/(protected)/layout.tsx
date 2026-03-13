@@ -34,12 +34,10 @@
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-<<<<<<< Updated upstream
-import React, { use } from 'react'
-=======
+
 import { getUserByToken, useAppDispatch } from '@/src/shared'
 import React from 'react'
->>>>>>> Stashed changes
+
 import { UserHydration } from '../providers'
 import { User } from '@/src/entities'
 
@@ -65,29 +63,24 @@ export default async function PrivatePagesLayout({
 	const data = await getUserByToken(token)
 	console.log("user", data)
 
-<<<<<<< Updated upstream
-	if (!user || user.deleted) {
-		redirect('/login')
-=======
 
 	if (data.err === "user_blocked" && data.data === null) {
-		// console.log("FUCK YOU")
+		 console.log("FUCK YOU")
 		// // await fuckoff();
 		// console.log("FUCK YOU TOO")
-		// return (
+		return (
 
 		// redirect('/block') 
-		// < div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]" >
-		// 	Пошёл нахуй
-		// </div >
+		< div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]" >
+			Пошёл нахуй
+		</div >
 
 
-		// )
-		console.log("hi")
-		const response = await fetch("api/auth/logout")
-		console.log(response)
+		)
+		// console.log("hi")
+		// const response = await fetch("api/auth/logout")
+		// console.log(response)
 		
->>>>>>> Stashed changes
 	}
 	else {
 		// Пользователь валидный
