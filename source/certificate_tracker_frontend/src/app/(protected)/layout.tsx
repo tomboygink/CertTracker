@@ -1,31 +1,102 @@
-import { getUserByToken } from '@/src/shared'
+// import { getUserByToken } from '@/src/shared'
+// import { cookies } from 'next/headers'
+// import { redirect } from 'next/navigation'
+// import React from 'react'
+// import { UserHydration } from '../providers'
+// import { User } from '@/src/entities'
+
+// export default async function PrivatePagesLayout({
+// 	children
+// }: Readonly<{ children: React.ReactNode }>) {
+
+// 	const cookieStore = cookies()
+// 	const token = (await cookieStore).get('access_token')?.value
+
+// 	if (!token) {
+// 		redirect('/login')
+// 	}
+
+// 	const user: User = await getUserByToken(token)
+// 	console.log(user)
+
+// 	if (!user) {
+// 		redirect('/login')
+// 	}
+
+// 	return (
+// 		<UserHydration user={user}>
+// 			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
+// 				{children}
+// 			</div>
+// 		</UserHydration>
+// 	)
+// }
+
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+<<<<<<< Updated upstream
 import React, { use } from 'react'
+=======
+import { getUserByToken, useAppDispatch } from '@/src/shared'
+import React from 'react'
+>>>>>>> Stashed changes
 import { UserHydration } from '../providers'
 import { User } from '@/src/entities'
+
+
+
 
 export default async function PrivatePagesLayout({
 	children
 }: Readonly<{ children: React.ReactNode }>) {
-	const cookieStore = cookies()
-	const token = (await cookieStore).get('access_token')?.value
 
+
+	const cookieStore = await cookies()
+	const token = cookieStore.get('access_token')?.value
+
+
+	// Нет токена → редирект
 	if (!token) {
 		redirect('/login')
 	}
 
-	const user: User = await getUserByToken(token)
+	// Проверяем токен и пользователя
+	//const user: User = await getUserByToken(token)
+	const data = await getUserByToken(token)
+	console.log("user", data)
 
+<<<<<<< Updated upstream
 	if (!user || user.deleted) {
 		redirect('/login')
-	}
+=======
 
-	return (
-		<UserHydration user={user}>
-			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
-				{children}
-			</div>
-		</UserHydration>
-	)
+	if (data.err === "user_blocked" && data.data === null) {
+		// console.log("FUCK YOU")
+		// // await fuckoff();
+		// console.log("FUCK YOU TOO")
+		// return (
+
+		// redirect('/block') 
+		// < div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]" >
+		// 	Пошёл нахуй
+		// </div >
+
+
+		// )
+		console.log("hi")
+		const response = await fetch("api/auth/logout")
+		console.log(response)
+		
+>>>>>>> Stashed changes
+	}
+	else {
+		// Пользователь валидный
+		return (
+			<UserHydration user={data}>
+				<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
+					{children}
+				</div>
+			</UserHydration>
+		)
+	}
 }
