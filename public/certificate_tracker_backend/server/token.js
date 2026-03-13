@@ -52,7 +52,7 @@ function add_token(data, res) {
     res.cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none", path: "/", maxAge: cookieMaxAge
+        sameSite: "lax", path: "/", maxAge: cookieMaxAge
     });
 }
 function verif_token(token) { return (0, jwt_1.verifyToken)(token); }
@@ -63,7 +63,7 @@ function delete_token(res) {
             res.clearCookie("access_token", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "none", path: "/"
+                sameSite: "lax", path: "/"
             });
             console.log("success");
             return [2];

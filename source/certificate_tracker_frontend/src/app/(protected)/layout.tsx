@@ -32,64 +32,37 @@
 // 	)
 // }
 
+
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-
 import { getUserByToken, useAppDispatch } from '@/src/shared'
 import React from 'react'
-
 import { UserHydration } from '../providers'
 import { User } from '@/src/entities'
-
-
-
-
-export default async function PrivatePagesLayout({
-	children
-}: Readonly<{ children: React.ReactNode }>) {
-
-
+export default async function PrivatePagesLayout(
+	{ children }: Readonly<{ children: React.ReactNode }>) {
 	const cookieStore = await cookies()
 	const token = cookieStore.get('access_token')?.value
 
+	// Нет токена → редирект 
+	if (!token) { redirect('/login') }
 
-	// Нет токена → редирект
-	if (!token) {
-		redirect('/login')
-	}
-
-	// Проверяем токен и пользователя
-	//const user: User = await getUserByToken(token)
+	// Проверяем токен и пользователя 
+	// const user: User = await getUserByToken(token)
 	const data = await getUserByToken(token)
-	console.log("user", data)
-
-
-	if (data.err === "user_blocked" && data.data === null) {
-		 console.log("FUCK YOU")
-		// // await fuckoff();
-		// console.log("FUCK YOU TOO")
+	console.log("data layout", data)
+	// Токен некорректный или пользователь заблокирован 
+	if (data === "user_blocked") {
+		console.log("FUCK YOU")
 		return (
-
-		// redirect('/block') 
-		< div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]" >
-			Пошёл нахуй
-		</div >
-
-
-		)
-		// console.log("hi")
-		// const response = await fetch("api/auth/logout")
-		// console.log(response)
-		
-	}
-	else {
-		// Пользователь валидный
-		return (
-			<UserHydration user={data}>
-				<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
-					{children}
-				</div>
-			</UserHydration>
+			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
+			пшел вон, редирект на block и отравка для удаления куков
+			</div>
 		)
 	}
+	// Пользователь валидный 
+	return (<UserHydration user={data}>
+		<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
+			{children} </div>
+	</UserHydration>)
 }

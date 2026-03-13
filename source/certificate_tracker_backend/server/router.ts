@@ -68,8 +68,6 @@ export async function router(req: any, res: Response) {
                 // delete_token(res);
                 return buildResponse(body.cmd, null, "token_invalid");
             }
-
-
         }
         //Выход из аккаунта
         case "Logout": {

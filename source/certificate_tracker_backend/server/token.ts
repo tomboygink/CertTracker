@@ -11,7 +11,7 @@ export function add_token(data: any, res: Response) { //если проверк�
         {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "none", path: "/", maxAge: cookieMaxAge
+            sameSite: "lax", path: "/", maxAge: cookieMaxAge
         });
 }
 
@@ -22,7 +22,7 @@ export async function delete_token(res: Response) {
     res.clearCookie("access_token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "none", path: "/"
+        sameSite: "lax", path: "/"
     });
     console.log("success")
 }
