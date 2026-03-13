@@ -2,11 +2,6 @@ import { Pool, Client, QueryResult } from 'pg';
 import config from "../config.json"
 import { dateTimeToSQL, dateTimeToStr } from './DateStr';
 
-// const DB_HOST = 'localhost';
-// const DB_PORT = 5432;
-// const DB_USER = 'postgres';
-// const DB_PASSWORD = '000000';
-// const DB_NAME = 'program_dt';
 
 
 export function getDB(): DBase {

@@ -9,12 +9,13 @@ import { Events } from "../../config/db/Events"
 import { Notification } from "../../config/db/Notification"
 import { NotificationReads } from "../../config/db/NotificationReads"
 
-import config from '../../config/config.json'
+
 
 import { Response } from "express";
-import { generateToken, verifyToken } from '../../config/func/jwt'
 
-import ms, { StringValue } from "ms"
+import { add_token, verif_token, delete_token } from "./token"
+
+
 
 export async function router(req: any, res: Response) {
 
@@ -31,24 +32,11 @@ export async function router(req: any, res: Response) {
             //авторизация логин пароль 
             var u = new Users(body.args);
             data = await u.Auth();
-
             //проверка на юзера
             if (!data || data.length === 0) { return buildResponse(body.cmd, null, "Ошибка авторизации") }
+            //если проврка пройдена то генерация токена 
 
-            //если проверка прошла то 
-            //генерация кода
-            const token = generateToken(data[0]);
-
-            const jwtExpires  = config.code_time.time as StringValue;
-            const cookieMaxAge = ms(jwtExpires)
-
-            //установка куков httponly
-            res.cookie("access_token", token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: "lax",
-                maxAge: cookieMaxAge
-            });
+            add_token(data, res);
 
             //ответ данные авторизованного юзера
             return buildResponse(body.cmd, data, null)
@@ -57,23 +45,36 @@ export async function router(req: any, res: Response) {
         //проверка юзера по JWT
         case "GetUser": {
             var token = req.cookies?.access_token;
-            if (!token) { return buildResponse(body.cmd, null, "Пользователь не авторизован"); }
-            var decoded: any = verifyToken(token)
-            var u = new Users(decoded.id);
-            data = await u.GetUser();
-            return buildResponse(body.cmd, data, null);
-        }
-        //Выход из аккаунта
-        case "Logout":
-            {
-                res.clearCookie("access_token", {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV === "production",
-                    sameSite: "lax"
-                });
-                data = [{ "logout": true }]
+            if (!token) { return buildResponse(body.cmd, null, "no_token"); }
+            try {
+                var decoded: any = verif_token(token)
+
+                console.log(decoded)
+                var u = new Users(decoded.id);
+                data = await u.GetUser();
+
+                console.log(data[0].deleted)
+
+                if (data[0].deleted === true) {
+                    // delete_token(res);
+                    return buildResponse(body.cmd, null, "user_blocked")
+
+                }
+                console.log("user ok")
                 return buildResponse(body.cmd, data, null);
             }
+            catch {
+                data = null;
+                // delete_token(res);
+                return buildResponse(body.cmd, null, "token_invalid");
+            }
+        }
+        //Выход из аккаунта
+        case "Logout": {
+            delete_token(res);
+            data = [{ "logout": true }]
+            return buildResponse(body.cmd, data, null);
+        }
 
         //Добавление пользователя только со стороны админа
         case "AddUser": {
