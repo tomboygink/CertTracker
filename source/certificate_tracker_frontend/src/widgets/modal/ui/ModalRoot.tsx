@@ -1,13 +1,20 @@
 'use client'
 
 import {
+	AddCategoryCertModalLazy,
 	AddCertModalLazy,
+	AddDeptModalLazy,
 	AddUserModalLazy,
+	AddWorkPosModalLazy,
+	ChangeCategoryCertModalLazy,
 	ChangeCertModalLazy,
+	ChangeDeptModalLazy,
 	ChangeUserInfoModalFromAdminLazy,
 	ChangeUserInfoUserLazy,
 	ChangeUserPassForAdminModalLazy,
-	ChangeUserPassForAUserLazy
+	ChangeUserPassForAUserLazy,
+	ChangeWorkPosModalLazy,
+	SettingUserAvatarModalLazy
 } from '@/src/features'
 import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
 import { closeModal } from '../model'
@@ -49,6 +56,34 @@ export const ModalRoot = () => {
 
 		case 'changeUserPassUser':
 			content = <ChangeUserPassForAUserLazy />
+			break
+
+		case 'settingUserAvatar':
+			content = <SettingUserAvatarModalLazy />
+			break
+
+		case 'addCategory':
+			content = <AddCategoryCertModalLazy />
+			break
+
+		case 'changeCategory':
+			content = <ChangeCategoryCertModalLazy category={payload} />
+			break
+
+		case 'addDept':
+			content = <AddDeptModalLazy />
+			break
+
+		case 'changeDept':
+			content = <ChangeDeptModalLazy dept={payload} />
+			break
+
+		case 'addWorkPos':
+			content = <AddWorkPosModalLazy />
+			break
+
+		case 'changeWorkPos':
+			content = <ChangeWorkPosModalLazy workPos={payload} />
 			break
 
 		default:

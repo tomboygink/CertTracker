@@ -6,3 +6,5 @@ export {
 	useAllWorkPositionQuery,
 	useChangeWorkPositionMutation
 } from './api/workPositionApi.api'
+export { AddWorkPosBtn } from './ui/AddWorkPosBtn'
+export { ChangeWorkPosBtn } from './ui/ChangeWorkPosBtn'

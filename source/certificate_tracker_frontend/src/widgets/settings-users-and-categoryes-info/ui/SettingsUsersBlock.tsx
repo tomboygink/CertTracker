@@ -23,16 +23,16 @@ export const SettingsUsersBlock = () => {
 
 	return (
 		<>
-			<div>
+			<div className="h-10">
 				<div className="w-5/10 flex items-center justify-between mb-[24px]">
 					<h2 className="text-[20px] font-medium leading-[20px]">
 						Информация о пользователях
 					</h2>
 					<AddUserBtn />
 				</div>
-				<div className="w-1/2 p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
+				<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 					{fullUsersInfo && (
-						<ul>
+						<ul className="h-full overflow-y-scroll no-scrollbar">
 							{fullUsersInfo.map(
 								(item: {
 									key: string

@@ -14,13 +14,11 @@ export const useControlAllLoginForm = () => {
 
 	const handleLoginUserSubmit = (data: LoginFormValues) => {
 		loginUserMutation(data).then(res => {
-			console.log(res)
 			if (res?.data?.err) {
 				setLoginErrorMessage(res.data.err)
 				return
 			}
 			if (res?.data?.data) {
-				console.log(res?.data?.data[0])
 				dispatch(setUser(res?.data?.data[0]))
 				router.replace('/')
 			}

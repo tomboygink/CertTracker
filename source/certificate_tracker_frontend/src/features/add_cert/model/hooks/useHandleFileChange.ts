@@ -18,7 +18,6 @@ export const useHandleFileChange = () => {
 				if (base64) {
 					setBase64(String(base64))
 					form?.setValue('docs', String(base64))
-					console.log(base64)
 				}
 			}
 

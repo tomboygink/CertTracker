@@ -10,8 +10,7 @@ export const useChangeInfoUser = (user: User) => {
 	const [mutate, result] = useChangeUserMutation()
 
 	const handleChangeUserInfo = (data: ChangeUserInfoFormValues) => {
-		console.log(data)
-		mutate(data).then(response => console.log(response))
+		mutate(data)
 	}
 
 	return {
