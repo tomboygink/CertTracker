@@ -32,7 +32,6 @@ export const useSettingUserAvatar = (user: User, base64: string | null) => {
 					throw new Error(response.err)
 				}
 				if (base64) {
-					console.log(response)
 					dispatch(partiallyUpdateUser({ avatar: `${String(base64)}` }))
 					setMessage(prev => ({
 						...prev,

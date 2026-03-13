@@ -5,14 +5,33 @@ import { SettingsTabsList } from './SettingsTabsList'
 import { SettingsAllBlock } from './SettingsAllBlock'
 import { SettingsUsersBlock } from './SettingsUsersBlock'
 import { SettingsCategoryBlock } from './SettingsCategoryBlock'
-import { useAllCategoryCertQuery } from '@/src/entities'
+import {
+	useAllCategoryCertQuery,
+	useAllDeptQuery,
+	useAllWorkPositionQuery
+} from '@/src/entities'
 import { SettingDeptBlock } from './SettingDeptBlock'
+import { SettingWorkPosBlock } from './SettingWorkPosBlock'
 
 export const SettingsContainer = () => {
-	const [value, setValue] = useState<'all' | 'users' | 'categories' | 'dept'>(
-		'all'
-	)
+	const [value, setValue] = useState<
+		'all' | 'users' | 'categories' | 'dept' | 'workPos'
+	>('all')
 	const { data: allCategory } = useAllCategoryCertQuery(
+		{},
+		{
+			refetchOnFocus: true,
+			refetchOnReconnect: true
+		}
+	)
+	const { data: allDept } = useAllDeptQuery(
+		{},
+		{
+			refetchOnFocus: true,
+			refetchOnReconnect: true
+		}
+	)
+	const { data: workPos } = useAllWorkPositionQuery(
 		{},
 		{
 			refetchOnFocus: true,
@@ -38,7 +57,11 @@ export const SettingsContainer = () => {
 			break
 
 		case 'dept':
-			content = <SettingDeptBlock />
+			content = <SettingDeptBlock allDept={allDept?.data} />
+			break
+
+		case 'workPos':
+			content = <SettingWorkPosBlock workPos={workPos?.data} />
 			break
 
 		default:

@@ -11,6 +11,8 @@ export type ModalType =
 	| 'changeCategory'
 	| 'addDept'
 	| 'changeDept'
+	| 'addWorkPos'
+	| 'changeWorkPos'
 	| null
 
 export type Modal = {

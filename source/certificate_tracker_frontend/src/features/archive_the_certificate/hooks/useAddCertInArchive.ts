@@ -8,9 +8,7 @@ export const useAddCertInArchive = (cert: Cert | null) => {
 	const user = useAppSelector(state => state.user.user)
 
 	const handleAddCertInArchive = () => {
-		archiveCert({ id: Number(cert?.id), user_id: Number(user?.id) }).then(
-			response => console.log(response)
-		)
+		archiveCert({ id: Number(cert?.id), user_id: Number(user?.id) })
 	}
 
 	return { handleAddCertInArchive }

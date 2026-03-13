@@ -5,6 +5,7 @@ import {
 	AddCertModalLazy,
 	AddDeptModalLazy,
 	AddUserModalLazy,
+	AddWorkPosModalLazy,
 	ChangeCategoryCertModalLazy,
 	ChangeCertModalLazy,
 	ChangeDeptModalLazy,
@@ -12,6 +13,7 @@ import {
 	ChangeUserInfoUserLazy,
 	ChangeUserPassForAdminModalLazy,
 	ChangeUserPassForAUserLazy,
+	ChangeWorkPosModalLazy,
 	SettingUserAvatarModalLazy
 } from '@/src/features'
 import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
@@ -74,6 +76,14 @@ export const ModalRoot = () => {
 
 		case 'changeDept':
 			content = <ChangeDeptModalLazy dept={payload} />
+			break
+
+		case 'addWorkPos':
+			content = <AddWorkPosModalLazy />
+			break
+
+		case 'changeWorkPos':
+			content = <ChangeWorkPosModalLazy workPos={payload} />
 			break
 
 		default:

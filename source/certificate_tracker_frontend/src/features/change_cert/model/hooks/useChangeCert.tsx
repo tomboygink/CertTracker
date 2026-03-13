@@ -10,7 +10,6 @@ export const useChangeCert = () => {
 	const [changeCert, { isSuccess, isLoading }] = useChangeCertMutation()
 
 	const handleChangeCertSubmit = (data: ChangeCertFormValues) => {
-		console.log('Form data:', data)
 		changeCert(data)
 	}
 

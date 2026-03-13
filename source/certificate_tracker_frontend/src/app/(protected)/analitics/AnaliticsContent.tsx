@@ -38,10 +38,6 @@ export const AnaliticsContent = () => {
 		})
 	}, [allCert?.data])
 
-	useEffect(() => {
-		console.log(fullDonutData)
-	}, [fullDonutData])
-
 	return (
 		<>
 			<div className="flex items-center justify-between w-full mb-[12px]">
