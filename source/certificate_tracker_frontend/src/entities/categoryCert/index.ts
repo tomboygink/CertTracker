@@ -12,3 +12,5 @@ export {
 	useChangeCategoryCertMutation
 } from './api/categoryCertApi.api'
 export { getAllCategoryCert } from './api/getAllCategoryCert'
+export { AddCategoryCertBtn } from './ui/AddCategoryCertBtn'
+export { ChangeCategoryCertBtn } from './ui/ChangeCategoryCertBtn'

@@ -6,6 +6,13 @@ export type ModalType =
 	| 'changeUserInfoForUser'
 	| 'changeUserPassAdmin'
 	| 'changeUserPassUser'
+	| 'settingUserAvatar'
+	| 'addCategory'
+	| 'changeCategory'
+	| 'addDept'
+	| 'changeDept'
+	| 'addWorkPos'
+	| 'changeWorkPos'
 	| null
 
 export type Modal = {

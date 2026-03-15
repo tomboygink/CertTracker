@@ -54,6 +54,13 @@ export const SettingsAllBlock = () => {
 							}}
 							text="Редактировать пароль"
 						/>
+						<FormBtn
+							onClick={() => {
+								setOpen(false)
+								dispatch(openModal({ type: 'settingUserAvatar', payload: {} }))
+							}}
+							text="Установить аватар"
+						/>
 					</div>
 				)}
 			</div>

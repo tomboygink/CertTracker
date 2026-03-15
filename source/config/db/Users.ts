@@ -18,7 +18,7 @@ export class Users {
 
         const pass = crypto.createHmac('sha256', config.crypto_code).update(this.args.password).digest('hex');
         var db_res = await (await this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
-            "WHERE login = '" + this.args.login + "' AND password = '" + pass + "'")).rows;
+            "WHERE login = '" + this.args.login + "' AND password = '" + pass + "' AND deleted = false")).rows;
 
         if (!db_res || db_res.length === 0) { return null }
         return db_res
@@ -29,7 +29,7 @@ export class Users {
     async GetUser() {
         const db_res = await (await this.db.query(
             "SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users " +
-            "WHERE id = " + this.args + " AND deleted = false"
+            "WHERE id = " + this.args 
         )).rows;
 
 
@@ -81,7 +81,8 @@ export class Users {
             return db_res;
         }
         else if (this.args.change === "data_user") {
-            var db_res = await (await this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', firstname = '" + this.args.firstname + "' WHERE id = " + this.args.id + " RETURNING id")).rows;
+            var db_res = await (await this.db.query("UPDATE users SET lastname = '" + this.args.lastname + "', "+
+                "firstname = '" + this.args.firstname + "', sendmail = "+this.args.sendmail+" WHERE id = " + this.args.id + " RETURNING id")).rows;
             if (!db_res || db_res.length === 0) { return null }
             return db_res;
         }

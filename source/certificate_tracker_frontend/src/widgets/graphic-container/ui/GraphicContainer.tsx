@@ -19,7 +19,7 @@ export const GraphicContainer: FC<GraphicContainerProps> = ({
 				</h2>
 				<p className="text-[14px] text-[#7f7f7f] leading-[20px]">{descr}</p>
 			</div>
-			<div className="w-full h-full border-1 border-dashed border-gray-300 rounded-[12px]">
+			<div className="w-full h-[calc(486px-48px)] border-1 border-dashed border-gray-300 rounded-[12px]">
 				{children}
 			</div>
 		</div>

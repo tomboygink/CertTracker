@@ -2,9 +2,17 @@
 
 import { LogoutBtn } from '@/src/features'
 import { useAppSelector } from '@/src/shared'
+import { useAllWorkPositionQuery, WorkPosition } from '@/src/entities'
 
 export const UserProfile = () => {
 	const user = useAppSelector(state => state.user.user)
+	const { data: allWorkPos } = useAllWorkPositionQuery({})
+
+	if (!allWorkPos?.data || !user) return null
+
+	const filteredWorkPos: WorkPosition = allWorkPos?.data?.find(
+		(item: WorkPosition) => item.id === user?.workposition_id
+	)
 
 	return (
 		<div className="flex items-center justify-between w-[255px] p-[12px] rounded-[8px] bg-[rgba(242,242,242,0.5)]">
@@ -20,8 +28,9 @@ export const UserProfile = () => {
 					<p className="font-medium text-[14px] text-[#202020] leading-md">
 						{`${user?.firstname?.at(0)?.toUpperCase()}${user?.firstname?.slice(1).toLowerCase()} ${user?.lastname.at(0)?.toUpperCase()}.`}
 					</p>
-					{/* Пока что тут будет администратор, но потом буду прокидывать данные еще и с workPos и фильтровать по id */}
-					<p className="text-[12px] text-[#7f7f7f] leading-sm">Администратор</p>
+					<p className="text-[12px] text-[#7f7f7f] leading-sm">
+						{filteredWorkPos?.workpositionname}
+					</p>
 				</div>
 			</div>
 			<LogoutBtn />

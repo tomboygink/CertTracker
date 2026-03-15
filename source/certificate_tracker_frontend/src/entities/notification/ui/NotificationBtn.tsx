@@ -14,7 +14,7 @@ export const NotificationBtn = () => {
 	useClickOutside(menuRef, () => setOpen(false))
 
 	const { data: allNotif } = useAllNotifQuery(
-		{ user_id: Number(user?.id) },
+		{ user_id: Number(user?.id) | 0 },
 		{
 			refetchOnFocus: true,
 			refetchOnReconnect: true,

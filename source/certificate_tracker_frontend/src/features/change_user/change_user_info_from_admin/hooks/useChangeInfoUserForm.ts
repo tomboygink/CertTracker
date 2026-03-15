@@ -14,9 +14,9 @@ export const useChangeInfoUserForm = (user: User) => {
 			firstname: user.firstname ?? '',
 			access_id: user.access_id ?? 3,
 			email: user.email ?? '',
-			sendmail: false,
+			sendmail: user.sendmail,
 			workposition_id: user.workposition_id,
-			deleted: user.deleted ?? false,
+			deleted: user.deleted,
 			user_id: Number(user.id)
 		},
 		mode: 'all',

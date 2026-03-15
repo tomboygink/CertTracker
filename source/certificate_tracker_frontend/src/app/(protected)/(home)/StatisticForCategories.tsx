@@ -28,25 +28,26 @@ export const StatisticForCategories: FC<StatisticForCategoriesProps> = ({}) => {
 	)
 
 	const statisticConfig = useMemo(() => {
-		if(!allCert?.data || !allCatogoryes?.data) return null
+		if (!allCert?.data || !allCatogoryes?.data) return null
 		return calculateCategoryStatistics(allCert?.data, allCatogoryes?.data)
 	}, [allCert?.data, allCatogoryes?.data])
 
 	return (
-		<div className="p-[24px] w-full max-w-1/3 rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
+		<div className="p-[24px] w-full h-[calc(100vh-480px)] max-w-1/3 rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 			<h2 className="text-[20px] text-[#202020] font-semibold leading-[28px] mb-[32px]">
 				По категориям
 			</h2>
-			<ul className="flex flex-col gap-[16px]">
-				{statisticConfig && statisticConfig.map(item => (
-					<li key={item.key}>
-						<StatisticForCategoriesItem
-							categoryName={item.categoryName ?? ''}
-							percent={item.percent ?? ''}
-							bgColor={item.bgColor ?? ''}
-						/>
-					</li>
-				))}
+			<ul className="flex flex-col gap-[16px] h-[calc(100%-80px)] overflow-y-auto no-scrollbar">
+				{statisticConfig &&
+					statisticConfig.map(item => (
+						<li key={item.key}>
+							<StatisticForCategoriesItem
+								categoryName={item.categoryName ?? ''}
+								percent={item.percent ?? ''}
+								bgColor={item.bgColor ?? ''}
+							/>
+						</li>
+					))}
 			</ul>
 		</div>
 	)

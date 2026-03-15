@@ -5,8 +5,8 @@ import { FC } from 'react'
 interface SettingsTabsItemProps {
 	text: string
 	isActive: boolean
-	btnValue: 'all' | 'users' | 'categories'
-	setValue: (str: 'all' | 'users' | 'categories') => void
+	btnValue: 'all' | 'users' | 'categories' | 'dept' | 'workPos'
+	setValue: (str: 'all' | 'users' | 'categories' | 'dept' | 'workPos') => void
 }
 
 export const SettingsTabsItem: FC<SettingsTabsItemProps> = ({

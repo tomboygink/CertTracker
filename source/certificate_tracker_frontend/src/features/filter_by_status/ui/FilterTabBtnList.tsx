@@ -1,23 +1,30 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { FILTER_TABS_CONFIG } from '../config/FILTER_TABS_CONFIG.config'
 import { FilterTabBtn } from './FilterTabBtn'
-import { OtherFilterBtn } from './OtherFilterBtn'
+import { CategoryCert } from '@/src/entities'
+import { OtherFilterBtn } from '@/src/features'
 
 interface FilterTabBtnListProps {
 	status: string | null
 	setStatus: (status: string | null) => void
 	setSearchValue: (str: string) => void
+	allCategoryCert: CategoryCert[]
+	selectCategoryes: string[]
+	setSelectCategoryes: Dispatch<SetStateAction<string[]>>
 }
 
 export const FilterTabBtnList: FC<FilterTabBtnListProps> = ({
 	status,
 	setStatus,
-	setSearchValue
+	setSearchValue,
+	allCategoryCert,
+	selectCategoryes,
+	setSelectCategoryes
 }) => {
 	return (
-		<div className="flex items-center gap-[8px]">
+		<div className="flex items-start gap-[8px]">
 			<ul className="flex items-center gap-[8px]">
 				{FILTER_TABS_CONFIG.map(item => (
 					<li key={item.status}>
@@ -36,7 +43,12 @@ export const FilterTabBtnList: FC<FilterTabBtnListProps> = ({
 					</li>
 				))}
 			</ul>
-			<OtherFilterBtn />
+			<OtherFilterBtn
+				setSearchValue={setSearchValue}
+				selectCategoryes={selectCategoryes}
+				setSelectCategoryes={setSelectCategoryes}
+				allCategory={allCategoryCert}
+			/>
 		</div>
 	)
 }

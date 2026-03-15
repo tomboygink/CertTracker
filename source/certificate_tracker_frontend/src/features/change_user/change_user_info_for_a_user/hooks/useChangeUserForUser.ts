@@ -20,7 +20,8 @@ export const useChangeUserForUser = (user: User) => {
 		dispatch(
 			partiallyUpdateUser({
 				firstname: data.firstname,
-				lastname: data.lastname
+				lastname: data.lastname,
+				sendmail: data.sendmail
 			})
 		)
 	}
