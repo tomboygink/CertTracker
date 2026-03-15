@@ -1,21 +1,15 @@
 'use client'
 
-import {
-	CategoryCert,
-	Cert,
-	useAllCategoryCertQuery,
-	useAllCertQuery
-} from '@/src/entities'
+import { useAllCategoryCertQuery, useAllCertQuery } from '@/src/entities'
 import { DateWidget, TitleAndDescrPages } from '@/src/shared'
 import {
 	DonutChart,
-	getLastMonths,
 	GraphicContainer,
 	SplineChart,
 	UpdateHistoryContainer
 } from '@/src/widgets'
-import { useEffect, useMemo } from 'react'
 import { useGetFullSplineData } from './hooks/useGetFullSplineData'
+import { useGetFullDonutData } from './hooks/useGetFullDonutData'
 
 export const AnaliticsContent = () => {
 	const { data: allCert } = useAllCertQuery({})
@@ -23,20 +17,7 @@ export const AnaliticsContent = () => {
 
 	const fullSplineData = useGetFullSplineData(allCert?.data)
 
-	const fullDonutData = useMemo(() => {
-		if (!allCert || !allCategory) return []
-
-		const activeCert = allCert?.data?.filter(
-			(item: Cert) => item?.statuscert_id === '1'
-		)
-
-		return allCategory?.data?.map((item: CategoryCert) => {
-			const count = activeCert?.filter((cert: Cert) => {
-				return cert.category_id === item.id
-			}).length
-			return { deptName: item.categoryname, count }
-		})
-	}, [allCert?.data])
+	const fullDonutData = useGetFullDonutData(allCert?.data, allCategory?.data)
 
 	return (
 		<>
@@ -52,13 +33,27 @@ export const AnaliticsContent = () => {
 					title="Динамика истечения сроков"
 					descr="Количество сертификатов, истекающих в ближайшие 6 месяцев"
 				>
-					<SplineChart data={fullSplineData} />
+					{fullSplineData.map(item => item.count).reduce((a, b) => a + b, 0) ===
+					0 ? (
+						<div className="w-full h-full flex items-center justify-center">
+							<p className="text-lg">Нет данных для отображения</p>
+						</div>
+					) : (
+						<SplineChart data={fullSplineData} />
+					)}
 				</GraphicContainer>
 				<GraphicContainer
 					title="Распределение по категориям"
 					descr="Активные лицензии и сертификаты по отделам компании"
 				>
-					<DonutChart data={fullDonutData} />
+					{fullDonutData.map(item => item.count).reduce((a, b) => a + b, 0) ===
+					0 ? (
+						<div className="w-full h-full flex items-center justify-center">
+							<p className="text-lg">Нет данных для отображения</p>
+						</div>
+					) : (
+						<DonutChart data={fullDonutData} />
+					)}
 				</GraphicContainer>
 			</div>
 			<div>

@@ -2,7 +2,7 @@
 
 import { CategoryCert, Cert } from '@/src/entities'
 import { FilterTabBtnList, SearchInput } from '@/src/features'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { CertificateTableRow } from './CertificateTableRow'
 import { useGetAllCertAndCategoryesData } from '../hooks/useGetAllCertAndCategoryesData'
 import { useFilteredCertFromSearchAndTabs } from '../hooks/useFilteredCertFromSearchAndTabs'

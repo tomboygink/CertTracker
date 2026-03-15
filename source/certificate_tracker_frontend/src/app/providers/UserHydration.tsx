@@ -1,6 +1,6 @@
 'use client'
 
-import { setUser, User } from '@/src/entities'
+import { setUser, useAllAccessQuery, User } from '@/src/entities'
 import { useAppDispatch } from '@/src/shared'
 import { FC, useEffect } from 'react'
 
