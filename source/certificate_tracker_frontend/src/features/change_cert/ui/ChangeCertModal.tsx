@@ -8,15 +8,13 @@ import {
 import {
 	FormBtn,
 	FormInput,
-	useAppDispatch,
 	useAppSelector,
-	useClickOutside,
 	useGetSuccessMessage
 } from '@/src/shared'
 import { useChangeCert } from '../model/hooks/useChangeCert'
 import { useEffect, useRef } from 'react'
 import { useHandleFileChange } from '../../add_cert/model/hooks/useHandleFileChange'
-import { closeModal } from '@/src/widgets'
+import { base64ToFile } from '../model/service/base64toFile'
 
 export default function ChangeCertModal() {
 	const selectCert = useAppSelector(state => state.selectCert.selectCert)
@@ -42,9 +40,30 @@ export default function ChangeCertModal() {
 		'Данные успешно изменены'
 	)
 
+	const fileRef = useRef<HTMLInputElement>(null)
+
 	useEffect(() => {
-		setValue('docs', String(base64))
-	}, [base64])
+		if (!certDocs?.data || !fileRef.current) return
+
+		const file = base64ToFile(certDocs?.data?.[0]?.docs, 'document.pdf')
+
+		if (!file) return
+
+		const dataTransfer = new DataTransfer()
+		dataTransfer.items.add(file)
+
+		fileRef.current.files = dataTransfer.files
+	}, [certDocs])
+
+	useEffect(() => {
+		if (!certDocs?.data) return
+
+		setValue('docs', certDocs?.data?.[0]?.docs)
+	}, [certDocs])
+
+	useEffect(() => {
+		console.log(certDocs?.data?.[0]?.docs)
+	}, [certDocs])
 
 	return (
 		<form
@@ -103,6 +122,7 @@ export default function ChangeCertModal() {
 				errorMessage={errors.certvalidityperiod?.message}
 			/>
 			<FormInput
+				ref={fileRef}
 				type="file"
 				accept=".pdf"
 				label="Документ"

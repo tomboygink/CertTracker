@@ -1,14 +1,14 @@
 'use client'
 
-import {
-	Cert,
-	setSelectCert,
-	useCertDocsQuery,
-	useLazyCertDocsQuery
-} from '@/src/entities'
+import { Cert, setSelectCert } from '@/src/entities'
 import { ArchiveBtn, ChangeCertBtn, WatchDocBtn } from '@/src/features'
-import { useAppDispatch, useAppSelector, useClickOutside } from '@/src/shared'
-import { FC, useEffect, useRef, useState } from 'react'
+import {
+	selectRoles,
+	useAppDispatch,
+	useAppSelector,
+	useClickOutside
+} from '@/src/shared'
+import { FC, useRef, useState } from 'react'
 
 interface ActionsWithCertificateBtnProps {
 	cert: Cert | null
@@ -19,6 +19,7 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const dispatch = useAppDispatch()
+	const roles = useAppSelector(selectRoles)
 
 	const divRef = useRef<HTMLDivElement | null>(null)
 	useClickOutside(divRef, () => setIsOpen(false))
@@ -44,7 +45,7 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 			{isOpen && (
 				<div className="absolute top-10 right-10 z-[10] flex flex-col items-start gap-[8px] p-4 bg-white border-1 border-[#e0dfdf] rounded-[6px]">
 					<WatchDocBtn handleClose={handleClose} cert={cert} />
-					{cert?.statuscert_id !== '4' && (
+					{cert?.statuscert_id !== '4' && roles.isAdmin && (
 						<>
 							<ChangeCertBtn handleClose={handleClose} />
 							<ArchiveBtn cert={cert} handleClose={handleClose} />

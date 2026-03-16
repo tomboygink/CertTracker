@@ -1,16 +1,17 @@
 'use client'
 
-import { FC, InputHTMLAttributes, useEffect, useState } from 'react'
+import { FC, InputHTMLAttributes, useState } from 'react'
 import { EyesBtn } from './EyesBtn'
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errorMessage?: string
 	label?: string
+	ref: any
 }
 
 export const FormInput: FC<FormInputProps> = props => {
 	const [show, setShow] = useState<boolean>(false)
-	const { errorMessage, label, type, ...other } = props
+	const { errorMessage, label, type, ref, ...other } = props
 
 	const inputType = type === 'password' ? (show ? 'text' : 'password') : type
 
@@ -20,6 +21,7 @@ export const FormInput: FC<FormInputProps> = props => {
 			{type === 'password' ? (
 				<div className="relative">
 					<input
+						ref={ref}
 						key={inputType}
 						type={inputType}
 						className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
@@ -37,6 +39,7 @@ export const FormInput: FC<FormInputProps> = props => {
 				</div>
 			) : (
 				<input
+					ref={ref}
 					type={type}
 					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
 					{...other}

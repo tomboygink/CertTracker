@@ -5,6 +5,7 @@ import { FC } from 'react'
 interface SettingsTabsItemProps {
 	text: string
 	isActive: boolean
+	isVisible: boolean
 	btnValue: 'all' | 'users' | 'categories' | 'dept' | 'workPos'
 	setValue: (str: 'all' | 'users' | 'categories' | 'dept' | 'workPos') => void
 }
@@ -12,19 +13,24 @@ interface SettingsTabsItemProps {
 export const SettingsTabsItem: FC<SettingsTabsItemProps> = ({
 	text,
 	isActive,
+	isVisible,
 	setValue,
 	btnValue
 }) => {
 	return (
-		<button
-			className="py-[3.5px] px-[24px] rounded-[6px] text-[14px] text-[#202020] font-medium leading-[20px]"
-			style={{
-				backgroundColor: isActive ? 'white' : 'transparent',
-				boxShadow: isActive ? '2px 2px 5px 1px rgba(0,0,0,0.2)' : ''
-			}}
-			onClick={() => setValue(btnValue)}
-		>
-			{text}
-		</button>
+		<>
+			{isVisible ? (
+				<button
+					className="py-[3.5px] px-[24px] rounded-[6px] text-[14px] text-[#202020] font-medium leading-[20px]"
+					style={{
+						backgroundColor: isActive ? 'white' : 'transparent',
+						boxShadow: isActive ? '2px 2px 5px 1px rgba(0,0,0,0.2)' : ''
+					}}
+					onClick={() => setValue(btnValue)}
+				>
+					{text}
+				</button>
+			) : null}
+		</>
 	)
 }

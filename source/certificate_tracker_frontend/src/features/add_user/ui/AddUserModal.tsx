@@ -8,6 +8,7 @@ import {
 	useGetSuccessMessage
 } from '@/src/shared'
 import { useAddUser } from '../hooks/useAddUser'
+import { useEffect } from 'react'
 
 export default function AddUserModal() {
 	const user = useAppSelector(state => state.user.user)
@@ -17,7 +18,8 @@ export default function AddUserModal() {
 		form: {
 			register,
 			handleSubmit,
-			formState: { errors }
+			formState: { errors },
+			watch
 		},
 		isLoading,
 		isLoadingMutation,
@@ -29,6 +31,7 @@ export default function AddUserModal() {
 		isSuccessMutation,
 		'Пользователь успешно добавлен'
 	)
+
 	if (isLoading) return null
 
 	return (
@@ -36,17 +39,7 @@ export default function AddUserModal() {
 			onSubmit={handleSubmit(handleAddUserSubmit)}
 			className="flex flex-col gap-2"
 		>
-			<h2 className="text-[20px] font-medium mb-4">
-				Изменить информация о пользователе{' '}
-				{user
-					? user?.firstname.at(0)?.toUpperCase() +
-						user?.firstname.slice(1).toLowerCase()
-					: null}{' '}
-				{user
-					? user?.lastname.at(0)?.toUpperCase() +
-						user?.lastname.slice(1).toLowerCase()
-					: null}
-			</h2>
+			<h2 className="text-[20px] font-medium mb-4">Добавить пользователя</h2>
 			<FormInput
 				type="text"
 				placeholder="Логин"
