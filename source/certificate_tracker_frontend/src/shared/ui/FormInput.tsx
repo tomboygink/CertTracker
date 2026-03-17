@@ -6,7 +6,7 @@ import { EyesBtn } from './EyesBtn'
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errorMessage?: string
 	label?: string
-	ref: any
+	ref?: any
 }
 
 export const FormInput: FC<FormInputProps> = props => {

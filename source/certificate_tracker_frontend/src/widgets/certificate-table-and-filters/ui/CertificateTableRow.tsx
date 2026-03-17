@@ -21,9 +21,13 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 				{cert?.certnumber}
 			</td>
 			<td className="h-[71px] max-h-[71px]">
-				<span className="py-[3px] px-[9px] bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
-					{categoryCert?.categoryname}
-				</span>
+				{categoryCert?.categoryname ? (
+					<span className="py-[3px] px-[9px] bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
+						{categoryCert?.categoryname}
+					</span>
+				) : (
+					'—'
+				)}
 			</td>
 			<td className="h-[71px] max-h-[71px] text-[14px] text-[#7f7f7f] leading-[20px]">
 				{moment(cert?.issuedate).format('DD.MM.YYYY')}

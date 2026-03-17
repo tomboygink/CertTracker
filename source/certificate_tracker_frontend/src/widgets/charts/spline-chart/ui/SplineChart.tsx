@@ -44,6 +44,11 @@ export const SplineChart: React.FC<SplineChartProps> = ({
 		},
 		tooltip: {
 			enabled: true
+		},
+		subtitle: {
+			style: {
+				fontFamily: 'Inter'
+			}
 		}
 	}
 

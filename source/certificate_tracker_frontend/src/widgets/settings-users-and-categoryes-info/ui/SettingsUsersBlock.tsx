@@ -6,6 +6,7 @@ import { useGetAllSettingsData } from '../hooks/useGetAllSettingsData'
 import { useCreateFullInfo } from '../hooks/useCreateFullUserInfo'
 import { AddUserBtn } from '@/src/features'
 import { useAppSelector } from '@/src/shared'
+import { useEffect } from 'react'
 
 export const SettingsUsersBlock = () => {
 	const { isLoading, usersData, deptData, workPosData } =
@@ -30,8 +31,8 @@ export const SettingsUsersBlock = () => {
 					</h2>
 					<AddUserBtn />
 				</div>
-				<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
-					{fullUsersInfo && (
+				{fullUsersInfo.length > 0 ? (
+					<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 						<ul className="h-full overflow-y-scroll no-scrollbar">
 							{fullUsersInfo.map(
 								(item: {
@@ -46,8 +47,12 @@ export const SettingsUsersBlock = () => {
 								)
 							)}
 						</ul>
-					)}
-				</div>
+					</div>
+				) : (
+					<p className="w-5/10 p-3 bg-gray-100 rounded-md">
+						Нет доступных пользователей
+					</p>
+				)}
 			</div>
 		</>
 	)

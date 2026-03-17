@@ -26,6 +26,11 @@ export const DonutChart: FC<DonutChartProps> = ({
 		labels,
 		colors: chartColors,
 		tooltip: { enabled: true },
+		subtitle: {
+			style: {
+				fontFamily: 'Inter'
+			}
+		},
 		plotOptions: {
 			pie: {
 				donut: {

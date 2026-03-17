@@ -12,7 +12,7 @@ export const useChangeInfoUserForm = (user: User) => {
 			change: 'data_admin',
 			lastname: user.lastname ?? '',
 			firstname: user.firstname ?? '',
-			access_id: user.access_id ?? 3,
+			access_id: user.access_id,
 			email: user.email ?? '',
 			sendmail: user.sendmail,
 			workposition_id: user.workposition_id,

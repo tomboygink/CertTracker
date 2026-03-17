@@ -12,7 +12,7 @@ interface SettingsCategoryBlockProps {
 export const SettingsCategoryBlock: FC<SettingsCategoryBlockProps> = ({
 	allCategory
 }) => {
-	if (!allCategory) return <div>...Загрузка</div>
+	// if (!allCategory) return <div>...Загрузка</div>
 
 	return (
 		<div className="h-10">
@@ -22,8 +22,8 @@ export const SettingsCategoryBlock: FC<SettingsCategoryBlockProps> = ({
 				</h2>
 				<AddCategoryCertBtn />
 			</div>
-			<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
-				{allCategory && (
+			{allCategory ? (
+				<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 					<ul className="flex flex-col gap-[8px] h-full overflow-y-scroll no-scrollbar">
 						{allCategory.map(item => (
 							<li
@@ -44,8 +44,12 @@ export const SettingsCategoryBlock: FC<SettingsCategoryBlockProps> = ({
 							</li>
 						))}
 					</ul>
-				)}
-			</div>
+				</div>
+			) : (
+				<p className="w-5/10 p-3 bg-gray-100 rounded-md">
+					Нет доступных категорий
+				</p>
+			)}
 		</div>
 	)
 }

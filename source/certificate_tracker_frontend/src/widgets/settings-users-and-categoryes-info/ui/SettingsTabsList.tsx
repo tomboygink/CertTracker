@@ -28,7 +28,11 @@ export const SettingsTabsList: FC<SettingsTabsListProps> = ({
 						isActive={item.value === value}
 						setValue={setValue}
 						btnValue={item.value}
-						isVisible={item.id === '1' || roles.isAdmin}
+						isVisible={
+							item.id === '1' ||
+							roles.isAdmin ||
+							(item.id === '3' && roles.isManager)
+						}
 					/>
 				</li>
 			))}

@@ -14,8 +14,8 @@ export const SettingDeptBlock: FC<SettingDeptBlockProps> = ({ allDept }) => {
 				</h2>
 				<AddDeptBtn />
 			</div>
-			<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
-				{allDept && (
+			{allDept ? (
+				<div className="w-1/2 h-[calc(100vh-302px)] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 					<ul className="flex flex-col gap-[8px] h-full overflow-y-scroll no-scrollbar">
 						{allDept.map((item: Dept) => (
 							<li
@@ -36,8 +36,12 @@ export const SettingDeptBlock: FC<SettingDeptBlockProps> = ({ allDept }) => {
 							</li>
 						))}
 					</ul>
-				)}
-			</div>
+				</div>
+			) : (
+				<p className="w-5/10 p-3 bg-gray-100 rounded-md">
+					Нет доступных отделов
+				</p>
+			)}
 		</div>
 	)
 }

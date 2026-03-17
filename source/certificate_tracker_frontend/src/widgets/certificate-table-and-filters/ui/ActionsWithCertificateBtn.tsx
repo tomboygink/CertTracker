@@ -8,7 +8,7 @@ import {
 	useAppSelector,
 	useClickOutside
 } from '@/src/shared'
-import { FC, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 interface ActionsWithCertificateBtnProps {
 	cert: Cert | null
@@ -45,12 +45,13 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 			{isOpen && (
 				<div className="absolute top-10 right-10 z-[10] flex flex-col items-start gap-[8px] p-4 bg-white border-1 border-[#e0dfdf] rounded-[6px]">
 					<WatchDocBtn handleClose={handleClose} cert={cert} />
-					{cert?.statuscert_id !== '4' && roles.isAdmin && (
-						<>
-							<ChangeCertBtn handleClose={handleClose} />
-							<ArchiveBtn cert={cert} handleClose={handleClose} />
-						</>
-					)}
+					{cert?.statuscert_id !== '4' &&
+						(roles.isAdmin || roles.isManager) && (
+							<>
+								<ChangeCertBtn handleClose={handleClose} />
+								<ArchiveBtn cert={cert} handleClose={handleClose} />
+							</>
+						)}
 				</div>
 			)}
 		</div>
