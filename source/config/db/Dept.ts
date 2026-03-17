@@ -28,7 +28,7 @@ export class Dept {
 
     //Полчение всех отделов
     async All() {
-        var db_res = await (await this.db.query("SELECT * FROM dept")).rows;
+        var db_res = await (await this.db.query("SELECT * FROM dept ORDER BY deptname ASC")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }

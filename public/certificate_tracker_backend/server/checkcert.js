@@ -48,6 +48,7 @@ function checkcert() {
                     return [4, c.CheckAll()];
                 case 1:
                     data = _a.sent();
+                    if (!(data !== null)) return [3, 5];
                     i = 0;
                     _a.label = 2;
                 case 2:
