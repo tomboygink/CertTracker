@@ -28,7 +28,7 @@ export class WorkPosition {
 
     //Полчение всех должностей
     async All() {
-        var db_res = await (await this.db.query("SELECT * FROM workposition")).rows;
+        var db_res = await (await this.db.query("SELECT * FROM workposition ORDER BY workpositionname ASC")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }

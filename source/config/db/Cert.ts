@@ -68,7 +68,7 @@ export class Cert {
 
     //Запрос на проверку данных
     async CheckAll() {
-        var db_res = await (await this.db.query("SELECT id, statuscert_id, certvalidityperiod, certname FROM cert WHERE statuscert_id != 4")).rows
+        var db_res = await (await this.db.query("SELECT id, statuscert_id, certvalidityperiod, certname FROM cert WHERE statuscert_id != 4")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }
