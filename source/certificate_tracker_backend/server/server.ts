@@ -28,7 +28,7 @@ class Server {
 
         //var url = config.front_config.ssl + config.front_config.host + ":" + config.front_config.port
         this.app.use(cors({
-            origin: config.front_config.domain,
+            origin: config.server_config.domain,
             credentials: true
         }));
 
