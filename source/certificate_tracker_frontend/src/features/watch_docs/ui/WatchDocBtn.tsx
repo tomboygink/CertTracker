@@ -1,10 +1,10 @@
 'use client'
 
 import { Cert, useLazyCertDocsQuery } from '@/src/entities'
-import { FC } from 'react'
+import { ButtonHTMLAttributes, FC } from 'react'
 import { handleGetDocsAndRedirect } from '../services/handleGetDocsAndRedirect'
 
-interface WatchDocLinkProps {
+interface WatchDocLinkProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	handleClose: () => void
 	cert: Cert | null
 }
@@ -17,6 +17,8 @@ export const WatchDocBtn: FC<WatchDocLinkProps> = ({ handleClose, cert }) => {
 	return (
 		<button
 			onClick={e => {
+				e.preventDefault()
+				e.stopPropagation()
 				handleGetDocsAndRedirect({ getDocs, cert, handleClose })
 			}}
 			className="block text-left text-[14px] cursor-pointer"

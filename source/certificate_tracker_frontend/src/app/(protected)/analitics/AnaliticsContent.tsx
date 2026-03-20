@@ -21,14 +21,14 @@ export const AnaliticsContent = () => {
 
 	return (
 		<>
-			<div className="flex items-center justify-between w-full mb-[12px]">
+			<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between w-full mb-3">
 				<TitleAndDescrPages
 					title="Аналитика и отчеты"
 					descr="Визуализация данных по типам, срокам и категориям."
 				/>
 				<DateWidget />
 			</div>
-			<div className="grid grid-cols-2 gap-[24px] w-full mb-[12px]">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 w-full mb-3">
 				<GraphicContainer
 					title="Динамика истечения сроков"
 					descr="Количество сертификатов, истекающих в ближайшие 6 месяцев"
