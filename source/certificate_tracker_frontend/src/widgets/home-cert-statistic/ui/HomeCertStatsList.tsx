@@ -49,11 +49,11 @@ export const HomeCertStatsList = () => {
 	}, [allCert?.data])
 
 	return (
-		<ul className="grid grid-cols-4 gap-[24px] mb-[32px]">
+		<ul className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4 xl:gap-6">
 			{fullHomeCertStatistic.map(item => (
 				<li
 					key={item.key}
-					className="px-[24px] py-[48px] rounded-[12px] border-1 border-[#E0DFDF] shadow-md"
+					className="rounded-[12px] border-1 border-[#E0DFDF] px-4 py-4 shadow-md sm:px-4 sm:py-6 xl:px-[24px] xl:py-[48px]"
 				>
 					<HomeCertStatsItem
 						descr={item.descr}

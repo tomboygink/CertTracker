@@ -34,7 +34,7 @@ export const SearchInput: FC<SearchInputProps> = props => {
 				{...other}
 			/>
 			{isSearchible && searchValue?.length > 0 ? (
-				<div className="absolute top-[50px] left-0 p-3 w-5/10 h-[250px] z-[5] bg-white border-1 border-[#E0DFDF] rounded-md shadow-md overflow-y-auto no-scrollbar">
+				<div className="absolute top-[50px] left-0 p-3 w-full sm:w-[500px] md:w-[600px] lg:w-5/10 h-[300px] z-[5] bg-white border-1 border-[#E0DFDF] rounded-md shadow-md overflow-y-auto no-scrollbar">
 					<AllCertSearchList allCert={filteredCertBySearch} />
 				</div>
 			) : null}

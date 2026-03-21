@@ -5,6 +5,7 @@ import { PAGES } from '@/src/shared'
 import Link from 'next/link'
 import { FC, useMemo } from 'react'
 import { RequireAttensionCertItem } from './RequireAttensionCertItem'
+import { RequireAttensionCertItemMobile } from './RequireAttensionCertItemMobile'
 
 interface RequireAttensionCertProps {
 	certificates?: Cert[]
@@ -38,34 +39,33 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 	}, [allCertificates, status])
 
 	return (
-		<div className="w-full max-w-2/3 rounded-[12px] py-[26px] px-[24px] border-1 border-[#E0DFDF] shadow-md h-110">
-			<div className="flex items-center justify-between w-full mb-[26px]">
-				<h2 className="text-[20px] text-[#202020] font-semibold leading-[28px]">
+		<div className="flex min-h-0 w-full min-w-0 flex-col rounded-[12px] border-1 border-[#E0DFDF] px-4 py-5 shadow-md sm:px-6 sm:py-[26px] lg:flex-[2]">
+			<div className="mb-2 flex w-full flex-col sm:mb-[26px] sm:flex-row sm:items-center sm:justify-between sm:mb-5 md:mb-5 lg:mb-5 xl:mb-5 2xl:mb-5">
+				<h2 className="text-md font-semibold leading-7 text-[#202020] sm:text-md sm:leading-[28px] md:text-md lg:text-lg xl:text-lg 2xl:text-lg">
 					Требуют внимания
 				</h2>
 				<Link
-					className="py-[6px] px-[10px] text-[14px] text-[#202020] font-medium leading-[20px]"
+					className="w-fit py-[6px] text-[14px] font-medium leading-[20px] text-[#202020]"
 					href={PAGES.DOCUMENTS}
 				>
 					Все сертификаты →
 				</Link>
 			</div>
-			<div className="overflow-hidden">
-				{/* Контейнер с прокруткой */}
-				<div className="overflow-y-scroll max-h-[300px] no-scrollbar">
-					<table className="w-full rounded-[6px] table-auto">
-						<thead className="sticky top-0 px-[16px] py-[12px] bg-[#d9d9d9] h-10">
+			<div className="hidden min-h-0 min-w-0 flex-1 overflow-hidden rounded-[6px] sm:hidden md:block lg:block lg:min-h-[200px] xl:block 2xl:block">
+				<div className="max-h-[min(300px,55vh)] overflow-x-auto overflow-y-auto no-scrollbar sm:max-h-[300px] lg:h-full lg:max-h-none">
+					<table className="w-full min-w-[640px] table-auto">
+						<thead className="sticky top-0 z-[1] h-10 bg-[#d9d9d9] px-4 py-3">
 							<tr>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-4/10 pl-10">
+								<td className="w-[40%] pl-4 text-[12px] font-bold uppercase leading-4 text-[#7f7f7f] sm:pl-10">
 									Название
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
+								<td className="w-[20%] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
 									Начало действия
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
+								<td className="w-[20%] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
 									Окончание действия
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-2/10">
+								<td className="w-[20%] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
 									Статус
 								</td>
 							</tr>
@@ -82,6 +82,11 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div className="flex flex flex-col gap-2 w-full max-h-[160px] overflow-y-auto no-scrollbar rounded-[6px] sm:flex md:hidden lg:hidden xl:hidden 2xl:hidden">
+				{almostExpiredAndExpired?.map((item: Cert) => (
+					<RequireAttensionCertItemMobile certificate={item} key={item.id} />
+				))}
 			</div>
 		</div>
 	)

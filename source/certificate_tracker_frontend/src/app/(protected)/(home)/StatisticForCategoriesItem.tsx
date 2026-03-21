@@ -12,10 +12,10 @@ export const StatisticForCategoriesItem: FC<
 	return (
 		<div className="flex flex-col gap-1">
 			<div className="flex items-center justify-between w-full">
-				<p className="text-[14px] text-[#7f7f7f] leading-[20px]">
+				<p className="text-[12px] text-[#7f7f7f] leading-[20px] sm:text-[12px] md:text-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
 					{categoryName}
 				</p>
-				<span className="text-[14px] text-[#202020] font-medium leading-[20px]">
+				<span className="text-[12px] text-[#202020] font-medium leading-[20px] sm:text-[12px] md:text-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
 					{`${percent}%`}
 				</span>
 			</div>

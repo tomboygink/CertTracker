@@ -24,7 +24,7 @@ export const FormInput: FC<FormInputProps> = props => {
 						ref={ref}
 						key={inputType}
 						type={inputType}
-						className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
+						className="w-full py-[6px] sm:py-[8px] pl-[8px] text-[14px] sm:text-[16px] border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)] transition-all duration-300"
 						{...other}
 					/>
 					<EyesBtn
@@ -41,7 +41,7 @@ export const FormInput: FC<FormInputProps> = props => {
 				<input
 					ref={ref}
 					type={type}
-					className="w-full py-2 pl-2 border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)]"
+					className="w-full py-[6px] sm:py-[8px] pl-[8px] text-[14px] sm:text-[16px] border-1 border-[var(--bg-color)] bg-white rounded-md focus:outline-[var(--bg-color)] transition-all duration-300"
 					{...other}
 				/>
 			)}

@@ -17,7 +17,7 @@ export const ChangeUserBtn: FC<ChangeUserBtnProps> = ({ user }) => {
 	useClickOutside(ref, () => setOpen(false))
 
 	return (
-		<div ref={ref} className="relative">
+		<div ref={ref} className="relative w-full">
 			<button
 				onClick={() => setOpen(prev => (prev = !prev))}
 				className="flex items-center justify-center w-8 h-8 rounded-md bg-[var(--bg-color)] cursor-pointer hover:bg-[var(--bg-color-hover)] transition-all diration-300"
@@ -27,7 +27,7 @@ export const ChangeUserBtn: FC<ChangeUserBtnProps> = ({ user }) => {
 				</svg>
 			</button>
 			{open && (
-				<div className="absolute top-10 right-0 z-[5] flex flex-col gap-[12px] p-[12px] min-w-[300px] bg-white border-1 border-[#E0DFDF] rounded-md shadow-md">
+				<div className="absolute top-10 z-[5] flex flex-col gap-[12px] p-[12px] min-w-[300px] bg-white border-1 border-[#E0DFDF] rounded-md shadow-md left-0 xl:left-auto xl:right-0">
 					<FormBtn
 						onClick={() => {
 							setOpen(false)

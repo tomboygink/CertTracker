@@ -11,7 +11,7 @@ export const RequireAttensionCertItem: FC<RequireAttensionCertItemProps> = ({
 }) => {
 	return (
 		<>
-			<td className="pl-10">
+			<td className="pl-4 sm:pl-10">
 				<div className="flex flex-col">
 					<p className="text-[14px] text-[#202020] font-medium leading-[20px]">
 						{certificate.certname}
