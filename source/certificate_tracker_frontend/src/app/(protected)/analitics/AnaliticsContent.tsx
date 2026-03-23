@@ -21,7 +21,7 @@ export const AnaliticsContent = () => {
 
 	return (
 		<div className="flex w-full min-w-0 flex-col gap-3 sm:gap-4 lg:h-[calc(100dvh-60px-32px)] lg:min-h-0 lg:overflow-hidden xl:h-[calc(100dvh-81px-32px)]">
-			<div className="flex w-full shrink-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+			<div className="flex w-full items-start shrink-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 				<TitleAndDescrPages
 					title="Аналитика и отчеты"
 					descr="Визуализация данных по типам, срокам и категориям."

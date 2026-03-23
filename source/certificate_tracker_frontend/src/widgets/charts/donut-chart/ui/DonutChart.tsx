@@ -36,7 +36,89 @@ export const DonutChart: FC<DonutChartProps> = ({
 				donut: {
 					size: '50%',
 					labels: {
-						show: true,
+						show: false,
+						name: {
+							show: true,
+							fontSize: '12px'
+						},
+						value: {
+							show: true
+						},
+						total: {
+							show: false,
+							label: 'Всего',
+							formatter: () => String(series.reduce((a, b) => a + b, 0))
+						}
+					}
+				}
+			}
+		},
+		responsive: [
+			{
+				breakpoint: 1024,
+				options: {
+					plotOptions: {
+						pie: {
+							donut: {
+								size: '50%'
+							},
+							name: {
+								show: true,
+								fontSize: '9px'
+							},
+							value: {
+								show: true,
+								fontSize: '9px'
+							},
+							total: {
+								show: false
+							}
+						}
+					}
+				}
+			},
+			{
+				breakpoint: 1536,
+				options: {
+					plotOptions: {
+						pie: {
+							donut: {
+								size: '50%',
+								name: {
+									show: true,
+									fontSize: '12px'
+								},
+								value: {
+									show: true,
+									fontSize: '12px'
+								},
+								total: {
+									show: true,
+									label: 'Всего',
+									formatter: () => String(series.reduce((a, b) => a + b, 0))
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				breakpoint: 1920,
+				options: {
+					plotOptions: {
+						pie: {
+							donut: {
+								size: '50%'
+							}
+						},
+						name: {
+							show: true,
+							fontSize: '12px'
+						},
+						value: {
+							show: true,
+							fontSize: '12px'
+						},
 						total: {
 							show: true,
 							label: 'Всего',
@@ -45,7 +127,7 @@ export const DonutChart: FC<DonutChartProps> = ({
 					}
 				}
 			}
-		}
+		]
 	}
 
 	return (

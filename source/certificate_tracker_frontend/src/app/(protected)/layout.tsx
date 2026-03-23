@@ -64,7 +64,7 @@ export default async function PrivatePagesLayout({
 	// Пользователь валидный
 	return (
 		<UserHydration user={data}>
-			<div className="w-full min-h-screen pt-[70px] px-[10px] pb-[32px] bg-[#fcfcfc] sm:px-[10px] sm:pt-[70px] md:px-[10px] md:pt-[70px] lg:px-[16px] lg:pt-[80px]  xl:px-[32px] xl:pt-[81px]">
+			<div className="w-full min-h-screen pt-[70px] px-[10px] bg-[#fcfcfc] sm:px-[10px] sm:pt-[70px] md:px-[10px] md:pt-[70px] lg:px-[16px] lg:pt-[80px]  xl:px-[32px] xl:pt-[81px]">
 				{children}{' '}
 			</div>
 		</UserHydration>

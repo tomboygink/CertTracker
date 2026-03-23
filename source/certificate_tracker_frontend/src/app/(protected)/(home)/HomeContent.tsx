@@ -10,7 +10,7 @@ export async function HomeContent() {
 
 	return (
 		<>
-			<header className="mb-6 flex w-full flex-col gap-4 sm:flex-col sm:items-start sm:justify-between md:flex-col md:items-start lg:items-center lg:flex-row lg:items-center 2xl:flex-row 2xl:items-center">
+			<header className="mb-6 flex w-full items-start flex-col gap-4 sm:flex-col sm:items-start sm:justify-between md:flex-col md:items-start lg:items-center lg:flex-row lg:items-center 2xl:flex-row 2xl:items-center">
 				<TitleAndDescrPages
 					title={'Панель управления'}
 					descr={'Обзор состояния корпоративных сертификатов.'}
