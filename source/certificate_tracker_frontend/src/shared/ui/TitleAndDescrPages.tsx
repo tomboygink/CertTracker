@@ -10,7 +10,7 @@ export const TitleAndDescrPages: FC<TitleAndDescrPagesProps> = ({
 	descr
 }) => {
 	return (
-		<div>
+		<div className="max-w-[500px]">
 			<h1 className="font-bold text-[16px] text-[#202020] tracking-[-0.75%] leading-[36px] sm:text-[16px] md:text-[16px] lg:text-[30px] xl:text-[30px] 2xl:text-[30px]">
 				{title}
 			</h1>

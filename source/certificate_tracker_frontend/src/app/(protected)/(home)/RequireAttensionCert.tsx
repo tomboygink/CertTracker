@@ -41,7 +41,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 	return (
 		<div className="flex min-h-0 w-full min-w-0 max-h-[calc(100dvh-420px)] flex-col rounded-[12px] border-1 border-[#E0DFDF] px-4 py-5 shadow-md sm:px-6 sm:py-[26px] lg:flex-[2]">
 			<div className="mb-2 flex w-full flex-col sm:mb-[26px] sm:flex-row sm:items-center sm:justify-between sm:mb-5 md:mb-5 lg:mb-5 xl:mb-5 2xl:mb-5">
-				<h2 className="text-md font-semibold leading-7 text-[#202020] sm:text-md sm:leading-[28px] md:text-md lg:text-lg xl:text-lg 2xl:text-lg">
+				<h2 className="max-w-[300px] text-md font-semibold leading-7 text-[#202020] sm:text-md sm:leading-[28px] md:text-md lg:text-lg xl:text-lg 2xl:text-lg">
 					Требуют внимания
 				</h2>
 				<Link
