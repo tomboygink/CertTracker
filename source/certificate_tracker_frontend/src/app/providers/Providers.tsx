@@ -13,7 +13,9 @@ export const Providers = ({ children }: Providers) => {
 	const pathname = usePathname()
 	return (
 		<Provider store={store}>
-			{PUBLIC_ROUTES.includes(pathname) ? null : <Header />}
+			{PUBLIC_ROUTES.includes(pathname) || pathname === '/block' ? null : (
+				<Header />
+			)}
 			{children}
 		</Provider>
 	)

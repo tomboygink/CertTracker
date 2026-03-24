@@ -56,17 +56,25 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 					<table className="w-full min-w-[640px] table-auto">
 						<thead className="sticky top-0 z-[1] h-10 bg-[#d9d9d9] px-4 py-3">
 							<tr>
-								<td className="w-[40%] pl-4 text-[12px] font-bold uppercase leading-4 text-[#7f7f7f] sm:pl-10">
-									Название
+								<td className="py-2 w-[40%] max-w-[250px] pl-4 text-[12px] font-bold uppercase leading-4 text-[#7f7f7f] sm:pl-10">
+									<span className="block max-w-[250px] whitespace-normal">
+										Название
+									</span>
 								</td>
-								<td className="w-[20%] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
-									Начало действия
+								<td className="py-2 w-[20%] max-w-[190px] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Начало действия
+									</span>
 								</td>
-								<td className="w-[20%] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
-									Окончание действия
+								<td className="py-2 w-[20%] max-w-[190px] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Окончание действия
+									</span>
 								</td>
-								<td className="w-[20%] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
-									Статус
+								<td className="py-2 w-[20%] max-w-[190px] text-[12px] font-bold uppercase leading-4 text-[#7f7f7f]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Статус
+									</span>
 								</td>
 							</tr>
 						</thead>
