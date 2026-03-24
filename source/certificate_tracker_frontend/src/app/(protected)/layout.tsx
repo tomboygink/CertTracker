@@ -51,15 +51,9 @@ export default async function PrivatePagesLayout({
 	// Проверяем токен и пользователя
 	// const user: User = await getUserByToken(token)
 	const data = await getUserByToken(token)
-	console.log('data layout', data)
 	// Токен некорректный или пользователь заблокирован
 	if (data === 'user_blocked' || data === 'token_invalid') {
-		console.log('FUCK YOU')
-		return (
-			<div className="w-full min-h-screen pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
-				пшел вон, редирект на block и отравка для удаления куков
-			</div>
-		)
+		redirect('/block')
 	}
 	// Пользователь валидный
 	return (

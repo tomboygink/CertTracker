@@ -1,7 +1,13 @@
 'use client'
 
 import { NotificationBtn, useAllCertQuery } from '@/src/entities'
-import { selectRoles, useAppSelector, useAppDispatch, useClickOutside, FormBtn } from '@/src/shared'
+import {
+	selectRoles,
+	useAppSelector,
+	useAppDispatch,
+	useClickOutside,
+	FormBtn
+} from '@/src/shared'
 import { AddCertBtnMobile, SearchInput, LogoutBtn } from '@/src/features'
 import { NavLinksList } from './NavLinksList'
 import { useState, useRef, useCallback } from 'react'
@@ -42,25 +48,25 @@ export const MobileHeader = () => {
 			{/* Левый контейнер */}
 			<div className="flex items-center gap-[16px]">
 				<div ref={menuRef}>
-					<button 
-						className="flex items-center justify-center w-[32px] h-[32px] shrink-0" 
+					<button
+						className="flex items-center justify-center w-[32px] h-[32px] shrink-0"
 						aria-label="Меню"
 						onClick={handleMenuClick}
 					>
 						<svg className="w-7 h-7 fill-[#202020]" viewBox="0 0 24 24">
-							<path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+							<path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
 						</svg>
 					</button>
 					{isMenuOpen && (
 						<div className="absolute top-[60px] left-0 w-full bg-white border-b-1 border-[#e0dfdf] shadow-md z-40 p-4 animate-in fade-in slide-in-from-top-2 duration-200">
-							<NavLinksList closeMenu={handleMenuClick} />
+							<NavLinksList />
 						</div>
 					)}
 				</div>
 
 				<div ref={searchRef}>
-					<button 
-						className="flex items-center justify-center w-[32px] h-[32px] shrink-0" 
+					<button
+						className="flex items-center justify-center w-[32px] h-[32px] shrink-0"
 						aria-label="Поиск"
 						onClick={handleSearchClick}
 					>
@@ -70,7 +76,12 @@ export const MobileHeader = () => {
 					</button>
 					{isSearchOpen && (
 						<div className="absolute top-[60px] left-0 w-full p-4 bg-white border-b-1 border-[#e0dfdf] shadow-md z-40 animate-in fade-in slide-in-from-top-2 duration-200">
-							<SearchInput isSearchible={true} allCert={allCert?.data} placeholder="Поиск по сертификатам..." autoFocus />
+							<SearchInput
+								isSearchible={true}
+								allCert={allCert?.data}
+								placeholder="Поиск по сертификатам..."
+								autoFocus
+							/>
 						</div>
 					)}
 				</div>
@@ -78,14 +89,12 @@ export const MobileHeader = () => {
 
 			{/* Правый контейнер */}
 			<div className="flex items-center gap-[12px]">
-				{(roles.isAdmin || roles.isManager) && (
-					<AddCertBtnMobile />
-				)}
-				
+				{(roles.isAdmin || roles.isManager) && <AddCertBtnMobile />}
+
 				<NotificationBtn />
 
 				<div className="relative" ref={avatarRef}>
-					<button 
+					<button
 						onClick={() => {
 							setIsAvatarOpen(!isAvatarOpen)
 							setIsMenuOpen(false)
@@ -105,26 +114,34 @@ export const MobileHeader = () => {
 							<FormBtn
 								onClick={() => {
 									setIsAvatarOpen(false)
-									dispatch(openModal({ type: 'changeUserInfoForUser', payload: user }))
+									dispatch(
+										openModal({ type: 'changeUserInfoForUser', payload: user })
+									)
 								}}
 								text="Редактировать информацию"
 							/>
 							<FormBtn
 								onClick={() => {
 									setIsAvatarOpen(false)
-									dispatch(openModal({ type: 'settingUserAvatar', payload: user }))
+									dispatch(
+										openModal({ type: 'settingUserAvatar', payload: user })
+									)
 								}}
 								text="Изменить аватар"
 							/>
 							<FormBtn
 								onClick={() => {
 									setIsAvatarOpen(false)
-									dispatch(openModal({ type: 'changeUserPassUser', payload: user }))
+									dispatch(
+										openModal({ type: 'changeUserPassUser', payload: user })
+									)
 								}}
 								text="Изменить пароль"
 							/>
 							<div className="flex items-center justify-between pt-1 mt-1 border-t-1 border-gray-100">
-								<span className="text-[14px] font-medium text-gray-600 pl-2">Выйти из аккаунта</span>
+								<span className="text-[14px] font-medium text-gray-600 pl-2">
+									Выйти из аккаунта
+								</span>
 								<LogoutBtn />
 							</div>
 						</div>

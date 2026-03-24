@@ -3,6 +3,7 @@ import { PUBLIC_ROUTES } from './shared'
 
 export const middleware = (request: NextRequest) => {
 	const { pathname } = request.nextUrl
+	const isBlockRoute = pathname === '/block'
 
 	if (
 		pathname.startsWith('/_next') ||
@@ -19,11 +20,11 @@ export const middleware = (request: NextRequest) => {
 	const isAuth = !!token
 	const isPublicRoute = PUBLIC_ROUTES.includes(pathname)
 
-	if (isPublicRoute && isAuth) {
+	if (isPublicRoute && isAuth && !isBlockRoute) {
 		return NextResponse.redirect(new URL('/', request.url))
 	}
 
-	if (!isPublicRoute && !isAuth) {
+	if (!isPublicRoute && !isAuth && !isBlockRoute) {
 		return NextResponse.redirect(new URL('/login', request.url))
 	}
 

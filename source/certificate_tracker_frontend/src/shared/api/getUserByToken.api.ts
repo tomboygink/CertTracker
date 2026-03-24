@@ -9,7 +9,7 @@ export const getUserByToken = async (token: string) => {
 				'Content-Type': 'application/json',
 				Cookie: `access_token=${token}`
 			},
-			credentials:"include",
+			credentials: 'include',
 			body: JSON.stringify({
 				cmd: 'GetUser',
 				args: {}
@@ -19,8 +19,7 @@ export const getUserByToken = async (token: string) => {
 	)
 
 	const data = await response.json()
-	console.log("this",data)
-	if (data?.err) return data?.err;
+	if (data?.err) return data?.err
 
-	return data?.data?.[0] 
+	return data?.data?.[0]
 }

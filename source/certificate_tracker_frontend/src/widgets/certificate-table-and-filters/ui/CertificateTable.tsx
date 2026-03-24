@@ -55,7 +55,6 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 			<div className="flex-1 overflow-hidden">
 				{/* Контейнер с прокруткой */}
 				<div className="overflow-y-auto h-full pb-4 no-scrollbar">
-					
 					{/* Десктопная таблица */}
 					<table
 						style={{ verticalAlign: 'top' }}
@@ -63,23 +62,35 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 					>
 						<thead className="sticky top-0 z-[2] px-[16px] py-[12px] bg-[#d9d9d9] h-10">
 							<tr>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 pl-3">
-									Название
+								<td className="py-2 text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 max-w-[200px] pl-3">
+									<span className="block max-w-[200px] whitespace-normal">
+										Название
+									</span>
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Номер
+								<td className="py-2 text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 max-w-[190px]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Номер
+									</span>
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Категория
+								<td className="py-2 text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 max-w-[190px]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Категория
+									</span>
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Начало действия
+								<td className="py-2 text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 max-w-[190px]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Начало действия
+									</span>
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Окончание действия
+								<td className="py-2 text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 max-w-[190px]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Окончание действия
+									</span>
 								</td>
-								<td className="text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6">
-									Статус
+								<td className="py-2 text-[12px] text-[#7f7f7f] font-bold leading-[16px] uppercase w-1/6 max-w-[190px]">
+									<span className="block max-w-[190px] whitespace-normal">
+										Статус
+									</span>
 								</td>
 								<td className="w-1/6"></td>
 							</tr>
@@ -109,7 +120,6 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 							/>
 						))}
 					</div>
-
 				</div>
 			</div>
 		</div>
