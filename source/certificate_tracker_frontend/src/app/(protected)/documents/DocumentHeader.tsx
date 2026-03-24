@@ -7,7 +7,7 @@ export const DocumentHeader = () => {
 	const roles = useAppSelector(selectRoles)
 
 	return (
-		<div className="flex items-center justify-between w-full mb-[24px]">
+		<div className="flex flex-col items-start gap-3 justify-between w-full mb-[24px] sm:flex-row sm:items-center sm:justify-between">
 			<TitleAndDescrPages
 				title="Реестр документов"
 				descr="Управление и поиск по базе всех сертификатов компании."

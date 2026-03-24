@@ -17,13 +17,23 @@ export default function SettingUserAvatarModal() {
 			handleSubmit,
 			formState: { errors },
 			watch,
-			setValue
+			setValue,
+			setError
 		},
 		handleChangeUserAvatarSubmit,
 		isLoading,
 		successMessage,
 		errorMessage
 	} = useSettingUserAvatar(user, base64)
+
+	useEffect(() => {
+		let ava = watch('avatar')
+		if (ava && ava.length > 0) {
+			setError('avatar', {})
+		} else {
+			return
+		}
+	}, [watch('avatar')])
 
 	return (
 		<form

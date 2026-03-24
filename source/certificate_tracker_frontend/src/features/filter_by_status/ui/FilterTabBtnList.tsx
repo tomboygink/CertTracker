@@ -24,8 +24,8 @@ export const FilterTabBtnList: FC<FilterTabBtnListProps> = ({
 	setSelectCategoryes
 }) => {
 	return (
-		<div className="flex items-start gap-[8px]">
-			<ul className="flex items-center gap-[8px]">
+		<div className="flex items-start gap-[8px] flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap 2xl:flex-nowrap">
+			<ul className="flex items-center gap-[8px] flex-wrap md:flex-nowrap lg:flex-nowrap xl:flex-nowrap 2xl:flex-nowrap">
 				{FILTER_TABS_CONFIG.map(item => (
 					<li key={item.status}>
 						<FilterTabBtn
@@ -42,13 +42,13 @@ export const FilterTabBtnList: FC<FilterTabBtnListProps> = ({
 						/>
 					</li>
 				))}
-			</ul>
-			<OtherFilterBtn
+				<OtherFilterBtn
 				setSearchValue={setSearchValue}
 				selectCategoryes={selectCategoryes}
 				setSelectCategoryes={setSelectCategoryes}
 				allCategory={allCategoryCert}
 			/>
+			</ul>
 		</div>
 	)
 }

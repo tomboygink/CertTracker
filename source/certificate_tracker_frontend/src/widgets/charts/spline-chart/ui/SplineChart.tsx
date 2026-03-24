@@ -28,6 +28,11 @@ export const SplineChart: React.FC<SplineChartProps> = ({
 			toolbar: { show: false }
 		},
 		xaxis: {
+			labels: {
+				style: {
+					fontSize: '9px'
+				}
+			},
 			categories: data.map(point => point.label)
 		},
 		stroke: {
@@ -44,6 +49,11 @@ export const SplineChart: React.FC<SplineChartProps> = ({
 		},
 		tooltip: {
 			enabled: true
+		},
+		subtitle: {
+			style: {
+				fontFamily: 'Inter'
+			}
 		}
 	}
 

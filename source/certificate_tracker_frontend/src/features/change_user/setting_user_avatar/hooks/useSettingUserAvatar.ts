@@ -32,10 +32,24 @@ export const useSettingUserAvatar = (user: User, base64: string | null) => {
 					throw new Error(response.err)
 				}
 				if (base64) {
-					dispatch(partiallyUpdateUser({ avatar: `${String(base64)}` }))
+					dispatch(
+						partiallyUpdateUser({
+							avatar: `${String(base64)}`
+						})
+					)
 					setMessage(prev => ({
 						...prev,
 						successMessage: 'Аватар успешно изменен'
+					}))
+				} else {
+					dispatch(
+						partiallyUpdateUser({
+							avatar: ''
+						})
+					)
+					setMessage(prev => ({
+						...prev,
+						successMessage: 'Аватар сброшен'
 					}))
 				}
 			})
@@ -49,6 +63,7 @@ export const useSettingUserAvatar = (user: User, base64: string | null) => {
 		handleChangeUserAvatarSubmit,
 		isLoading: result.isLoading,
 		successMessage: message.successMessage,
-		errorMessage: message.errorMessage
+		errorMessage: message.errorMessage,
+		setMessage
 	}
 }

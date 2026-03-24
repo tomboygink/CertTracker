@@ -56,7 +56,7 @@ export default async function PrivatePagesLayout({
 	if (data === 'user_blocked') {
 		console.log('FUCK YOU')
 		return (
-			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
+			<div className="w-full min-h-screen pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
 				пшел вон, редирект на block и отравка для удаления куков
 			</div>
 		)
@@ -64,7 +64,7 @@ export default async function PrivatePagesLayout({
 	// Пользователь валидный
 	return (
 		<UserHydration user={data}>
-			<div className="w-full h-[100vh] pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
+			<div className="w-full min-h-screen pt-[70px] px-[10px] bg-[#fcfcfc] sm:px-[10px] sm:pt-[70px] md:px-[10px] md:pt-[70px] lg:px-[16px] lg:pt-[80px]  xl:px-[32px] xl:pt-[81px]">
 				{children}{' '}
 			</div>
 		</UserHydration>

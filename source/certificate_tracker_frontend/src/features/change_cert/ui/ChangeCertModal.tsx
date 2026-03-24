@@ -16,6 +16,27 @@ import { useEffect, useRef } from 'react'
 import { useHandleFileChange } from '../../add_cert/model/hooks/useHandleFileChange'
 import { base64ToFile } from '../model/service/base64toFile'
 
+const isDocValuePresent = (value?: string | null) => {
+	if (!value) return false
+	const normalizedValue = String(value).trim().toLowerCase()
+	return normalizedValue !== 'null' && normalizedValue !== 'undefined'
+}
+
+const getDocFileName = (doc?: Record<string, unknown>) => {
+	if (!doc) return 'document.pdf'
+
+	const rawName =
+		doc.filename ??
+		doc.fileName ??
+		doc.name ??
+		doc.docsname ??
+		doc.docname ??
+		doc.originalname
+
+	if (!rawName) return 'document.pdf'
+	return String(rawName)
+}
+
 export default function ChangeCertModal() {
 	const selectCert = useAppSelector(state => state.selectCert.selectCert)
 	const { data: categoryCert } = useAllCategoryCertQuery({})
@@ -33,37 +54,45 @@ export default function ChangeCertModal() {
 		isSuccess
 	} = useChangeCert()
 
-	const { base64, handleChangeFile } = useHandleFileChange()
-
 	const successMessage = useGetSuccessMessage(
 		isSuccess,
 		'Данные успешно изменены'
 	)
 
+	const { base64, handleChangeFile } = useHandleFileChange()
+	const currentDoc = certDocs?.data?.[0]
 	const fileRef = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
-		if (!certDocs?.data || !fileRef.current) return
+		if (!fileRef.current) return
+		if (!isDocValuePresent(currentDoc?.docs)) {
+			fileRef.current.value = ''
+			return
+		}
 
-		const file = base64ToFile(certDocs?.data?.[0]?.docs, 'document.pdf')
-
-		if (!file) return
+		const file = base64ToFile(currentDoc?.docs, getDocFileName(currentDoc))
+		if (!file) {
+			fileRef.current.value = ''
+			return
+		}
 
 		const dataTransfer = new DataTransfer()
 		dataTransfer.items.add(file)
 
 		fileRef.current.files = dataTransfer.files
-	}, [certDocs])
+	}, [currentDoc])
 
 	useEffect(() => {
-		if (!certDocs?.data) return
-
-		setValue('docs', certDocs?.data?.[0]?.docs)
-	}, [certDocs])
+		setValue(
+			'docs',
+			isDocValuePresent(currentDoc?.docs) ? currentDoc?.docs : ''
+		)
+	}, [currentDoc, setValue])
 
 	useEffect(() => {
-		console.log(certDocs?.data?.[0]?.docs)
-	}, [certDocs])
+		if (!base64) return
+		setValue('docs', String(base64))
+	}, [base64, setValue])
 
 	return (
 		<form

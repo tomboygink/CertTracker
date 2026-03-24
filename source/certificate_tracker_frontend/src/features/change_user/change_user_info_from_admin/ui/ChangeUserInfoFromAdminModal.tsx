@@ -9,6 +9,7 @@ import {
 	User,
 	WorkPosition
 } from '@/src/entities'
+import { useEffect } from 'react'
 
 interface ChangeUserInfoModalProps {
 	user: User
@@ -25,7 +26,8 @@ export default function ChangeUserInfoFromAdminModal({
 		form: {
 			register,
 			handleSubmit,
-			formState: { errors }
+			formState: { errors },
+			reset
 		},
 		handleChangeUserInfo,
 		isLoading,
@@ -35,6 +37,23 @@ export default function ChangeUserInfoFromAdminModal({
 		isSuccess,
 		'Данные успешно изменены'
 	)
+
+	useEffect(() => {
+		if (user && allAccess?.data) {
+			reset({
+				change: 'data_admin',
+				lastname: user.lastname ?? '',
+				firstname: user.firstname ?? '',
+				access_id: Number(user.access_id),
+				email: user.email ?? '',
+				sendmail: user.sendmail,
+				workposition_id: user.workposition_id,
+				deleted: user.deleted,
+				user_id: Number(user.id)
+			})
+		}
+	}, [user, allAccess?.data])
+
 	return (
 		<form
 			onSubmit={handleSubmit(handleChangeUserInfo)}

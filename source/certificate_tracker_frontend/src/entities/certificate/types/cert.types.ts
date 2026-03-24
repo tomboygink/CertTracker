@@ -7,4 +7,5 @@ export type Cert = {
 	category_id: string
 	issuedate: string
 	certvalidityperiod: string
+	hasDocs?: boolean
 }

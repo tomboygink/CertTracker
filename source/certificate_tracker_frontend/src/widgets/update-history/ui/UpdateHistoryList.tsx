@@ -14,7 +14,7 @@ interface UpdateHistoryListProps {
 
 export const UpdateHistoryList: FC<UpdateHistoryListProps> = ({ allInfo }) => {
 	return (
-		<ul className="flex flex-col w-full h-[calc(100%-50px)] overflow-y-scroll no-scrollbar">
+		<ul className="min-h-0 w-full flex-1 overflow-y-auto overscroll-contain no-scrollbar [-ms-overflow-style:auto] [scrollbar-gutter:stable]">
 			{allInfo.map(item => (
 				<li key={item.key}>
 					<UpdateHistoryItem

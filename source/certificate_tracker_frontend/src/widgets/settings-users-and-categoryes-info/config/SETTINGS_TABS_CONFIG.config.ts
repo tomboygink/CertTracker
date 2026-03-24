@@ -12,11 +12,6 @@ export const SETTINGS_TABS_CONFIG: SettingsConfig[] = [
 		text: 'Пользователи'
 	},
 	{
-		id: '3',
-		value: 'categories',
-		text: 'Категории'
-	},
-	{
 		id: '4',
 		value: 'dept',
 		text: 'Отдел'
@@ -25,5 +20,10 @@ export const SETTINGS_TABS_CONFIG: SettingsConfig[] = [
 		id: '5',
 		value: 'workPos',
 		text: 'Должности'
+	},
+	{
+		id: '3',
+		value: 'categories',
+		text: 'Категории'
 	}
 ]

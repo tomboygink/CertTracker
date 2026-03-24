@@ -10,7 +10,6 @@ interface AllCertSearchItemProps {
 
 export const AllCertSearchItem: FC<AllCertSearchItemProps> = ({ cert }) => {
 	return (
-		// <div className="w-full flex item-center justify-between">
 		<>
 			<ListSearchItemInfo label="Название" text={cert?.certname} />
 			<ListSearchItemInfo label="Номер" text={cert?.certnumber} />
@@ -22,10 +21,11 @@ export const AllCertSearchItem: FC<AllCertSearchItemProps> = ({ cert }) => {
 				label="Окончание действия"
 				text={moment(cert?.certvalidityperiod).format('DD.MM.YYYY')}
 			/>
-			<td>
-				<ActionsWithCertificateBtn cert={cert} />
+			<td className="block xl:table-cell py-2 xl:py-0 border-t-1 border-gray-100 xl:border-none w-full xl:w-auto mt-2 xl:mt-0 align-middle">
+				<div className="flex justify-end items-center w-full xl:w-auto xl:justify-start">
+					<ActionsWithCertificateBtn cert={cert} />
+				</div>
 			</td>
 		</>
-		// </div>
 	)
 }

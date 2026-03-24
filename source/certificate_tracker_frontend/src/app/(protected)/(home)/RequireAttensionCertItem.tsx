@@ -11,8 +11,8 @@ export const RequireAttensionCertItem: FC<RequireAttensionCertItemProps> = ({
 }) => {
 	return (
 		<>
-			<td className="pl-10">
-				<div className="flex flex-col">
+			<td className="pl-4 sm:pl-10">
+				<div className="flex flex-col max-w-[200px]">
 					<p className="text-[14px] text-[#202020] font-medium leading-[20px]">
 						{certificate.certname}
 					</p>
@@ -22,12 +22,12 @@ export const RequireAttensionCertItem: FC<RequireAttensionCertItemProps> = ({
 				</div>
 			</td>
 			<td>
-				<p className="text-[14px] text-[#7f7f7f] leading-[20px]">
+				<p className="text-[14px] text-[#7f7f7f] leading-[20px] max-w-[150px]">
 					{moment(certificate.issuedate).format('DD.MM.YYYY')}
 				</p>
 			</td>
 			<td>
-				<p className="text-[14px] text-[#202020] font-medium leading-[20px]">
+				<p className="text-[14px] text-[#202020] font-medium leading-[20px] max-w-[150px]">
 					{moment(certificate.certvalidityperiod).format('DD.MM.YYYY')}
 				</p>
 			</td>

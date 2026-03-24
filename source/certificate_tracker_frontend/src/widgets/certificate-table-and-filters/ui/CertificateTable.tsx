@@ -4,6 +4,7 @@ import { CategoryCert, Cert } from '@/src/entities'
 import { FilterTabBtnList, SearchInput } from '@/src/features'
 import { FC, useState } from 'react'
 import { CertificateTableRow } from './CertificateTableRow'
+import { CertificateMobileCard } from './CertificateMobileCard'
 import { useGetAllCertAndCategoryesData } from '../hooks/useGetAllCertAndCategoryesData'
 import { useFilteredCertFromSearchAndTabs } from '../hooks/useFilteredCertFromSearchAndTabs'
 
@@ -36,7 +37,7 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 
 	return (
 		<div className="w-full h-[calc(100vh-165px)] p-[17px] bg-white border-1 border-[#e0dfdf] rounded-[12px] flex flex-col">
-			<div className="flex items-center justify-between mb-[24px]">
+			<div className="flex flex-col items-start justify-between gap-4 mb-[24px] md:flex-col md:items-start md:gap-4 lg:flex-row lg:items-center lg:gap-4">
 				<SearchInput
 					value={searchValue}
 					onChange={e => setSearchValue(e.target.value)}
@@ -53,10 +54,12 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 			</div>
 			<div className="flex-1 overflow-hidden">
 				{/* Контейнер с прокруткой */}
-				<div className="overflow-y-auto h-full no-scrollbar">
+				<div className="overflow-y-auto h-full pb-4 no-scrollbar">
+					
+					{/* Десктопная таблица */}
 					<table
 						style={{ verticalAlign: 'top' }}
-						className="w-full rounded-[6px] table-auto rounded-[12px]"
+						className="w-full rounded-[6px] table-auto rounded-[12px] hidden xl:table"
 					>
 						<thead className="sticky top-0 z-[2] px-[16px] py-[12px] bg-[#d9d9d9] h-10">
 							<tr>
@@ -95,6 +98,18 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 							))}
 						</tbody>
 					</table>
+
+					{/* Мобильные карточки */}
+					<div className="flex flex-col gap-[16px] xl:hidden">
+						{filteredCertificates?.map(item => (
+							<CertificateMobileCard
+								key={item.key}
+								cert={item?.cert ?? null}
+								categoryCert={item.category}
+							/>
+						))}
+					</div>
+
 				</div>
 			</div>
 		</div>

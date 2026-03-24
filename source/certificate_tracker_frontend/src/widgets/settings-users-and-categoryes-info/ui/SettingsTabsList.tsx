@@ -19,7 +19,7 @@ export const SettingsTabsList: FC<SettingsTabsListProps> = ({
 	return (
 		<ul
 			style={{ gap: roles.isAdmin ? '6px' : '' }}
-			className="inline-flex items-center py-[4.5px] rounded-[8px] px-[4px] bg-gray-100"
+			className="inline-flex items-center py-[4.5px] rounded-[8px] px-[4px] bg-gray-100 flex-wrap"
 		>
 			{SETTINGS_TABS_CONFIG.map(item => (
 				<li key={item.id}>
@@ -28,7 +28,11 @@ export const SettingsTabsList: FC<SettingsTabsListProps> = ({
 						isActive={item.value === value}
 						setValue={setValue}
 						btnValue={item.value}
-						isVisible={item.id === '1' || roles.isAdmin}
+						isVisible={
+							item.id === '1' ||
+							roles.isAdmin ||
+							(item.id === '3' && roles.isManager)
+						}
 					/>
 				</li>
 			))}

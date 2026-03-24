@@ -3,12 +3,13 @@
 import { LogoutBtn } from '@/src/features'
 import { useAppSelector } from '@/src/shared'
 import { useAllWorkPositionQuery, WorkPosition } from '@/src/entities'
+import { useEffect } from 'react'
 
 export const UserProfile = () => {
 	const user = useAppSelector(state => state.user.user)
 	const { data: allWorkPos } = useAllWorkPositionQuery({})
 
-	if (!allWorkPos?.data || !user) return null
+	if (!user) return null
 
 	const filteredWorkPos: WorkPosition = allWorkPos?.data?.find(
 		(item: WorkPosition) => item.id === user?.workposition_id
@@ -29,7 +30,9 @@ export const UserProfile = () => {
 						{`${user?.firstname?.at(0)?.toUpperCase()}${user?.firstname?.slice(1).toLowerCase()} ${user?.lastname.at(0)?.toUpperCase()}.`}
 					</p>
 					<p className="text-[12px] text-[#7f7f7f] leading-sm">
-						{filteredWorkPos?.workpositionname}
+						{filteredWorkPos?.workpositionname
+							? filteredWorkPos?.workpositionname
+							: 'Нет должности'}
 					</p>
 				</div>
 			</div>
