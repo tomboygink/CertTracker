@@ -59,7 +59,7 @@ var Server = (function () {
     Server.prototype.route = function () {
         var _this = this;
         this.app.use((0, cors_1.default)({
-            origin: config_json_1.default.front_config.domain,
+            origin: config_json_1.default.server_config.domain,
             credentials: true
         }));
         this.app.use(body_parser_1.default.json({ limit: '500mb' }));
