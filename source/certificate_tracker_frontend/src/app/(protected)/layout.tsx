@@ -53,7 +53,7 @@ export default async function PrivatePagesLayout({
 	const data = await getUserByToken(token)
 	console.log('data layout', data)
 	// Токен некорректный или пользователь заблокирован
-	if (data === 'user_blocked') {
+	if (data === 'user_blocked' || data === 'token_invalid') {
 		console.log('FUCK YOU')
 		return (
 			<div className="w-full min-h-screen pt-[81px] px-[32px] pb-[32px] bg-[#fcfcfc]">
