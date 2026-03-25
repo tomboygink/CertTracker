@@ -24,11 +24,11 @@ export const CertificateMobileCard: FC<CertificateMobileCardProps> = ({
 				<p className="text-[14px] text-[#7f7f7f] font-medium text-right break-words min-w-0">{cert?.certnumber}</p>
 			</div>
 
-			<div className="flex flex-row justify-between items-center gap-[8px] w-full">
+			<div className="flex flex-row justify-between items-start gap-[8px] w-full">
 				<span className="text-[12px] text-[#7f7f7f] shrink-0">Категория</span>
-				<div className="text-right">
+				<div className="text-right min-w-0">
 					{categoryCert?.categoryname ? (
-						<span className="py-[3px] px-[9px] bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
+						<span className="inline-block py-[3px] px-[9px] max-w-[190px] whitespace-normal break-all [overflow-wrap:anywhere] bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
 							{categoryCert?.categoryname}
 						</span>
 					) : (
