@@ -189,7 +189,7 @@ var Users = (function () {
             var db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users ORDER BY firstname ASC")];
+                    case 0: return [4, this.db.query("SELECT id, login, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users ORDER BY firstname ASC")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();
