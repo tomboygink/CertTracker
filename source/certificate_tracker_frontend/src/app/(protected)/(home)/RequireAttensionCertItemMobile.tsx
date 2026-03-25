@@ -11,11 +11,11 @@ export const RequireAttensionCertItemMobile: FC<
 > = ({ certificate }) => {
 	return (
 		<div className="flex flex-col gap-2 py-[16px] border-b-1 border-gray-200">
-			<div className="flex items-center justify-between w-full">
+			<div className="flex items-start justify-between gap-3 w-full">
 				<span className="text-[12px] text-[#7f7f7f] font-medium leading-4">
 					Название
 				</span>
-				<p className="text-[12px] text-[#202020] font-medium leading-4">
+				<p className="min-w-0 max-w-[65%] text-right text-[12px] text-[#202020] font-medium leading-4 whitespace-normal break-all [overflow-wrap:anywhere]">
 					{certificate.certname}
 				</p>
 			</div>

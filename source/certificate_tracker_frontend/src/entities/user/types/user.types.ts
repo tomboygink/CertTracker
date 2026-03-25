@@ -8,4 +8,5 @@ export type User = {
 	sendmail: boolean
 	workposition_id: string
 	deleted: boolean
+	login?: string
 }

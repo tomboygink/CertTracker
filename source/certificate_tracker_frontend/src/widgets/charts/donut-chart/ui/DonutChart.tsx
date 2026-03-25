@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import Chart from 'react-apexcharts'
 import colors from '../../../../../../config/colors.json'
@@ -10,6 +12,13 @@ export const DonutChart: FC<DonutChartProps> = ({
 	data
 	// height = 300
 }) => {
+	const MAX_LABEL_LENGTH = 20
+	const truncateLabel = (label: string) => {
+		return label.length > MAX_LABEL_LENGTH
+			? `${label.slice(0, MAX_LABEL_LENGTH)}...`
+			: label
+	}
+
 	const series = data.map(item => item.count)
 	const labels = data.map(item => item.deptName)
 	const chartColors = data.map(
@@ -25,6 +34,9 @@ export const DonutChart: FC<DonutChartProps> = ({
 		series,
 		labels,
 		colors: chartColors,
+		legend: {
+			formatter: seriesName => truncateLabel(seriesName)
+		},
 		tooltip: { enabled: true },
 		subtitle: {
 			style: {
