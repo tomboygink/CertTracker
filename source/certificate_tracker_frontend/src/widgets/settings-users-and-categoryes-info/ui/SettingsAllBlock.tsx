@@ -25,7 +25,7 @@ export const SettingsAllBlock = () => {
 			<h2 className="mb-[24px] text-[20px] font-medium leading-[20px]">
 				Подробная информация
 			</h2>
-			<div className="w-full min-w-[380px] max-w-[830px] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
+			<div className="w-full min-w-[340px] max-w-[830px] p-[24px] mb-[16px] bg-white rounded-[12px] border-1 border-[#E0DFDF] shadow-md">
 				<DetailedInformation label="Имя" value={user.firstname} />
 				<DetailedInformation label="Фамилия" value={user.lastname} />
 				<DetailedInformation label="E-mail" value={user.email} />

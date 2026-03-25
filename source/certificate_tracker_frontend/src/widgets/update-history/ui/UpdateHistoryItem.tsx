@@ -26,7 +26,7 @@ export const UpdateHistoryItem: FC<UpdateHistoryItemProps> = ({
 					</p>
 				</div>
 				<div>
-					<p className="text-[12px] text-[#202020] font-medium leading-[20px] sm:text-[12px] md:text-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
+					<p className="text-[12px] text-[#202020] max-w-[450px] whitespace-normal font-medium leading-[20px] sm:text-[12px] md:text-[12px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px]">
 						{user?.firstname.charAt(0).toUpperCase() +
 							user?.firstname.slice(1).toLowerCase() +
 							' ' +
@@ -37,7 +37,7 @@ export const UpdateHistoryItem: FC<UpdateHistoryItemProps> = ({
 							- {event?.msg}
 						</span>
 					</p>
-					<p className="text-[10px] text-[#7f7f7f] leading-[16px] sm:text-[10px] md:text-[10px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px]">
+					<p className="text-[10px] text-[#7f7f7f] max-w-[300px] whitespace-normal leading-[16px] sm:text-[10px] md:text-[10px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px]">
 						{moment(event?.datecreatemsg).format('LL')}
 					</p>
 				</div>
