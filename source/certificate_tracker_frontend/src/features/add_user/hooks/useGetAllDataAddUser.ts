@@ -1,6 +1,10 @@
 'use client'
 
-import { useAllAccessQuery, useAllWorkPositionQuery } from '@/src/entities'
+import {
+	useAllAccessQuery,
+	useAllUsersQuery,
+	useAllWorkPositionQuery
+} from '@/src/entities'
 
 export const useGetAllDataAddUser = () => {
 	const { data: allAccess, isLoading } = useAllAccessQuery(
@@ -18,10 +22,12 @@ export const useGetAllDataAddUser = () => {
 				refetchOnReconnect: true
 			}
 		)
+	const { data: allUsers, isLoading: isUsersLoading } = useAllUsersQuery({})
 
 	return {
 		allAccessData: allAccess?.data,
 		allWorkPosData: allWorkPos?.data,
-		isLoading: isLoading || isWorkPosLoading
+		isLoading: isLoading || isWorkPosLoading || isUsersLoading,
+		allUsersData: allUsers?.data
 	}
 }
