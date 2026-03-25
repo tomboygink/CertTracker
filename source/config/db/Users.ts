@@ -103,7 +103,7 @@ export class Users {
     }
     //Полчение всех юзеров
     async All() {
-        var db_res = await (await this.db.query("SELECT id, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users ORDER BY firstname ASC")).rows;
+        var db_res = await (await this.db.query("SELECT id, login, lastname, firstname, avatar, access_id, email, sendmail, workposition_id, deleted FROM users ORDER BY firstname ASC")).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }
