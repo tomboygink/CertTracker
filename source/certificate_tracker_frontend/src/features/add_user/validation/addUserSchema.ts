@@ -7,6 +7,7 @@ export const addUserSchema = (allUsersData: User[] = []) =>
 			.string()
 			.trim()
 			.min(1, 'Поле не может быть пустым')
+			.max(250, 'Максимальная длина 250 символов')
 			.superRefine((val, ctx) => {
 				const normalizedLogin = val.toLowerCase()
 				const exists = allUsersData.some(
@@ -20,13 +21,23 @@ export const addUserSchema = (allUsersData: User[] = []) =>
 					})
 				}
 			}),
-		password: z.string().min(1, 'Поле не может быть пустым'),
-		lastname: z.string().min(1, 'Поле не может быть пустым'),
-		firstname: z.string().min(1, 'Поле не может быть пустым'),
+		password: z
+			.string()
+			.min(1, 'Поле не может быть пустым')
+			.max(250, 'Максимальная длина 250 символов'),
+		lastname: z
+			.string()
+			.min(1, 'Поле не может быть пустым')
+			.max(250, 'Максимальная длина 250 символов'),
+		firstname: z
+			.string()
+			.min(1, 'Поле не может быть пустым')
+			.max(250, 'Максимальная длина 250 символов'),
 		access_id: z.number(),
 		email: z
 			.email('Введите корректный электронный адрес')
-			.min(1, 'Поле не может быть пустым'),
+			.min(1, 'Поле не может быть пустым')
+			.max(250, 'Максимальная длина 250 символов'),
 		sendmail: z.boolean(),
 		workposition_id: z.string(),
 		deleted: z.boolean()

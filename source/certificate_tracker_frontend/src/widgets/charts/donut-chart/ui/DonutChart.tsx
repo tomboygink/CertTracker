@@ -37,7 +37,22 @@ export const DonutChart: FC<DonutChartProps> = ({
 		legend: {
 			formatter: seriesName => truncateLabel(seriesName)
 		},
-		tooltip: { enabled: true },
+		tooltip: {
+			enabled: true,
+			custom: ({ series, seriesIndex, w }) => {
+				const originalLabel = String(w?.globals?.labels?.[seriesIndex] ?? '')
+				const safeLabel = truncateLabel(originalLabel)
+				const safeValue = String(series?.[seriesIndex] ?? 0)
+				const markerColor = String(
+					w?.globals?.colors?.[seriesIndex] ?? '#7f7f7f'
+				)
+
+				return `<div style="padding:8px 10px;font-size:12px;line-height:1.3;display:flex;align-items:center;gap:8px;">
+					<span style="width:10px;height:10px;border-radius:50%;background:${markerColor};display:inline-block;"></span>
+					<span>${safeLabel}: ${safeValue}</span>
+				</div>`
+			}
+		},
 		subtitle: {
 			style: {
 				fontFamily: 'Inter'
