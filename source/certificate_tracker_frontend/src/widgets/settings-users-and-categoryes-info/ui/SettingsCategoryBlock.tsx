@@ -30,12 +30,12 @@ export const SettingsCategoryBlock: FC<SettingsCategoryBlockProps> = ({
 								className="w-full flex flex-row items-center justify-between py-3 border-b-1 border-gray-200 gap-[12px]"
 								key={item.id}
 							>
-								<div className="min-w-0">
+								<div className="flex-1 min-w-0">
 									<span className="text-[12px] text-gray-400">
 										Название категории
 									</span>
 									<div className="flex items-center gap-[4px] min-w-0">
-										<p className="text-[16px] text-[#202020] font-medium break-words whitespace-normal">
+										<p className="text-[16px] text-[#202020] font-medium break-all [overflow-wrap:anywhere] whitespace-normal">
 											{item.categoryname}
 										</p>
 									</div>

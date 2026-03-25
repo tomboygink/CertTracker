@@ -24,9 +24,9 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 					{cert?.certnumber}
 				</span>
 			</td>
-			<td className="py-3 align-middle max-w-[190px]">
+			<td className="py-3 align-middle max-w-[190px] min-w-0">
 				{categoryCert?.categoryname ? (
-					<span className="py-[3px] px-[9px] max-w-[190px] whitespace-normal bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
+					<span className="inline-block py-[3px] px-[9px] max-w-[190px] whitespace-normal break-all [overflow-wrap:anywhere] bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
 						{categoryCert?.categoryname}
 					</span>
 				) : (
@@ -62,8 +62,10 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 					</span>
 				)}
 			</td>
-			<td className="py-3 align-middle pr-3">
-				<ActionsWithCertificateBtn cert={cert} />
+			<td className="py-3 align-middle pr-[20px]">
+				<div className="flex justify-end">
+					<ActionsWithCertificateBtn cert={cert} />
+				</div>
 			</td>
 		</>
 	)
