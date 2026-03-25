@@ -43,6 +43,12 @@ export const MobileHeader = () => {
 		setIsAvatarOpen(false)
 	}, [isMenuOpen])
 
+	const handleNavLinkClick = useCallback(() => {
+		setIsMenuOpen(false)
+		setIsSearchOpen(false)
+		setIsAvatarOpen(false)
+	}, [setIsMenuOpen, setIsSearchOpen, setIsAvatarOpen])
+
 	return (
 		<div className="flex xl:hidden fixed top-0 left-0 w-full h-[60px] bg-white border-b-1 border-[#e0dfdf] items-center justify-between px-[16px] z-50">
 			{/* Левый контейнер */}
@@ -59,7 +65,7 @@ export const MobileHeader = () => {
 					</button>
 					{isMenuOpen && (
 						<div className="absolute top-[60px] left-0 w-full bg-white border-b-1 border-[#e0dfdf] shadow-md z-40 p-4 animate-in fade-in slide-in-from-top-2 duration-200">
-							<NavLinksList />
+							<NavLinksList handleNavLinkClick={handleNavLinkClick} />
 						</div>
 					)}
 				</div>
