@@ -58,7 +58,7 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 					{/* Десктопная таблица */}
 					<table
 						style={{ verticalAlign: 'top' }}
-						className="w-full rounded-[6px] table-auto rounded-[12px] hidden xl:table"
+						className="w-full rounded-[6px] table-fixed rounded-[12px] hidden xl:table"
 					>
 						<thead className="sticky top-0 z-[2] px-[16px] py-[12px] bg-[#d9d9d9] h-10">
 							<tr>
@@ -99,7 +99,7 @@ export const CertificateTable: FC<CertificateTableProps> = ({
 							{filteredCertificates?.map(item => (
 								<tr
 									key={item.key}
-									className="h-[71px] max-h-[71px] py-[16px] border-b-1 border-gray-200"
+									className="py-[16px] border-b-1 border-gray-200 align-middle"
 								>
 									<CertificateTableRow
 										cert={item?.cert ?? null}
