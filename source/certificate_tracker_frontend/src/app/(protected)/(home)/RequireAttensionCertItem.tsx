@@ -11,27 +11,27 @@ export const RequireAttensionCertItem: FC<RequireAttensionCertItemProps> = ({
 }) => {
 	return (
 		<>
-			<td className="pl-4 sm:pl-10">
+			<td className="pl-4 py-3 align-middle sm:pl-10">
 				<div className="flex flex-col max-w-[200px]">
-					<p className="text-[14px] text-[#202020] font-medium leading-[20px]">
+					<p className="text-[14px] text-[#202020] font-medium leading-[20px] whitespace-normal break-all [overflow-wrap:anywhere]">
 						{certificate.certname}
 					</p>
-					<span className="text-[12px] text-[#7f7f7f] font-medium leading-[16px]">
+					<span className="text-[12px] text-[#7f7f7f] font-medium leading-[16px] whitespace-normal break-all [overflow-wrap:anywhere]">
 						{certificate.certnumber}
 					</span>
 				</div>
 			</td>
-			<td>
+			<td className="py-3 align-middle">
 				<p className="text-[14px] text-[#7f7f7f] leading-[20px] max-w-[150px]">
 					{moment(certificate.issuedate).format('DD.MM.YYYY')}
 				</p>
 			</td>
-			<td>
+			<td className="py-3 align-middle">
 				<p className="text-[14px] text-[#202020] font-medium leading-[20px] max-w-[150px]">
 					{moment(certificate.certvalidityperiod).format('DD.MM.YYYY')}
 				</p>
 			</td>
-			<td>
+			<td className="py-3 align-middle">
 				<div className="">
 					{certificate.statuscert_id === '2' ? (
 						<span className="text-[12px] text-[#A65F00] font-medium bg-[#FEF9C2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#A65F00] bg-[url(/warning.svg)] bg-no-repeat bg-[11px]">

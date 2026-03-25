@@ -53,7 +53,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 			</div>
 			<div className="hidden min-h-0 min-w-0 flex-1 overflow-hidden rounded-[6px] sm:hidden md:block lg:block lg:min-h-[200px] xl:block 2xl:block">
 				<div className="max-h-[min(300px,55vh)] overflow-x-auto overflow-y-auto no-scrollbar sm:max-h-[300px] lg:h-full lg:max-h-none">
-					<table className="w-full min-w-[640px] table-auto">
+					<table className="w-full min-w-[640px] table-fixed">
 						<thead className="sticky top-0 z-[1] h-10 bg-[#d9d9d9] px-4 py-3">
 							<tr>
 								<td className="py-2 w-[40%] max-w-[250px] pl-4 text-[12px] font-bold uppercase leading-4 text-[#7f7f7f] sm:pl-10">
@@ -82,7 +82,7 @@ export const RequireAttensionCert: FC<RequireAttensionCertProps> = ({
 							{almostExpiredAndExpired?.map((item: Cert) => (
 								<tr
 									key={item.id}
-									className="h-[71px] py-[16px] border-b-1 border-gray-200"
+									className="py-[16px] border-b-1 border-gray-200 align-middle"
 								>
 									<RequireAttensionCertItem certificate={item} />
 								</tr>

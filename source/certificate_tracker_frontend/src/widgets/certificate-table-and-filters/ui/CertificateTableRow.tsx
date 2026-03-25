@@ -14,17 +14,17 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 }) => {
 	return (
 		<>
-			<td className="h-[71px] max-h-[71px] pl-3 text-[14px] text-[#202020] font-medium leading-[20px]">
-				<span className="block max-w-[190px] whitespace-normal">
+			<td className="pl-3 py-3 align-middle text-[14px] text-[#202020] font-medium leading-[20px]">
+				<span className="block max-w-[190px] whitespace-normal break-all [overflow-wrap:anywhere]">
 					{cert?.certname}
 				</span>
 			</td>
-			<td className="h-[71px] max-h-[71px] text-[12px] text-[#7f7f7f] font-medium leading-[16px]">
-				<span className="block max-w-[190px] whitespace-normal">
+			<td className="py-3 align-middle text-[12px] text-[#7f7f7f] font-medium leading-[16px]">
+				<span className="block max-w-[190px] whitespace-normal break-all [overflow-wrap:anywhere]">
 					{cert?.certnumber}
 				</span>
 			</td>
-			<td className="h-[71px] max-h-[71px] max-w-[190px]">
+			<td className="py-3 align-middle max-w-[190px]">
 				{categoryCert?.categoryname ? (
 					<span className="py-[3px] px-[9px] max-w-[190px] whitespace-normal bg-[rgba(241,228,251,0.5)] rounded-[12px] text-[12px] text-[#202020] leading-[16px]">
 						{categoryCert?.categoryname}
@@ -33,17 +33,17 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 					'—'
 				)}
 			</td>
-			<td className="h-[71px] max-h-[71px] text-[14px] text-[#7f7f7f] leading-[20px]">
+			<td className="py-3 align-middle text-[14px] text-[#7f7f7f] leading-[20px]">
 				<span className="block max-w-[190px] whitespace-normal">
 					{moment(cert?.issuedate).format('DD.MM.YYYY')}
 				</span>
 			</td>
-			<td className="h-[71px] max-h-[71px] text-[14px] text-[#202020] font-medium leading-[20px]">
+			<td className="py-3 align-middle text-[14px] text-[#202020] font-medium leading-[20px]">
 				<span className="block max-w-[190px] whitespace-normal">
 					{moment(cert?.certvalidityperiod).format('DD.MM.YYYY')}
 				</span>
 			</td>
-			<td className="h-[71px] max-h-[71px] max-w-[190px]">
+			<td className="py-3 align-middle max-w-[190px]">
 				{cert?.statuscert_id === '2' ? (
 					<span className="text-[12px] text-[#A65F00] max-w-[190px] whitespace-normal font-medium bg-[#FEF9C2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#A65F00] bg-[url(/warning.svg)] bg-no-repeat bg-[11px]">
 						Истекает
@@ -62,7 +62,7 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 					</span>
 				)}
 			</td>
-			<td className="h-[71px] max-h-[71px] pr-3">
+			<td className="py-3 align-middle pr-3">
 				<ActionsWithCertificateBtn cert={cert} />
 			</td>
 		</>
