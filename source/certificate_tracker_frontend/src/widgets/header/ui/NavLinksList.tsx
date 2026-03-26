@@ -6,7 +6,7 @@ import { NavLinksItem } from './NavLinkItem'
 import { FC } from 'react'
 
 interface NavLinksListProps {
-	handleNavLinkClick: () => void
+	handleNavLinkClick?: () => void
 }
 
 export const NavLinksList: FC<NavLinksListProps> = ({ handleNavLinkClick }) => {
