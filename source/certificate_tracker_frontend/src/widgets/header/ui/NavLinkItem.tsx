@@ -5,7 +5,7 @@ import { FC } from 'react'
 interface NavLinksItemProps {
 	link: NavLink
 	isActive: boolean
-	handleNavLinkClick: () => void
+	handleNavLinkClick?: () => void
 }
 
 export const NavLinksItem: FC<NavLinksItemProps> = ({
