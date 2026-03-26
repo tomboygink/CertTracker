@@ -1,13 +1,20 @@
 import z from 'zod'
 
 export const changeUserInfoSchema = z.object({
-	change: z.string(),
-	lastname: z.string().min(1, 'Поле не может быть пустым'),
-	firstname: z.string().min(1, 'Поле не может быть пустым'),
+	change: z.string().max(250, 'Максимальная длина 250 символов'),
+	lastname: z
+		.string()
+		.min(1, 'Поле не может быть пустым')
+		.max(250, 'Максимальная длина 250 символов'),
+	firstname: z
+		.string()
+		.min(1, 'Поле не может быть пустым')
+		.max(250, 'Максимальная длина 250 символов'),
 	access_id: z.coerce.number().min(1, 'Поле не может быть пустым'),
 	email: z
 		.email('Некорректный электронный адрес')
-		.min(1, 'Поле не может быть пустым'),
+		.min(1, 'Поле не может быть пустым')
+		.max(250, 'Максимальная длина 250 символов'),
 	sendmail: z.boolean(),
 	workposition_id: z.coerce.string().min(1, 'Поле не может быть пустым'),
 	deleted: z.boolean(),
