@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ПО по отслеживанию актуальности подтверждающих сертификатов компании",
   "license": "ISC",
-  "author": "Letovaltseva Marina / Danko Alexander",
+  "author": "Letovaltseva Marina / Danko Aleksandr",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
