@@ -50,9 +50,9 @@ var Cert = (function () {
             var db_res, ev;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("INSERT INTO cert(user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod, docs) " +
+                    case 0: return [4, this.db.query("INSERT INTO cert(user_id, certname, certnumber, statuscert_id, category_id, issuedate, certvalidityperiod, docs_cert, docs_prot) " +
                             "VALUES (" + this.args.user_id + ", '" + this.args.certname + "', '" + this.args.certnumber + "', 1, " + this.args.category_id + ", " +
-                            "'" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.issuedate)) + "', '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.certvalidityperiod)) + "', '" + this.args.docs + "') RETURNING id")];
+                            "'" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.issuedate)) + "', '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.certvalidityperiod)) + "', '" + this.args.docs_cert + "', '" + this.args.docs_prot + "') RETURNING id")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();
@@ -75,7 +75,7 @@ var Cert = (function () {
                 switch (_a.label) {
                     case 0: return [4, this.db.query("UPDATE cert SET certname = '" + this.args.certname + "', certnumber = '" + this.args.certnumber + "', " +
                             "category_id = " + this.args.category_id + ", issuedate = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.issuedate)) + "', " +
-                            "certvalidityperiod = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.certvalidityperiod)) + "', docs = '" + this.args.docs + "' WHERE id = " + this.args.id + " RETURNING id")];
+                            "certvalidityperiod = '" + (0, DateStr_1.dateTimeToSQL)(new Date(this.args.certvalidityperiod)) + "', docs_cert = '" + this.args.docs_cert + "', docs_prot = '" + this.args.docs_prot + "' WHERE id = " + this.args.id + " RETURNING id")];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();
@@ -134,7 +134,24 @@ var Cert = (function () {
             var db_res;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4, this.db.query("SELECT docs FROM cert WHERE id = " + this.args.id)];
+                    case 0: return [4, this.db.query("SELECT docs_cert FROM cert WHERE id = " + this.args.id)];
+                    case 1: return [4, (_a.sent()).rows];
+                    case 2:
+                        db_res = _a.sent();
+                        if (!db_res || db_res.length === 0) {
+                            return [2, null];
+                        }
+                        return [2, db_res];
+                }
+            });
+        });
+    };
+    Cert.prototype.DocsProt = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var db_res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.db.query("SELECT docs_prot FROM cert WHERE id = " + this.args.id)];
                     case 1: return [4, (_a.sent()).rows];
                     case 2:
                         db_res = _a.sent();

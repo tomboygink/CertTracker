@@ -15,7 +15,8 @@ export const cert_table = {
         Category_ID                       BIGINT DEFAULT 0,
         IssueDate                         TIMESTAMP DEFAULT(CURRENT_TIMESTAMP),
         CertValidityPeriod                TIMESTAMP DEFAULT(CURRENT_TIMESTAMP),
-        Docs                              TEXT DEFAULT ('')
+        Docs_cert                         TEXT DEFAULT (''),
+        Docs_prot                         TEXT DEFAULT ('')
     );
 
     COMMENT ON TABLE cert IS 'Информация о сертификате';
@@ -27,7 +28,8 @@ export const cert_table = {
     COMMENT ON COLUMN cert.Category_ID IS 'Категория сертификата';
     COMMENT ON COLUMN cert.IssueDate IS 'Дата выдачи сертификата';
     COMMENT ON COLUMN cert.CertValidityPeriod IS 'Срок действия сертификата';
-    COMMENT ON COLUMN cert.Docs IS 'Прикрепленный сертификат';
+    COMMENT ON COLUMN cert.Docs_cert IS 'Прикрепленный сертификат';
+    COMMENT ON COLUMN cert.Docs_prot IS 'Прикрепленный протокол';
     `,
     args: new Array()
 };

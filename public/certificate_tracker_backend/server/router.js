@@ -50,7 +50,7 @@ var NotificationReads_1 = require("../../config/db/NotificationReads");
 var token_1 = require("./token");
 function router(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var body, data, _a, u, token, decoded, u, _b, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, c, ev, n, nr;
+        var body, data, _a, u, token, decoded, u, _b, u, u, u, ua, wp, wp, wp, d, d, d, cc, cc, cc, sc, c, c, c, c, c, c, ev, n, nr;
         var _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
@@ -81,11 +81,12 @@ function router(req, res) {
                         case "ArchiveCert": return [3, 40];
                         case "AllCert": return [3, 42];
                         case "Docs": return [3, 44];
-                        case "AllEvents": return [3, 46];
-                        case "AllNotif": return [3, 48];
-                        case "NotifRead": return [3, 50];
+                        case "Docs_prot": return [3, 46];
+                        case "AllEvents": return [3, 48];
+                        case "AllNotif": return [3, 50];
+                        case "NotifRead": return [3, 52];
                     }
-                    return [3, 52];
+                    return [3, 54];
                 case 1:
                     u = new Users_1.Users(body.args);
                     return [4, u.Auth()];
@@ -242,29 +243,35 @@ function router(req, res) {
                     data = _d.sent();
                     return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")];
                 case 46:
-                    ev = new Events_1.Events(body.args);
-                    return [4, ev.All()];
+                    c = new Cert_1.Cert(body.args);
+                    return [4, c.DocsProt()];
                 case 47:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения событий")];
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")];
                 case 48:
-                    n = new Notification_1.Notification(body.args);
-                    return [4, n.All()];
+                    ev = new Events_1.Events(body.args);
+                    return [4, ev.All()];
                 case 49:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")];
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения событий")];
                 case 50:
-                    nr = new NotificationReads_1.NotificationReads(body.args);
-                    return [4, nr.Add()];
+                    n = new Notification_1.Notification(body.args);
+                    return [4, n.All()];
                 case 51:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка прочтения уведомления")];
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")];
                 case 52:
+                    nr = new NotificationReads_1.NotificationReads(body.args);
+                    return [4, nr.Add()];
+                case 53:
+                    data = _d.sent();
+                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка прочтения уведомления")];
+                case 54:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
                     }
-                    _d.label = 53;
-                case 53: return [2];
+                    _d.label = 55;
+                case 55: return [2];
             }
         });
     });
