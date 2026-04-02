@@ -1,28 +1,33 @@
 import { Cert, useLazyCertDocsQuery } from '@/src/entities'
 
 type GetDocsTrigger = ReturnType<typeof useLazyCertDocsQuery>[0]
+type FileField = 'docs_cert' | 'docs_prot'
 
 interface Props {
 	getDocs: GetDocsTrigger
 	cert: Cert
 	handleClose: () => void
+	field?: FileField
+	notAttachedMessage?: string
 }
 
 export const handleGetDocsAndRedirect = async ({
 	getDocs,
 	cert,
-	handleClose
+	handleClose,
+	field = 'docs_cert',
+	notAttachedMessage = 'Документ не прикреплен'
 }: Props) => {
 	try {
 		const response = await getDocs({ id: cert?.id })
 
-		const base64Srt = response?.data?.data?.[0]?.docs
+		const base64Srt = response?.data?.data?.[0]?.[field]
 
 		console.log('BASE64 В КОНСОЛИ:', base64Srt)
 
 		// ПРОВЕРКА: если данных нет, просто выходим
 		if (!base64Srt || base64Srt === 'null') {
-			alert('Документ не прикреплен')
+			alert(notAttachedMessage)
 			return
 		}
 

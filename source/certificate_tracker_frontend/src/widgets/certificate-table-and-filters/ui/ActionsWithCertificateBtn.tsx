@@ -1,7 +1,7 @@
 'use client'
 
 import { Cert, setSelectCert } from '@/src/entities'
-import { ArchiveBtn, ChangeCertBtn, WatchDocBtn } from '@/src/features'
+import { ArchiveBtn, ChangeCertBtn } from '@/src/features'
 import {
 	selectRoles,
 	useAppDispatch,
@@ -20,6 +20,8 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 	const [isOpen, setIsOpen] = useState(false)
 	const dispatch = useAppDispatch()
 	const roles = useAppSelector(selectRoles)
+	const canManageCert =
+		cert?.statuscert_id !== '4' && (roles.isAdmin || roles.isManager)
 
 	const divRef = useRef<HTMLDivElement | null>(null)
 	useClickOutside(divRef, () => setIsOpen(false))
@@ -27,6 +29,8 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 	const handleClose = () => {
 		setIsOpen(false)
 	}
+
+	if (!canManageCert) return null
 
 	return (
 		<div ref={divRef} className="relative">
@@ -44,14 +48,10 @@ export const ActionsWithCertificateBtn: FC<ActionsWithCertificateBtnProps> = ({
 			</button>
 			{isOpen && (
 				<div className="absolute top-10 right-10 z-[10] flex flex-col items-start gap-[8px] p-4 bg-white border-1 border-[#e0dfdf] rounded-[6px]">
-					<WatchDocBtn type="button" handleClose={handleClose} cert={cert} />
-					{cert?.statuscert_id !== '4' &&
-						(roles.isAdmin || roles.isManager) && (
-							<>
-								<ChangeCertBtn handleClose={handleClose} />
-								<ArchiveBtn cert={cert} handleClose={handleClose} />
-							</>
-						)}
+					<>
+						<ChangeCertBtn handleClose={handleClose} />
+						<ArchiveBtn cert={cert} handleClose={handleClose} />
+					</>
 				</div>
 			)}
 		</div>

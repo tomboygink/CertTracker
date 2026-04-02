@@ -61,16 +61,20 @@ export default function ChangeCertModal() {
 
 	const { base64, handleChangeFile } = useHandleFileChange()
 	const currentDoc = certDocs?.data?.[0]
-	const fileRef = useRef<HTMLInputElement>(null)
+	const certFileRef = useRef<HTMLInputElement>(null)
+	const protFileRef = useRef<HTMLInputElement>(null)
 
-	useEffect(() => {
+	const syncFileInput = (
+		fileRef: { current: HTMLInputElement | null },
+		docValue?: string | null
+	) => {
 		if (!fileRef.current) return
-		if (!isDocValuePresent(currentDoc?.docs)) {
+		if (!isDocValuePresent(docValue)) {
 			fileRef.current.value = ''
 			return
 		}
 
-		const file = base64ToFile(currentDoc?.docs, getDocFileName(currentDoc))
+		const file = base64ToFile(docValue, getDocFileName(currentDoc))
 		if (!file) {
 			fileRef.current.value = ''
 			return
@@ -80,18 +84,27 @@ export default function ChangeCertModal() {
 		dataTransfer.items.add(file)
 
 		fileRef.current.files = dataTransfer.files
+	}
+
+	useEffect(() => {
+		syncFileInput(certFileRef, currentDoc?.docs_cert)
+		syncFileInput(protFileRef, currentDoc?.docs_prot)
 	}, [currentDoc])
 
 	useEffect(() => {
 		setValue(
-			'docs',
-			isDocValuePresent(currentDoc?.docs) ? currentDoc?.docs : ''
+			'docs_cert',
+			isDocValuePresent(currentDoc?.docs_cert) ? currentDoc?.docs_cert : ''
+		)
+		setValue(
+			'docs_prot',
+			isDocValuePresent(currentDoc?.docs_prot) ? currentDoc?.docs_prot : ''
 		)
 	}, [currentDoc, setValue])
 
 	useEffect(() => {
-		if (!base64) return
-		setValue('docs', String(base64))
+		if (base64.docs_cert) setValue('docs_cert', String(base64.docs_cert))
+		if (base64.docs_prot) setValue('docs_prot', String(base64.docs_prot))
 	}, [base64, setValue])
 
 	return (
@@ -151,15 +164,27 @@ export default function ChangeCertModal() {
 				errorMessage={errors.certvalidityperiod?.message}
 			/>
 			<FormInput
-				ref={fileRef}
+				ref={certFileRef}
 				type="file"
 				accept=".pdf"
 				label="Документ"
 				onChange={e => {
-					handleChangeFile(e)
+					handleChangeFile(e, 'docs_cert')
 				}}
+				errorMessage={errors.docs_cert?.message}
 			/>
-			<input type="hidden" {...register('docs')} />
+			<input type="hidden" {...register('docs_cert')} />
+			<FormInput
+				ref={protFileRef}
+				type="file"
+				accept=".pdf"
+				label="Протокол"
+				onChange={e => {
+					handleChangeFile(e, 'docs_prot')
+				}}
+				errorMessage={errors.docs_prot?.message}
+			/>
+			<input type="hidden" {...register('docs_prot')} />
 			{successMessage && (
 				<span className="text-[14px] font-light text-green-400">
 					{successMessage}

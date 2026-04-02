@@ -4,12 +4,12 @@ import { Cert, useLazyCertDocsQuery } from '@/src/entities'
 import { ButtonHTMLAttributes, FC } from 'react'
 import { handleGetDocsAndRedirect } from '../services/handleGetDocsAndRedirect'
 
-interface WatchDocLinkProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface WatchProtocolBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	handleClose?: () => void
 	cert: Cert | null
 }
 
-export const WatchDocBtn: FC<WatchDocLinkProps> = ({
+export const WatchProtocolBtn: FC<WatchProtocolBtnProps> = ({
 	handleClose,
 	cert,
 	className,
@@ -28,12 +28,14 @@ export const WatchDocBtn: FC<WatchDocLinkProps> = ({
 				handleGetDocsAndRedirect({
 					getDocs,
 					cert,
-					handleClose: handleClose ?? (() => {})
+					handleClose: handleClose ?? (() => {}),
+					field: 'docs_prot',
+					notAttachedMessage: 'Протокол не прикреплен'
 				})
 			}}
 			className={className ?? 'block text-left text-[14px] cursor-pointer'}
 		>
-			Просмотр документа
+			Просмотр протокола
 		</button>
 	)
 }
