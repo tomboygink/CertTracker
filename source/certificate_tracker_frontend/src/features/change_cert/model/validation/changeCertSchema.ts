@@ -18,7 +18,8 @@ export const changeCertSchema = z.object({
 		.string()
 		.min(1, 'Поле не может быть пустым')
 		.max(250, 'Максимальная длина 250 символов'),
-	docs: z.string().min(1, 'Поле не может быть пустым'),
+	docs_cert: z.string().min(1, 'Поле не может быть пустым'),
+	docs_prot: z.string().min(1, 'Поле не может быть пустым'),
 	id: z.number(),
 	user_id: z.number()
 })

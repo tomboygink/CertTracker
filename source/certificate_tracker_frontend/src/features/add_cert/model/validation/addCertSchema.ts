@@ -19,5 +19,6 @@ export const addCertSchema = z.object({
 		.string()
 		.min(1, 'Выберите дату окончания срока действия')
 		.max(250, 'Максимальная длина 250 символов'),
-	docs: z.string().min(1, 'Прикрепите документ')
+	docs_cert: z.string().min(1, 'Прикрепите документ'),
+	docs_prot: z.string().min(1, 'Прикрепите протокол')
 })

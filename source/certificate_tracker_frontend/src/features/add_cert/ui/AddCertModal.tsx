@@ -7,7 +7,8 @@ import { CategoryCert } from '@/src/entities'
 import { useHandleFileChange } from '../model/hooks/useHandleFileChange'
 
 export default function AddCertModal() {
-	const [dateStart, setDateStart] = useState<Date | null>(null)
+	const today = new Date().toISOString().slice(0, 10)
+	const [dateStart, setDateStart] = useState<string>(today)
 
 	const {
 		form: {
@@ -30,8 +31,9 @@ export default function AddCertModal() {
 	)
 
 	useEffect(() => {
-		setValue('docs', String(base64))
-	}, [base64])
+		if (base64.docs_cert) setValue('docs_cert', String(base64.docs_cert))
+		if (base64.docs_prot) setValue('docs_prot', String(base64.docs_prot))
+	}, [base64, setValue])
 
 	if (isLoadingCategoryCert) return null
 
@@ -97,10 +99,18 @@ export default function AddCertModal() {
 				type="file"
 				accept=".pdf"
 				label="Документ"
-				onChange={e => handleChangeFile(e)}
-				errorMessage={errors?.docs?.message}
+				onChange={e => handleChangeFile(e, 'docs_cert')}
+				errorMessage={errors?.docs_cert?.message}
 			/>
-			<input type="hidden" {...register('docs')} />
+			<input type="hidden" {...register('docs_cert')} />
+			<FormInput
+				type="file"
+				accept=".pdf"
+				label="Протокол"
+				onChange={e => handleChangeFile(e, 'docs_prot')}
+				errorMessage={errors?.docs_prot?.message}
+			/>
+			<input type="hidden" {...register('docs_prot')} />
 			{successMessage && (
 				<span className="text-[14px] font-light text-green-400">
 					{successMessage}

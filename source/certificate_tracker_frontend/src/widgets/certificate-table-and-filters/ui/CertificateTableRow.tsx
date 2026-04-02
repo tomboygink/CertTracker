@@ -1,4 +1,5 @@
 import { CategoryCert, Cert } from '@/src/entities'
+import { WatchDocBtn, WatchProtocolBtn } from '@/src/features'
 import moment from 'moment'
 import { FC } from 'react'
 import { ActionsWithCertificateBtn } from './ActionsWithCertificateBtn'
@@ -43,27 +44,37 @@ export const CertificateTableRow: FC<CertificateTableRowProps> = ({
 					{moment(cert?.certvalidityperiod).format('DD.MM.YYYY')}
 				</span>
 			</td>
-			<td className="py-3 align-middle max-w-[190px]">
+			<td className="py-3 align-middle max-w-[190px] pr-2">
 				{cert?.statuscert_id === '2' ? (
-					<span className="text-[12px] text-[#A65F00] max-w-[190px] whitespace-normal font-medium bg-[#FEF9C2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#A65F00] bg-[url(/warning.svg)] bg-no-repeat bg-[11px]">
+					<span className="inline-block text-[12px] text-[#A65F00] max-w-[190px] whitespace-nowrap font-medium bg-[#FEF9C2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#A65F00] bg-[url(/warning.svg)] bg-no-repeat bg-[11px]">
 						Истекает
 					</span>
 				) : cert?.statuscert_id === '3' ? (
-					<span className="text-[12px] text-[#C10007] max-w-[190px] whitespace-normal font-medium bg-[#FFE2E2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#FFC9C9] bg-[url(/red-close.svg)] bg-no-repeat bg-[11px]">
+					<span className="inline-block text-[12px] text-[#C10007] max-w-[190px] whitespace-nowrap font-medium bg-[#FFE2E2] py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-[#FFC9C9] bg-[url(/red-close.svg)] bg-no-repeat bg-[11px]">
 						Просрочен
 					</span>
 				) : cert?.statuscert_id === '1' ? (
-					<span className="text-[12px] text-green-600 max-w-[190px] whitespace-normal font-medium bg-green-100 py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-green-400 bg-[url(/active.svg)] bg-no-repeat bg-[11px]">
+					<span className="inline-block text-[12px] text-green-600 max-w-[190px] whitespace-nowrap font-medium bg-green-100 py-[3px] pr-[12px] pl-[29px] rounded-[12px] border-1 border-green-400 bg-[url(/active.svg)] bg-no-repeat bg-[11px]">
 						Активен
 					</span>
 				) : (
-					<span className="text-[12px] text-gray-600 max-w-[190px] whitespace-normal font-medium bg-gray-100 py-[3px] pr-[12px] pl-[32px] rounded-[12px] border-1 border-gray-400 bg-[url(/archive.svg)] bg-no-repeat bg-[11px]">
+					<span className="inline-block text-[12px] text-gray-600 max-w-[190px] whitespace-nowrap font-medium bg-gray-100 py-[3px] pr-[12px] pl-[32px] rounded-[12px] border-1 border-gray-400 bg-[url(/archive.svg)] bg-no-repeat bg-[11px]">
 						Архив
 					</span>
 				)}
 			</td>
 			<td className="py-3 align-middle pr-[20px]">
-				<div className="flex justify-end">
+				<div className="flex justify-end items-center gap-2">
+					<div className="flex flex-col items-end gap-1">
+						<WatchDocBtn
+							cert={cert}
+							className="h-8 px-3 border-1 border-[#e0dfdf] rounded-[6px] text-[12px] text-[#202020] leading-[16px] cursor-pointer hover:bg-[#f7f7f7] whitespace-nowrap"
+						/>
+						<WatchProtocolBtn
+							cert={cert}
+							className="h-8 px-3 border-1 border-[#e0dfdf] rounded-[6px] text-[12px] text-[#202020] leading-[16px] cursor-pointer hover:bg-[#f7f7f7] whitespace-nowrap"
+						/>
+					</div>
 					<ActionsWithCertificateBtn cert={cert} />
 				</div>
 			</td>
