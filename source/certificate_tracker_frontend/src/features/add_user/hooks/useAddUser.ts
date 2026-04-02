@@ -13,7 +13,7 @@ export const useAddUser = () => {
 	const [mutate, result] = useRegisterUserMutation()
 
 	const handleAddUserSubmit = (data: AddUserFormValues) => {
-		mutate(data).then(response => console.log(response))
+		mutate(data)
 	}
 
 	return {

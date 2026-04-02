@@ -7,7 +7,8 @@ import { CategoryCert } from '@/src/entities'
 import { useHandleFileChange } from '../model/hooks/useHandleFileChange'
 
 export default function AddCertModal() {
-	const [dateStart, setDateStart] = useState<Date | null>(null)
+	const today = new Date().toISOString().slice(0, 10)
+	const [dateStart, setDateStart] = useState<string>(today)
 
 	const {
 		form: {

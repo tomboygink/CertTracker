@@ -4,7 +4,9 @@ export {
 	useArchiveCertMutation,
 	useChangeCertMutation,
 	useCertDocsQuery,
-	useLazyCertDocsQuery
+	useLazyCertDocsQuery,
+	useCertDocsProtQuery,
+	useLazyCertDocsProtQuery
 } from './api/cartificateApi.api'
 export { getAllCert } from './api/getAllCert'
 export type { Cert } from './types/cert.types'

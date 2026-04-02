@@ -1,6 +1,6 @@
 'use client'
 
-import { Cert, useLazyCertDocsQuery } from '@/src/entities'
+import { Cert, useLazyCertDocsProtQuery } from '@/src/entities'
 import { ButtonHTMLAttributes, FC } from 'react'
 import { handleGetDocsAndRedirect } from '../services/handleGetDocsAndRedirect'
 
@@ -15,7 +15,7 @@ export const WatchProtocolBtn: FC<WatchProtocolBtnProps> = ({
 	className,
 	...buttonProps
 }) => {
-	const [getDocs, _] = useLazyCertDocsQuery()
+	const [getDocs, _] = useLazyCertDocsProtQuery()
 
 	if (!cert) return null
 

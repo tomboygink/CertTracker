@@ -27,8 +27,6 @@ export const useHandleFileChange = () => {
 			}
 
 			reader.readAsDataURL(file)
-		} else {
-			console.log('Error: No file selected')
 		}
 	}
 

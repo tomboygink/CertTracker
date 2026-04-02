@@ -74,7 +74,7 @@ export default function ChangeCertModal() {
 			return
 		}
 
-		const file = base64ToFile(docValue, getDocFileName(currentDoc))
+		const file = base64ToFile(docValue ?? undefined, getDocFileName(currentDoc))
 		if (!file) {
 			fileRef.current.value = ''
 			return

@@ -27,7 +27,5 @@ export const handleFileChange = (
 		//   e.target.value = '' // сбросить выбранный файл
 		//   return
 		// }
-	} else {
-		console.log('Error: No file selected')
 	}
 }

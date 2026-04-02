@@ -73,6 +73,7 @@ export enum ECommand {
 
 	// Запрос на документ
 	docs = 'Docs',
+	docsProt = 'Docs_prot',
 
 	// Получение всех событий
 	allEvents = 'AllEvents',

@@ -59,32 +59,32 @@ function router(req, res) {
                     console.log(body);
                     _a = body.cmd;
                     switch (_a) {
-                        case "Auth": return [3, 1];
-                        case "GetUser": return [3, 3];
-                        case "Logout": return [3, 7];
-                        case "AddUser": return [3, 8];
-                        case "ChangeUser": return [3, 10];
-                        case "AllUsers": return [3, 12];
-                        case "AllAccess": return [3, 14];
-                        case "AddWorkPosition": return [3, 16];
-                        case "ChangeWorkPosition": return [3, 18];
-                        case "AllWorkPosition": return [3, 20];
-                        case "AddDept": return [3, 22];
-                        case "ChangeDept": return [3, 24];
-                        case "AllDept": return [3, 26];
-                        case "AddCategoryCert": return [3, 28];
-                        case "ChangeCategoryCert": return [3, 30];
-                        case "AllCategoryCert": return [3, 32];
-                        case "AllStatusCert": return [3, 34];
-                        case "AddCert": return [3, 36];
-                        case "ChangeCert": return [3, 38];
-                        case "ArchiveCert": return [3, 40];
-                        case "AllCert": return [3, 42];
-                        case "Docs": return [3, 44];
-                        case "Docs_prot": return [3, 46];
-                        case "AllEvents": return [3, 48];
-                        case "AllNotif": return [3, 50];
-                        case "NotifRead": return [3, 52];
+                        case 'Auth': return [3, 1];
+                        case 'GetUser': return [3, 3];
+                        case 'Logout': return [3, 7];
+                        case 'AddUser': return [3, 8];
+                        case 'ChangeUser': return [3, 10];
+                        case 'AllUsers': return [3, 12];
+                        case 'AllAccess': return [3, 14];
+                        case 'AddWorkPosition': return [3, 16];
+                        case 'ChangeWorkPosition': return [3, 18];
+                        case 'AllWorkPosition': return [3, 20];
+                        case 'AddDept': return [3, 22];
+                        case 'ChangeDept': return [3, 24];
+                        case 'AllDept': return [3, 26];
+                        case 'AddCategoryCert': return [3, 28];
+                        case 'ChangeCategoryCert': return [3, 30];
+                        case 'AllCategoryCert': return [3, 32];
+                        case 'AllStatusCert': return [3, 34];
+                        case 'AddCert': return [3, 36];
+                        case 'ChangeCert': return [3, 38];
+                        case 'ArchiveCert': return [3, 40];
+                        case 'AllCert': return [3, 42];
+                        case 'Docs': return [3, 44];
+                        case 'Docs_prot': return [3, 46];
+                        case 'AllEvents': return [3, 48];
+                        case 'AllNotif': return [3, 50];
+                        case 'NotifRead': return [3, 52];
                     }
                     return [3, 54];
                 case 1:
@@ -93,38 +93,35 @@ function router(req, res) {
                 case 2:
                     data = _d.sent();
                     if (!data || data.length === 0) {
-                        return [2, buildResponse(body.cmd, null, "Ошибка авторизации")];
+                        return [2, buildResponse(body.cmd, null, 'Ошибка авторизации')];
                     }
                     (0, token_1.add_token)(data, res);
                     return [2, buildResponse(body.cmd, data, null)];
                 case 3:
                     token = (_c = req.cookies) === null || _c === void 0 ? void 0 : _c.access_token;
                     if (!token) {
-                        return [2, buildResponse(body.cmd, null, "no_token")];
+                        return [2, buildResponse(body.cmd, null, 'no_token')];
                     }
                     _d.label = 4;
                 case 4:
                     _d.trys.push([4, 6, , 7]);
                     decoded = (0, token_1.verif_token)(token);
-                    console.log(decoded);
                     u = new Users_1.Users(decoded.id);
                     return [4, u.GetUser()];
                 case 5:
                     data = _d.sent();
-                    console.log(data[0].deleted);
                     if (data[0].deleted === true) {
-                        return [2, buildResponse(body.cmd, null, "user_blocked")];
+                        return [2, buildResponse(body.cmd, null, 'user_blocked')];
                     }
-                    console.log("user ok");
                     return [2, buildResponse(body.cmd, data, null)];
                 case 6:
                     _b = _d.sent();
                     data = null;
-                    return [2, buildResponse(body.cmd, null, "token_invalid")];
+                    return [2, buildResponse(body.cmd, null, 'token_invalid')];
                 case 7:
                     {
                         (0, token_1.delete_token)(res);
-                        data = [{ "logout": true }];
+                        data = [{ logout: true }];
                         return [2, buildResponse(body.cmd, data, null)];
                     }
                     _d.label = 8;
@@ -133,139 +130,139 @@ function router(req, res) {
                     return [4, u.Add()];
                 case 9:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления пользователя")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка добавления пользователя')];
                 case 10:
                     u = new Users_1.Users(body.args);
                     return [4, u.Update()];
                 case 11:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка обновления данных пользователя")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка обновления данных пользователя')];
                 case 12:
                     u = new Users_1.Users(body.args);
                     return [4, u.All()];
                 case 13:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения пользователей")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения пользователей')];
                 case 14:
                     ua = new UserAccess_1.UserAccess(body.args);
                     return [4, ua.All()];
                 case 15:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения уровней доступа")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения уровней доступа')];
                 case 16:
                     wp = new WorkPosition_1.WorkPosition(body.args);
                     return [4, wp.Add()];
                 case 17:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления должности")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка добавления должности')];
                 case 18:
                     wp = new WorkPosition_1.WorkPosition(body.args);
                     return [4, wp.Update()];
                 case 19:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения должности")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка изменения должности')];
                 case 20:
                     wp = new WorkPosition_1.WorkPosition(body.args);
                     return [4, wp.All()];
                 case 21:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения должностей")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения должностей')];
                 case 22:
                     d = new Dept_1.Dept(body.args);
                     return [4, d.Add()];
                 case 23:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления отдела")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка добавления отдела')];
                 case 24:
                     d = new Dept_1.Dept(body.args);
                     return [4, d.Update()];
                 case 25:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения отдела")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка изменения отдела')];
                 case 26:
                     d = new Dept_1.Dept(body.args);
                     return [4, d.All()];
                 case 27:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения отделов")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения отделов')];
                 case 28:
                     cc = new CategoryCert_1.CategoryCert(body.args);
                     return [4, cc.Add()];
                 case 29:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления категории")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка добавления категории')];
                 case 30:
                     cc = new CategoryCert_1.CategoryCert(body.args);
                     return [4, cc.Update()];
                 case 31:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения категории")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка изменения категории')];
                 case 32:
                     cc = new CategoryCert_1.CategoryCert(body.args);
                     return [4, cc.All()];
                 case 33:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения категорий")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения категорий')];
                 case 34:
                     sc = new StatusCert_1.StatusCert(body.args);
                     return [4, sc.All()];
                 case 35:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения статусов сертификата")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения статусов сертификата')];
                 case 36:
                     c = new Cert_1.Cert(body.args);
                     return [4, c.Add()];
                 case 37:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка добавления сертификата")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка добавления сертификата')];
                 case 38:
                     c = new Cert_1.Cert(body.args);
                     return [4, c.Update()];
                 case 39:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения сертификата")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка изменения сертификата')];
                 case 40:
                     c = new Cert_1.Cert(body.args);
                     return [4, c.ArchiveCert()];
                 case 41:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка изменения сертификата")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка изменения сертификата')];
                 case 42:
                     c = new Cert_1.Cert(body.args);
                     return [4, c.All()];
                 case 43:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения сертификатов")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения сертификатов')];
                 case 44:
                     c = new Cert_1.Cert(body.args);
                     return [4, c.Docs()];
                 case 45:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения документа')];
                 case 46:
                     c = new Cert_1.Cert(body.args);
                     return [4, c.DocsProt()];
                 case 47:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения документа')];
                 case 48:
                     ev = new Events_1.Events(body.args);
                     return [4, ev.All()];
                 case 49:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения событий")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения событий')];
                 case 50:
                     n = new Notification_1.Notification(body.args);
                     return [4, n.All()];
                 case 51:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка получения уведомлений")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка получения уведомлений')];
                 case 52:
                     nr = new NotificationReads_1.NotificationReads(body.args);
                     return [4, nr.Add()];
                 case 53:
                     data = _d.sent();
-                    return [2, buildResponse(body.cmd, data, data ? null : "Ошибка прочтения уведомления")];
+                    return [2, buildResponse(body.cmd, data, data ? null : 'Ошибка прочтения уведомления')];
                 case 54:
                     {
                         return [2, buildResponse(body.cmd, data, data ? null : "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \"".concat(body.cmd, "\" \u043D\u0435 \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u043D\u0430"))];
@@ -282,7 +279,7 @@ function buildResponse(cmd, data, err) {
     return JSON.stringify({
         cmd: cmd,
         data: data !== null && data !== void 0 ? data : null,
-        err: err,
+        err: err
     });
 }
 //# sourceMappingURL=router.js.map
