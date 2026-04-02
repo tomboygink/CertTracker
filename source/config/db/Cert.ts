@@ -61,7 +61,13 @@ export class Cert {
 
     //Запрос на получение PDF-документа при нажатии на сертификат
     async Docs() {
-        var db_res = await (await this.db.query("SELECT docs_cert, docs_prot FROM cert WHERE id = " + this.args.id)).rows;
+        var db_res = await (await this.db.query("SELECT docs_cert FROM cert WHERE id = " + this.args.id)).rows;
+        if (!db_res || db_res.length === 0) { return null }
+        return db_res
+    }
+
+    async DocsProt() {
+        var db_res = await (await this.db.query("SELECT docs_prot FROM cert WHERE id = " + this.args.id)).rows;
         if (!db_res || db_res.length === 0) { return null }
         return db_res
     }

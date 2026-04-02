@@ -203,6 +203,13 @@ export async function router(req: any, res: Response) {
             return buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")
         }
 
+        //Запрос прикрепленного документа
+        case "Docs_prot": {
+            var c = new Cert(body.args);
+            data = await c.DocsProt();
+            return buildResponse(body.cmd, data, data ? null : "Ошибка получения документа")
+        }
+
         //------------------------------------------------------------------------------------События
         //Все события
         case "AllEvents": {
